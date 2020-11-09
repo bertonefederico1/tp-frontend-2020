@@ -75,6 +75,10 @@ export class AddPurchaseComponent implements OnInit {
     }
   }
 
+  cancel(){
+    this.router.navigate(['/purchases']);
+  }
+
   validate(){
     if(this.purchase.cantidad === undefined || this.purchase.id_articulo === undefined
       || this.purchase.id_proveedor === undefined || this.purchase.precio_unitario === undefined){

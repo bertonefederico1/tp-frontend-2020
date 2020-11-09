@@ -30,9 +30,7 @@ export class AddSupplierComponent {
   }
 
   cancel(){
-    if(confirm('Desea cancelar?')){
-      this.router.navigate(['/suppliers']);
-    }
+    this.router.navigate(['/suppliers']);
   }
 
   validate(){

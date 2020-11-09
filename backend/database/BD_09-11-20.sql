@@ -1,4 +1,4 @@
-/* -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: tpbackend
 -- ------------------------------------------------------
@@ -27,10 +27,11 @@ CREATE TABLE `articulos` (
   `descripcion` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `precio` decimal(10,2) NOT NULL,
   `stock` int(11) NOT NULL,
+  `imagen` text COLLATE utf8mb4_unicode_ci,
   `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_articulo`),
   UNIQUE KEY `id_articulo_UNIQUE` (`id_articulo`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +40,7 @@ CREATE TABLE `articulos` (
 
 LOCK TABLES `articulos` WRITE;
 /*!40000 ALTER TABLE `articulos` DISABLE KEYS */;
-INSERT INTO `articulos` VALUES (1,'caramelo masticable',1.00,64,1),(2,'chupetin',14.00,30,1),(3,'alfajor',20.00,40,1),(4,'gaseosa',30.00,20,1),(147,'7up 1Lssss',100.00,0,1);
+INSERT INTO `articulos` VALUES (153,'TV 40\" Noblex',45000.00,8,'',1),(154,'Notebook HP 14\" 4gb 1tb',75000.00,9,'https://www.casasilvia.com/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/h/p/hp-notebook-15.6-15da0051la-celeron-500g-4g.jpg',1),(155,'Lavarropa automatico Drean ',58640.00,0,NULL,1);
 /*!40000 ALTER TABLE `articulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `clientes` (
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `id_cliente_UNIQUE` (`id_cliente`),
   UNIQUE KEY `dni_UNIQUE` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +71,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'37817242','Federico','Bertone','juanbjusto1750','3465421444',1),(2,'14205523','Juan','Perez','alberdi 1212','4214213',1),(3,'32434213','Elsa','Lame','sarmiento 2222','4222451',1);
+INSERT INTO `clientes` VALUES (133,'37817515','Alberto','Perez','Catamarca 1111','424555',1),(134,'40980999','Elsa','Lame','Alberdi 1280','15546782',1),(135,'14205964','Armando','Paredes','Rivadavia 560 bis','15565793',1);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +93,7 @@ CREATE TABLE `proveedores` (
   PRIMARY KEY (`id_proveedor`),
   UNIQUE KEY `id_proveedor_UNIQUE` (`id_proveedor`),
   UNIQUE KEY `cuit_UNIQUE` (`cuit`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +102,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES (1,'20-37817242-1','Pepito SRL','Rosario','Pte Peron 222','4213215',1),(2,'21-43123434-9','Juansito SA','Firmat','Rivadava 111','421333',1),(5,'20-41432423-5','Merco SA','Firmat','Alberdi 2222','424241',1);
+INSERT INTO `proveedores` VALUES (17,'25-25987888-5','Merco S.A','Rosario','Alvear 235 bis','3465-15457799',1),(18,'21-31000841-1','Klaus SRL','Casilda','Santa Fe ','421444',1),(19,'20-14568222-9','New San S.A','Buenos Aires','Gral. Paz 890','011-4252225',1);
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +132,7 @@ CREATE TABLE `proveedores_articulos` (
 
 LOCK TABLES `proveedores_articulos` WRITE;
 /*!40000 ALTER TABLE `proveedores_articulos` DISABLE KEYS */;
-INSERT INTO `proveedores_articulos` VALUES (5,1,'2020-05-27 12:56:14',2.00,'2'),(5,1,'2020-05-27 13:05:43',22.00,'22'),(5,1,'2020-05-27 13:06:15',22.00,'22'),(5,1,'2020-05-27 14:10:16',33.00,'4'),(5,4,'2020-05-27 12:56:29',4.00,'1');
+INSERT INTO `proveedores_articulos` VALUES (17,153,'2020-06-01 20:30:44',40000.00,'3'),(18,154,'2020-06-01 20:27:26',69000.00,'9'),(19,153,'2020-06-01 20:26:54',38000.00,'5');
 /*!40000 ALTER TABLE `proveedores_articulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,5 +192,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-27 15:52:15
- */
+-- Dump completed on 2020-11-09 20:50:57

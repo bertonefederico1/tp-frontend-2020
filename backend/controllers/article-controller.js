@@ -51,7 +51,8 @@ articleController.createArticle = async (req, res) => {
     try{
       await Article.create({
         descripcion: req.body.descripcion,
-        precio: req.body.precio
+        precio: req.body.precio,
+        imagen: req.body.imagen
       });
       res.json("Article created");
     } catch(err){
@@ -65,7 +66,8 @@ articleController.updateArticle = async (req, res) => {
       const rowsUpdated = await Article.update({
         descripcion: req.body.descripcion,
         precio: req.body.precio,
-        stock: req.body.stock
+        stock: req.body.stock,
+        imagen: req.body.imagen
       }, {
         where: {
           id_articulo: req.params.id

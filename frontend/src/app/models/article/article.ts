@@ -6,5 +6,6 @@ export class Article {
     descripcion: string;
     precio: number;
     stock: number;
+    imagen: string;
     proveedores: Supplier[] = [];
 }

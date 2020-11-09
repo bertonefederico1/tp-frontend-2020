@@ -13,6 +13,7 @@ export class ArticleComponent implements OnInit {
 
   articles: Article[];
   suppliers: any = [];
+  filterArticle: string = '';
 
   constructor(
     private articleService: ArticleService

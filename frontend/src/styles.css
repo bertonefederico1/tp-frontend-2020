@@ -2,6 +2,16 @@
     margin-top: 10px;
 }
 
+.size-image-edit{
+    height: 20rem;
+    width: 20rem;
+}
+
+.allign-head {
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+}
+
 .active {
     font-weight: bold;
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
 import { Article } from 'src/app/models/article/article';
-import { ArticleSupplier } from '../../../models/article-supplier/article-supplier';
 
 import { ArticleService } from "../../../services/article/article.service";
 import { SupplierService } from 'src/app/services/supplier/supplier.service';

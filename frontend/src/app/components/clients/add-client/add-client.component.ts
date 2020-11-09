@@ -29,9 +29,7 @@ export class AddClientComponent {
   }
 
   cancel(){
-    if(confirm('Desea cancelar?')){
-      this.router.navigate(['/clients']);
-    }
+    this.router.navigate(['/clients']);
   }
 
   validate(){

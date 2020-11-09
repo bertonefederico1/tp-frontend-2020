@@ -20,6 +20,7 @@ import { EditSupplierComponent } from './components/suppliers/edit-supplier/edit
 import { AddPurchaseComponent } from './components/purchases/add-purchase/add-purchase.component';
 import { PurchaseComponent } from './components/purchases/purchase/purchase.component';
 import { DataPurchaseComponent } from './components/purchases/data-purchase/data-purchase.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { DataPurchaseComponent } from './components/purchases/data-purchase/data
     EditSupplierComponent,
     AddPurchaseComponent,
     PurchaseComponent,
-    DataPurchaseComponent
+    DataPurchaseComponent,
+    FilterPipe
   ],
   imports: [
   BrowserModule,
