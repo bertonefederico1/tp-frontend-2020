@@ -15,7 +15,7 @@
     <thead>
       <tr>
         <th>Article ID</th>
-        <th>Description</th>
+        <th colspan="2">Description</th>
         <th>Price</th>
         <th>Stock</th>
         <th>Supplier/s</th>
@@ -26,6 +26,9 @@
     <tbody *ngIf="articles">
       <tr *ngFor="let article of articles | filter: filterArticle">
         <td>{{ article.id_articulo }}</td>
+        <td>
+          <img src={{article.imagen}} alt={{article.descripcion}}>
+        </td>
         <td>{{ article.descripcion }}</td>
         <td>{{ article.precio | currency: '$' }}</td>
         <td>{{ article.stock }}</td>
