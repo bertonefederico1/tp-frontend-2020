@@ -26,8 +26,11 @@
     <tbody *ngIf="articles">
       <tr *ngFor="let article of articles | filter: filterArticle">
         <td>{{ article.id_articulo }}</td>
-        <td>
-          <img src={{article.imagen}} alt={{article.descripcion}}>
+        <td *ngIf="article.imagen !== null && article.imagen !== ''">
+          <img [src]="article.imagen" [alt]="article.descripcion">
+        </td>
+        <td *ngIf="article.imagen == null || article.imagen == ''">
+          - Sin Imagen -
         </td>
         <td>{{ article.descripcion }}</td>
         <td>{{ article.precio | currency: '$' }}</td>
