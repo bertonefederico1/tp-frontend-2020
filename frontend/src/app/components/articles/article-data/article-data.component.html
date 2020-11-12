@@ -3,7 +3,34 @@
         <p>
         <h4 class="center-align titulo">ARTICLE DATA</h4>
 
-        <p>
+        <table class="centered">
+            <thead>
+              <tr>
+                  <th class="etiqueta" colspan="2">Data</th>
+                  <th class="etiqueta">Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="etiqueta">ID</td>
+                <td>{{ article.id_articulo }}</td>
+                <td rowspan="4"><img [src]="article.imagen" [alt]="article.descripcion" class="img size-image-edit"></td>
+              </tr>
+              <tr>
+                  <td class="etiqueta">Description</td>
+                  <td>{{ article.descripcion }}</td>
+              </tr>
+              <tr>
+                <td class="etiqueta">Price</td>
+                <td>{{ article.precio | currency: '$' }}</td>
+            </tr>
+            <tr>
+                <td class="etiqueta">Stock</td>
+                <td>{{ article.stock }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- <p>
             <label class="black-text etiqueta">Article ID: </label>
             <span class="contenido">{{ article.id_articulo }}</span>
         <p>
@@ -18,7 +45,7 @@
             <label class="black-text etiqueta">Stock: </label>
             <span class="contenido">{{ article.stock }}</span>
 
-        <p>
+        <p> -->
         <h4 class="center-align titulo">SUPPLIER DATA</h4>
 
         <p>
@@ -42,6 +69,6 @@
 
     </div>
     <div style="padding-bottom: 2rem">
-        <a routerLink="/articles" class="waves-effect waves-light btn-large" style="display: block">Back</a>
+        <a routerLink="/articles" class=" light-blue lighten-2 btn-large" style="display: block">Back</a>
     </div>
 </div>
