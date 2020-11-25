@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+  }
+
+header {
+background-color: #666;
+padding: 15px;
+text-align: center;
+font-size: 25px;
+color: white;
+}
+
+section {
+display: -webkit-flex;
+display: flex;
+}
+
+article {
+-webkit-flex: 3;
+-ms-flex: 3;
+flex: 3;
+background-color: #f1f1f1;
+padding: 10px;
+font-size: 15px;
+}
+
+img{
+    width: 200px;
+}
+  

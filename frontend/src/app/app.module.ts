@@ -21,6 +21,9 @@ import { AddPurchaseComponent } from './components/purchases/add-purchase/add-pu
 import { PurchaseComponent } from './components/purchases/purchase/purchase.component';
 import { DataPurchaseComponent } from './components/purchases/data-purchase/data-purchase.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { NavMenuComponent } from './components/menu/nav-menu/nav-menu.component';
+import { MobileMenuComponent } from './components/menu/mobile-menu/mobile-menu.component';
+import { ArticleItemComponent } from './components/articles/article-item/article-item.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     AddPurchaseComponent,
     PurchaseComponent,
     DataPurchaseComponent,
-    FilterPipe
+    FilterPipe,
+    NavMenuComponent,
+    MobileMenuComponent,
+    ArticleItemComponent
   ],
   imports: [
   BrowserModule,

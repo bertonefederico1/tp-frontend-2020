@@ -1,54 +1,23 @@
 <div class="container">
   <h4 class="center-align titulo" style="margin-top: 10px">ARTICLES</h4>
-  <div class="row">
+
+  <!-- Barra de busqueda -->
+  <div class="row"> 
     <div class="input-field col m4 push-m8 allign-head tooltipped" data-position="top" data-tooltip="Insert a description here">
-      <input id="search" type="text" name="filterArticle" [(ngModel)]="filterArticle" >
+      <input id="search" type="text" name="filterString" [(ngModel)]="filterString" >
       <label for="search">Search for description...</label>
     </div>
-    <div class="col m2 pull-m4 allign-head">
-      <a class="btn-floating btn-medium waves-effect waves-light red tooltipped" routerLink="/articles/addArticle" data-position="top" data-tooltip="Add an article">
-        <i class="material-icons">add</i>
-      </a>
-    </div>
   </div>
-  <table class="striped">
-    <thead>
-      <tr>
-        <th>Article ID</th>
-        <th colspan="2">Description</th>
-        <th>Price</th>
-        <th>Stock</th>
-        <th>Supplier/s</th>
-        <th>Action</th>
-      </tr>
-    </thead>
 
-    <tbody *ngIf="articles">
-      <tr *ngFor="let article of articles | filter: filterArticle">
-        <td>{{ article.id_articulo }}</td>
-        <td *ngIf="article.imagen !== null && article.imagen !== ''">
-          <img [src]="article.imagen" [alt]="article.descripcion">
-        </td>
-        <td *ngIf="article.imagen == null || article.imagen == ''">
-          - Sin Imagen -
-        </td>
-        <td>{{ article.descripcion }}</td>
-        <td>{{ article.precio | currency: '$' }}</td>
-        <td>{{ article.stock }}</td>
-        <td>
-          <span *ngFor="let proveedor of article.proveedores">{{ proveedor.razon_social }}
-            <span *ngIf="article.proveedores.length > 1"> - </span>
-          </span>
-        </td>
-        <td>
-          <a style="cursor: pointer" [routerLink]="['/articles/articleData', article.id_articulo]"><i
-              class="material-icons">assignment</i></a>
-          <a style="cursor: pointer" [routerLink]="['/articles/addArticle', article.id_articulo]"><i
-              class="material-icons">edit</i></a>
-          <a style="cursor: pointer; color: red" (click)="deleteArticle(article.id_articulo)"><i
-              class="material-icons">delete</i></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Boton para agregar articulo -->
+  <div class="col m2 pull-m4 allign-head">
+    <a class="btn-floating btn-medium waves-effect waves-light red tooltipped" routerLink="/articles/addArticle" data-position="top" data-tooltip="Add an article">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+
+  <!-- Listado -->
+  <div *ngFor="let article of articles | filter: filterString">
+    <app-article-item [article]=article (itemDeleted)="onArticleDeleted($event)"></app-article-item>
+  </div>
 </div>

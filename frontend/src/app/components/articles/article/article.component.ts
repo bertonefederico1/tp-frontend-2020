@@ -13,7 +13,7 @@ export class ArticleComponent implements OnInit {
 
   articles: Article[];
   suppliers: any = [];
-  filterArticle: string = '';
+  filterString: string = '';
 
   constructor(
     private articleService: ArticleService
@@ -31,7 +31,7 @@ export class ArticleComponent implements OnInit {
       );
   }
 
-  deleteArticle(id: number){
+  onArticleDeleted(id: number){
     if (confirm('Seguro que desea eliminar el articulo?')){
       this.articleService.deleteArticle(id)
       .subscribe(
