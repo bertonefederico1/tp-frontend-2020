@@ -27,4 +27,16 @@ font-size: 15px;
 img{
     width: 200px;
 }
+
+.article-data{
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons{
+  display: flex;
+  justify-content: flex-end;
+}
   

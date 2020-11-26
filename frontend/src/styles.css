@@ -30,18 +30,18 @@
     text-decoration: underline;
     font-weight: bold !important;
     font-size: 2rem !important;
+    padding-top: 1rem;
 }
 
 .etiqueta {
     padding-left: 1.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 400;
 }
 
 .contenido {
-    font-size: 1rem;
     font-size: 1.1em;
-    text-shadow: 1px 1px;
+    font-weight: 600;
 }
 
 img {
