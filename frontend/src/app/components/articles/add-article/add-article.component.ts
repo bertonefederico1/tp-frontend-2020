@@ -14,7 +14,7 @@ export class AddArticleComponent implements OnInit {
 
   article: Article;
   edit: boolean = false;
-  params: number;
+  idArticle: number;
   
 
   constructor(
@@ -27,8 +27,8 @@ export class AddArticleComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.params = this.activatedRoute.snapshot.params.id;
-    if (this.params) {
+    this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id;});
+    if (this.idArticle) {
       this.edit = true;
       this.getArticle();
     }
@@ -50,7 +50,7 @@ export class AddArticleComponent implements OnInit {
 
   editArticle(){
     if(this.validate()){
-      this.articleService.editArticle(this.params, this.article)
+      this.articleService.editArticle(this.idArticle, this.article)
         .subscribe(
           res => this.router.navigate(['/articles']),
           err => console.log(err)
@@ -62,7 +62,7 @@ export class AddArticleComponent implements OnInit {
   }
 
   getArticle(){
-    this.articleService.getArticle(this.params)
+    this.articleService.getArticle(this.idArticle)
       .subscribe(
         res => this.article = res,
         err => console.log(err)

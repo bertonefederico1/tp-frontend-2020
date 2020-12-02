@@ -11,6 +11,7 @@ import { Supplier } from 'src/app/models/supplier/Supplier';
 export class EditSupplierComponent implements OnInit {
 
   selectedSupplier: Supplier;
+  idSupplier: number;
 
   constructor(
     private supplierService: SupplierService,
@@ -21,22 +22,21 @@ export class EditSupplierComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const params = this.activatedRoute.snapshot.params;
-    this.getById(params);
+    this.activatedRoute.params.subscribe( (params) => {this.idSupplier = params.id;});
+    this.getSupplier();
   }
 
-  getById(params){
-    this.supplierService.getById(params.id)
+  getSupplier(){
+    this.supplierService.getById(this.idSupplier)
       .subscribe(
         res => this.selectedSupplier = res,
         err => console.log(err)
       );
   }
   
-
   editSupplier(){
     delete this.selectedSupplier.id_proveedor;
-    this.supplierService.editSupplier(this.activatedRoute.snapshot.params.id, this.selectedSupplier)
+    this.supplierService.editSupplier(this.idSupplier, this.selectedSupplier)
       .subscribe(
         res => this.router.navigate(['/suppliers']),
         err => console.log(err)

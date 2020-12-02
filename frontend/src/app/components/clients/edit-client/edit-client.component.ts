@@ -12,7 +12,7 @@ import { ClientService } from "../../../services/client/client.service";
 export class EditClientComponent implements OnInit {
 
   selectedClient: Client;
-  params: number;
+  idSupplier: number;
 
   constructor(
     private clientService: ClientService,
@@ -23,12 +23,12 @@ export class EditClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.params = this.activatedRoute.snapshot.params.id;
+    this.activatedRoute.params.subscribe( (params) => {this.idSupplier = params.id;});
     this.getClient();
   }
 
   getClient(){
-    this.clientService.getById(this.params)
+    this.clientService.getById(this.idSupplier)
       .subscribe(
         res => this.selectedClient = res,
         err => console.log(err)
@@ -37,7 +37,7 @@ export class EditClientComponent implements OnInit {
 
   editClient(){
     delete this.selectedClient.id_cliente;
-    this.clientService.editClient(this.activatedRoute.snapshot.params.id, this.selectedClient)
+    this.clientService.editClient(this.idSupplier, this.selectedClient)
       .subscribe(
         res => this.router.navigate(['/clients']),
         err => console.log(err)
