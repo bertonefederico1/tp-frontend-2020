@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { EventManager } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article/article';
 
 @Component({
@@ -13,9 +14,13 @@ export class ArticleItemComponent {
 
   @Output() itemDeleted = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   deleteArticle(id: number){
     this.itemDeleted.emit(id);
+  }
+
+  navigate(route){
+    setTimeout(() => this.router.navigate(route),500);
   }
 }

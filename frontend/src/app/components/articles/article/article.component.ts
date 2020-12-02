@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ArticleService } from './../../../services/article/article.service';
 import { Article } from './../../../models/article/article';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class ArticleComponent implements OnInit {
   filterString: string = '';
 
   constructor(
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -41,4 +43,7 @@ export class ArticleComponent implements OnInit {
     }
   }
 
+  navigate(route){
+    setTimeout(() => this.router.navigate(route),500);
+  }
 }

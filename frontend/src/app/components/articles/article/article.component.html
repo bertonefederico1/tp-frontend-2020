@@ -9,7 +9,7 @@
     </div>
     <!-- Boton para agregar articulo -->
     <div class="col m2 pull-m4 allign-head">
-      <a class="btn-floating btn-medium waves-effect waves-light red tooltipped" routerLink="/articles/addArticle" data-position="top" data-tooltip="Add an article">
+      <a class="btn-floating btn-medium waves-effect waves-light red tooltipped" (click)="navigate(['/articles/addArticle'])" data-position="top" data-tooltip="Add an article">
         <i class="material-icons">add</i>
       </a>
     </div>

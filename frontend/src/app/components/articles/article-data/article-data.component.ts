@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { Article } from 'src/app/models/article/article';
 
@@ -21,7 +21,8 @@ export class ArticleDataComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute, 
     private articleService: ArticleService,
-    private supplierService: SupplierService 
+    private supplierService: SupplierService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -50,7 +51,9 @@ export class ArticleDataComponent implements OnInit {
       );
   }
 
-
+  navigate(route){
+    setTimeout(() => this.router.navigate(route),500);
+  }
 }
 
   
