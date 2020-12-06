@@ -4,6 +4,8 @@ import { Article } from 'src/app/models/article/article';
 import { ArticleService } from "../../../services/article/article.service";
 
 import { Router, ActivatedRoute } from "@angular/router";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { isNumber } from 'src/app/validations/validations';
 
 @Component({
   selector: 'app-add-article',
@@ -15,7 +17,14 @@ export class AddArticleComponent implements OnInit {
   article: Article;
   edit: boolean = false;
   idArticle: number;
-  
+  articleForm = new FormGroup({
+    id_articulo: new FormControl(''),
+    descripcion: new FormControl('', Validators.required),
+    precio: new FormControl('', [Validators.required, isNumber]),
+    stock: new FormControl('0', [Validators.required, isNumber]),
+    imagen: new FormControl(''),
+    proveedores: new FormControl(''),
+  });
 
   constructor(
     private articleService: ArticleService, 
@@ -36,35 +45,32 @@ export class AddArticleComponent implements OnInit {
 
 
   addArticle(){
-    if(this.validate()){
-      this.articleService.addArticle(this.article)
-        .subscribe(
-          res => this.router.navigate(['/articles']),
-          err => console.log(err)
-        );
-    }
-    else{
-      alert('Complete la descripción y el precio del artículo')
-    }
+    this.articleService.addArticle(this.articleForm.value)
+      .subscribe(
+        res => this.router.navigate(['/articles']),
+        err => console.log(err)
+      );
   }
 
   editArticle(){
-    if(this.validate()){
-      this.articleService.editArticle(this.idArticle, this.article)
-        .subscribe(
-          res => this.router.navigate(['/articles']),
-          err => console.log(err)
-        );
-    }
-    else{
-      alert('Complete la descripción y el precio del artículo')
-    }
+    this.articleService.editArticle(this.idArticle, this.articleForm.value)
+      .subscribe(
+        res => this.router.navigate(['/articles']),
+        err => console.log(err)
+      );   
   }
 
   getArticle(){
     this.articleService.getArticle(this.idArticle)
       .subscribe(
-        res => this.article = res,
+        res => this.articleForm.patchValue({
+          id_articulo: res.id_articulo,
+          descripcion: res.descripcion,
+          precio: res.precio,
+          stock: res.stock,
+          imagen: res.imagen,
+          proveedores: res.proveedores
+        }),
         err => console.log(err)
       );
   }
@@ -73,17 +79,4 @@ export class AddArticleComponent implements OnInit {
     this.router.navigate(['/articles']);
   }
 
-  validate(){
-    if(this.article.descripcion === undefined || this.article.precio === undefined){
-      return false;
-    }
-    else{
-      if(this.article.descripcion === '' || this.article.precio.toString() === ''){
-        return false;
-      }
-      else{
-        return true;
-      }
-    }
-  }
 }

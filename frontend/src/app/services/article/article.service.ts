@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Article } from 'src/app/models/article/article';
 import { ArticleSupplier } from '../../models/article-supplier/article-supplier';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ArticleService {
     return this.http.get<Article[]>(`${this.URL}/articles`);
   }
 
-  addArticle(article: Article){
+  addArticle(article: any){
     return this.http.post(`${this.URL}/addArticle`, article);
   }
 
@@ -25,7 +26,7 @@ export class ArticleService {
     return this.http.get<Article>(`${this.URL}/articles/${id_articulo}`);
   }
 
-  editArticle(id: number, articleUpdated: Article){
+  editArticle(id: number, articleUpdated: any){
     return this.http.put(`${this.URL}/articles/${id}`, articleUpdated);
   }
 
