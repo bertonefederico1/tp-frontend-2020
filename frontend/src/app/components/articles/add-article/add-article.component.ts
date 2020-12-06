@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article/article';
 
 import { ArticleService } from "../../../services/article/article.service";
@@ -6,6 +6,7 @@ import { ArticleService } from "../../../services/article/article.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isNumber } from 'src/app/validations/validations';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-add-article',
@@ -28,6 +29,7 @@ export class AddArticleComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService, 
+    private localStorage: LocalStorageService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { 
@@ -41,8 +43,15 @@ export class AddArticleComponent implements OnInit {
       this.edit = true;
       this.getArticle();
     }
+    else{ //Aplicacion de local storage
+      let form = this.getForm();
+      this.articleForm.patchValue({
+        descripcion: form.descripcion,
+        precio: form.precio,
+        imagen: form.imagen      
+      })
+    }
   }
-
 
   addArticle(){
     this.articleService.addArticle(this.articleForm.value)
@@ -76,7 +85,15 @@ export class AddArticleComponent implements OnInit {
   }
 
   cancel(){
+    this.saveForm();
     this.router.navigate(['/articles']);
   }
 
+  getForm(){
+    return this.localStorage.getForm();
+  }
+
+  saveForm(){
+    this.localStorage.setForm(this.articleForm.value);
+  }
 }
