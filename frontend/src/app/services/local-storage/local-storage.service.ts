@@ -9,7 +9,7 @@ export class LocalStorageService {
   constructor() { }
 
   getForm(){
-    let form = JSON.parse(localStorage.getItem('articleForm'));
+    const form = JSON.parse(localStorage.getItem('articleForm'));
     return form;
   }
 
@@ -17,7 +17,7 @@ export class LocalStorageService {
     try{
       localStorage.setItem('articleForm', JSON.stringify(form));
     }
-    catch(err){
+    catch (err){
       console.log(err);
     }
   }

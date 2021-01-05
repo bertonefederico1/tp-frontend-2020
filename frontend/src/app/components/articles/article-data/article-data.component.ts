@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Article } from 'src/app/models/article/article';
 
-import { ArticleService } from "../../../services/article/article.service";
+import { ArticleService } from '../../../services/article/article.service';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
 
 @Component({
@@ -19,18 +19,18 @@ export class ArticleDataComponent implements OnInit {
 
 
   constructor(
-    private activatedRoute: ActivatedRoute, 
+    private activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
     private supplierService: SupplierService,
     private router: Router
     ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id;});
+    this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
     this.getArticle();
     this.getLastSupplierPurchaseByArticle(this.idArticle);
   }
-  
+
 
   getArticle(){
     this.articleService.getArticle(this.idArticle)
@@ -42,9 +42,9 @@ export class ArticleDataComponent implements OnInit {
       );
   }
 
-  
+
   getLastSupplierPurchaseByArticle(idArticle: number){
-    this.supplierService.lastSuplierPurchaseByArticle(idArticle) 
+    this.supplierService.lastSuplierPurchaseByArticle(idArticle)
       .subscribe(
         res => this.supplierPurchase = res,
         err => console.log(err)
@@ -52,8 +52,8 @@ export class ArticleDataComponent implements OnInit {
   }
 
   navigate(route){
-    setTimeout(() => this.router.navigate(route),500);
+    setTimeout(() => this.router.navigate(route), 500);
   }
 }
 
-  
+

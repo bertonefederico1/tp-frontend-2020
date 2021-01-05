@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article/article';
 
-import { ArticleService } from "../../../services/article/article.service";
+import { ArticleService } from '../../../services/article/article.service';
 
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isNumber } from 'src/app/validations/validations';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
@@ -16,7 +16,7 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
 export class AddArticleComponent implements OnInit {
 
   article: Article;
-  edit: boolean = false;
+  edit = false;
   idArticle: number;
   articleForm = new FormGroup({
     id_articulo: new FormControl(''),
@@ -28,28 +28,28 @@ export class AddArticleComponent implements OnInit {
   });
 
   constructor(
-    private articleService: ArticleService, 
+    private articleService: ArticleService,
     private localStorage: LocalStorageService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { 
+  ) {
     this.article = new Article();
   }
-  
+
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id;});
+    this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
     if (this.idArticle) {
       this.edit = true;
       this.getArticle();
     }
-    else{ //Aplicacion de local storage
-      let form = this.getForm();
+    else{ // Aplicacion de local storage
+      const form = this.getForm();
       this.articleForm.patchValue({
         descripcion: form.descripcion,
         precio: form.precio,
-        imagen: form.imagen      
-      })
+        imagen: form.imagen
+      });
     }
   }
 
@@ -66,7 +66,7 @@ export class AddArticleComponent implements OnInit {
       .subscribe(
         res => this.router.navigate(['/articles']),
         err => console.log(err)
-      );   
+      );
   }
 
   getArticle(){

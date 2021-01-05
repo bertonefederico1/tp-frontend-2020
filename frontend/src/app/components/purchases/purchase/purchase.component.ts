@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Supplier } from 'src/app/models/supplier/Supplier';
 import { SupplierService } from './../../../services/supplier/supplier.service';
 
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataPurchaseComponent } from '../data-purchase/data-purchase.component';
 import { Router } from '@angular/router';
 
@@ -41,11 +41,11 @@ export class PurchaseComponent implements OnInit {
     dialogConfig.width = '350rem';
     dialogConfig.height = '40rem';
     dialogConfig.data = {
-      supplier: supplier
+      supplier
     };
 
     const dialogRef = this.dialog.open(DataPurchaseComponent, dialogConfig);
-    
+
     dialogRef.afterClosed()
       .subscribe(
         res => this.getAll(),

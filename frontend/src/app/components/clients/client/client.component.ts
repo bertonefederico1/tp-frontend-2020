@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ClientService } from "../../../services/client/client.service";
+import { ClientService } from '../../../services/client/client.service';
 
 import { Client } from '../../../models/client/client';
 
@@ -28,7 +28,7 @@ export class ClientComponent implements OnInit {
   }
 
   deleteClient(id: number){
-    if(confirm("Seguro que desea eliminar el cliente?")){
+    if (confirm('Seguro que desea eliminar el cliente?')){
       this.clientService.deleteClient(id)
         .subscribe(
           res => this.getAll(),

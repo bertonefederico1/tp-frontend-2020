@@ -15,11 +15,11 @@ export class PurchaseService {
     return this.http.post(`${this.URL}/addPurchase`, purchase);
   }
 
-  deletePurchase(id_articulo: number, id_proveedor: number, fecha_compra: Date){
-    return this.http.delete(`${this.URL}/deletePurchase/${id_articulo}/${id_proveedor}/${fecha_compra}`)
-  } 
+  deletePurchase(idArticulo: number, idProveedor: number, fechaCompra: Date){
+    return this.http.delete(`${this.URL}/deletePurchase/${idArticulo}/${idProveedor}/${fechaCompra}`);
+  }
 
-  getSupplierPurchases(id_proveedor: number){
-    return this.http.get<any[]>(`${this.URL}/purchases/${id_proveedor}`)
+  getSupplierPurchases(idProveedor: number){
+    return this.http.get<any[]>(`${this.URL}/purchases/${idProveedor}`);
   }
 }

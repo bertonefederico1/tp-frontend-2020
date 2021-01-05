@@ -8,7 +8,7 @@ import { Supplier } from './../../models/supplier/supplier';
 export class SupplierService {
 
   constructor(private http: HttpClient) { }
-  
+
   readonly URL: string = 'http://localhost:3000';
 
   getSuppliers(){
@@ -28,11 +28,11 @@ export class SupplierService {
   }
 
   deleteSupplier(id: number){
-    return this.http.put(`${this.URL}/suspendSupplier/${id}`,'Delete');
+    return this.http.put(`${this.URL}/suspendSupplier/${id}`, 'Delete');
   }
 
-  lastSuplierPurchaseByArticle(id_articulo: number){
-    return this.http.get<any[]>(`${this.URL}/lastSupplierPurchaseByArticle/${id_articulo}`);
+  lastSuplierPurchaseByArticle(idArticulo: number){
+    return this.http.get<any[]>(`${this.URL}/lastSupplierPurchaseByArticle/${idArticulo}`);
   }
 
 }

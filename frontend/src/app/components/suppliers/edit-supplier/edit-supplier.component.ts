@@ -17,12 +17,12 @@ export class EditSupplierComponent implements OnInit {
     private supplierService: SupplierService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { 
+  ) {
     this.selectedSupplier = new Supplier();
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( (params) => {this.idSupplier = params.id;});
+    this.activatedRoute.params.subscribe( (params) => {this.idSupplier = params.id; });
     this.getSupplier();
   }
 
@@ -33,7 +33,7 @@ export class EditSupplierComponent implements OnInit {
         err => console.log(err)
       );
   }
-  
+
   editSupplier(){
     delete this.selectedSupplier.id_proveedor;
     this.supplierService.editSupplier(this.idSupplier, this.selectedSupplier)
@@ -44,14 +44,14 @@ export class EditSupplierComponent implements OnInit {
   }
 
   cancel(){
-    if(confirm('Desea cancelar?')){
+    if (confirm('Desea cancelar?')){
       this.router.navigate(['/suppliers']);
     }
   }
-  
+
   validate(){
-    if(this.selectedSupplier.cuit.toString() === '' || this.selectedSupplier.razon_social === ''){
-      alert('Complete el cuit y la razón social')
+    if (this.selectedSupplier.cuit.toString() === '' || this.selectedSupplier.razon_social === ''){
+      alert('Complete el cuit y la razón social');
     }
     else{
       this.editSupplier();

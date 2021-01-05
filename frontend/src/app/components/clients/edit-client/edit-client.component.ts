@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../../../models/client/client';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { ClientService } from "../../../services/client/client.service";
+import { ClientService } from '../../../services/client/client.service';
 
 @Component({
   selector: 'app-edit-client',
@@ -18,12 +18,12 @@ export class EditClientComponent implements OnInit {
     private clientService: ClientService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-    ) { 
+    ) {
     this.selectedClient = new Client();
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( (params) => {this.idSupplier = params.id;});
+    this.activatedRoute.params.subscribe( (params) => {this.idSupplier = params.id; });
     this.getClient();
   }
 
@@ -45,14 +45,14 @@ export class EditClientComponent implements OnInit {
   }
 
   cancel(){
-    if(confirm('Desea cancelar?')){
+    if (confirm('Desea cancelar?')){
       this.router.navigate(['/clients']);
     }
   }
 
   validate(){
-    if(this.selectedClient.dni === '' || this.selectedClient.apellido === '' || this.selectedClient.nombre === ''){
-      alert('Complete dni, nombre y apellido')
+    if (this.selectedClient.dni === '' || this.selectedClient.apellido === '' || this.selectedClient.nombre === ''){
+      alert('Complete dni, nombre y apellido');
     }
     else{
       this.editClient();
