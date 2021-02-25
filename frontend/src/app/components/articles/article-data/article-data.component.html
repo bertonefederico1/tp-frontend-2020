@@ -1,7 +1,9 @@
 <div class="container">
     <div class="planilla" *ngIf="article">
         <p>
-        <h4 class="center-align titulo">ARTICLE DATA</h4>
+
+        <!-- Informacion del articulo -->
+        <h4 class="center-align titulo">ARTICLE</h4>
 
         <table class="centered">
             <thead>
@@ -13,25 +15,26 @@
             <tbody>
               <tr>
                 <td class="etiqueta">ID</td>
-                <td>{{ article.id_articulo }}</td>
+                <td class="contenido">{{ article.id_articulo }}</td>
                 <td rowspan="4" *ngIf="article.imagen !== ''"><img [src]="article.imagen" [alt]="article.descripcion" class="img size-image-edit"></td>
               </tr>
               <tr>
                   <td class="etiqueta">Description</td>
-                  <td>{{ article.descripcion }}</td>
+                  <td class="contenido">{{ article.descripcion }}</td>
               </tr>
               <tr>
                 <td class="etiqueta">Price</td>
-                <td>{{ article.precio | currency: '$' }}</td>
+                <td class="contenido">{{ article.precio | currency: '$' }}</td>
             </tr>
             <tr>
                 <td class="etiqueta">Stock</td>
-                <td>{{ article.stock }}</td>
+                <td class="contenido">{{ article.stock }}</td>
             </tr>
             </tbody>
         </table>
 
-        <h4 class="center-align titulo">SUPPLIER DATA</h4>
+        <!-- Informacion del primer proveedor -->
+        <h4 class="center-align titulo">SUPPLIER</h4>
 
         <p>
             <label class="black-text etiqueta">Supplier CUIT: </label>
@@ -51,6 +54,6 @@
 
     </div>
     <div style="padding-bottom: 2rem">
-        <a routerLink="/articles" class=" light-blue lighten-2 btn-large" style="display: block">Back</a>
+        <a (click)="navigate(['/articles'])" class=" light-blue lighten-2 btn-large" style="display: block">Back</a>
     </div>
 </div>

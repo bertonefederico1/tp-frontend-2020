@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Article } from 'src/app/models/article/article';
 
-import { ArticleService } from "../../../services/article/article.service";
+import { ArticleService } from '../../../services/article/article.service';
 
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { isNumber } from 'src/app/validations/validations';
+import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-add-article',
@@ -13,77 +16,84 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class AddArticleComponent implements OnInit {
 
   article: Article;
-  edit: boolean = false;
-  params: number;
-  
+  edit = false;
+  idArticle: number;
+  articleForm = new FormGroup({
+    id_articulo: new FormControl(''),
+    descripcion: new FormControl('', Validators.required),
+    precio: new FormControl('', [Validators.required, isNumber]),
+    stock: new FormControl('0', [Validators.required, isNumber]),
+    imagen: new FormControl(''),
+    proveedores: new FormControl(''),
+  });
 
   constructor(
-    private articleService: ArticleService, 
+    private articleService: ArticleService,
+    private localStorage: LocalStorageService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { 
+  ) {
     this.article = new Article();
   }
-  
+
 
   ngOnInit(): void {
-    this.params = this.activatedRoute.snapshot.params.id;
-    if (this.params) {
+    this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
+    if (this.idArticle) {
       this.edit = true;
       this.getArticle();
     }
+    else{ // Aplicacion de local storage
+      const form = this.getForm();
+      this.articleForm.patchValue({
+        descripcion: form.descripcion,
+        precio: form.precio,
+        imagen: form.imagen
+      });
+    }
   }
 
-
   addArticle(){
-    if(this.validate()){
-      this.articleService.addArticle(this.article)
-        .subscribe(
-          res => this.router.navigate(['/articles']),
-          err => console.log(err)
-        );
-    }
-    else{
-      alert('Complete la descripción y el precio del artículo')
-    }
+    this.articleService.addArticle(this.articleForm.value)
+      .subscribe(
+        res => this.router.navigate(['/articles']),
+        err => console.log(err)
+      );
   }
 
   editArticle(){
-    if(this.validate()){
-      this.articleService.editArticle(this.params, this.article)
-        .subscribe(
-          res => this.router.navigate(['/articles']),
-          err => console.log(err)
-        );
-    }
-    else{
-      alert('Complete la descripción y el precio del artículo')
-    }
+    this.articleService.editArticle(this.idArticle, this.articleForm.value)
+      .subscribe(
+        res => this.router.navigate(['/articles']),
+        err => console.log(err)
+      );
   }
 
   getArticle(){
-    this.articleService.getArticle(this.params)
+    this.articleService.getArticle(this.idArticle)
       .subscribe(
-        res => this.article = res,
+        res => this.articleForm.patchValue({
+          id_articulo: res.id_articulo,
+          descripcion: res.descripcion,
+          precio: res.precio,
+          stock: res.stock,
+          imagen: res.imagen,
+          proveedores: res.proveedores
+        }),
         err => console.log(err)
       );
   }
 
   cancel(){
+    this.saveForm();
     this.router.navigate(['/articles']);
   }
 
-  validate(){
-    if(this.article.descripcion === undefined || this.article.precio === undefined){
-      return false;
-    }
-    else{
-      if(this.article.descripcion === '' || this.article.precio.toString() === ''){
-        return false;
-      }
-      else{
-        return true;
-      }
-    }
+  getForm(){
+    return this.localStorage.getForm();
+  }
+
+  saveForm(){
+    this.localStorage.setForm(this.articleForm.value);
   }
 }

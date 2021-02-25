@@ -1,4 +1,4 @@
-import { ArticleSupplier } from "../article-supplier/article-supplier";
+import { ArticleSupplier } from '../article-supplier/article-supplier';
 
 export class Supplier {
     id_proveedor: number;

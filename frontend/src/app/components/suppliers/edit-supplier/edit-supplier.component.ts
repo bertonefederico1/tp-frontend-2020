@@ -11,32 +11,32 @@ import { Supplier } from 'src/app/models/supplier/Supplier';
 export class EditSupplierComponent implements OnInit {
 
   selectedSupplier: Supplier;
+  idSupplier: number;
 
   constructor(
     private supplierService: SupplierService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { 
+  ) {
     this.selectedSupplier = new Supplier();
   }
 
   ngOnInit(): void {
-    const params = this.activatedRoute.snapshot.params;
-    this.getById(params);
+    this.activatedRoute.params.subscribe( (params) => {this.idSupplier = params.id; });
+    this.getSupplier();
   }
 
-  getById(params){
-    this.supplierService.getById(params.id)
+  getSupplier(){
+    this.supplierService.getById(this.idSupplier)
       .subscribe(
         res => this.selectedSupplier = res,
         err => console.log(err)
       );
   }
-  
 
   editSupplier(){
     delete this.selectedSupplier.id_proveedor;
-    this.supplierService.editSupplier(this.activatedRoute.snapshot.params.id, this.selectedSupplier)
+    this.supplierService.editSupplier(this.idSupplier, this.selectedSupplier)
       .subscribe(
         res => this.router.navigate(['/suppliers']),
         err => console.log(err)
@@ -44,14 +44,14 @@ export class EditSupplierComponent implements OnInit {
   }
 
   cancel(){
-    if(confirm('Desea cancelar?')){
+    if (confirm('Desea cancelar?')){
       this.router.navigate(['/suppliers']);
     }
   }
-  
+
   validate(){
-    if(this.selectedSupplier.cuit.toString() === '' || this.selectedSupplier.razon_social === ''){
-      alert('Complete el cuit y la razón social')
+    if (this.selectedSupplier.cuit.toString() === '' || this.selectedSupplier.razon_social === ''){
+      alert('Complete el cuit y la razón social');
     }
     else{
       this.editSupplier();

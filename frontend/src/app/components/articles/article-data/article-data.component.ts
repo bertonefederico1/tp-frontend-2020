@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Article } from 'src/app/models/article/article';
 
-import { ArticleService } from "../../../services/article/article.service";
+import { ArticleService } from '../../../services/article/article.service';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
 
 @Component({
@@ -15,24 +15,25 @@ export class ArticleDataComponent implements OnInit {
 
   article: Article = new Article();
   supplierPurchase: any[] = [];
-  id_articulo: number;
+  idArticle: number;
 
 
   constructor(
-    private activatedRoute: ActivatedRoute, 
+    private activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
-    private supplierService: SupplierService 
+    private supplierService: SupplierService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
-    this.id_articulo = this.activatedRoute.snapshot.params.id;
+    this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
     this.getArticle();
-    this.getLastSupplierPurchaseByArticle(this.id_articulo);
+    this.getLastSupplierPurchaseByArticle(this.idArticle);
   }
-  
+
 
   getArticle(){
-    this.articleService.getArticle(this.id_articulo)
+    this.articleService.getArticle(this.idArticle)
       .subscribe(
         res => {
           this.article = res;
@@ -41,16 +42,18 @@ export class ArticleDataComponent implements OnInit {
       );
   }
 
-  
-  getLastSupplierPurchaseByArticle(id_articulo: number){
-    this.supplierService.lastSuplierPurchaseByArticle(id_articulo) 
+
+  getLastSupplierPurchaseByArticle(idArticle: number){
+    this.supplierService.lastSuplierPurchaseByArticle(idArticle)
       .subscribe(
         res => this.supplierPurchase = res,
         err => console.log(err)
       );
   }
 
-
+  navigate(route){
+    setTimeout(() => this.router.navigate(route), 500);
+  }
 }
 
-  
+

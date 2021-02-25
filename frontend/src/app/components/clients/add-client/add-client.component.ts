@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { Client } from '../../../models/client/client';
-import { ClientService } from "../../../services/client/client.service";
+import { ClientService } from '../../../services/client/client.service';
 
 @Component({
   selector: 'app-add-client',
@@ -13,9 +13,9 @@ export class AddClientComponent {
   client: Client;
 
   constructor(
-    private clientService: ClientService, 
+    private clientService: ClientService,
     private router: Router
-    ) { 
+    ) {
     this.client = new Client();
   }
 
@@ -33,15 +33,15 @@ export class AddClientComponent {
   }
 
   validate(){
-    if(this.client.dni === undefined || this.client.apellido === undefined || this.client.nombre === undefined){
-      alert('Complete dni, nombre y apellido')
+    if (this.client.dni === undefined || this.client.apellido === undefined || this.client.nombre === undefined){
+      alert('Complete dni, nombre y apellido');
     }
     else{
-      if(this.client.dni === '' || this.client.apellido === '' || this.client.nombre === ''){
-        alert('Complete dni, nombre y apellido')
+      if (this.client.dni === '' || this.client.apellido === '' || this.client.nombre === ''){
+        alert('Complete dni, nombre y apellido');
       }
       else{
-        this.addClient()
+        this.addClient();
       }
     }
   }

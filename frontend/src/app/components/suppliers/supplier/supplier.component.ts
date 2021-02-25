@@ -10,7 +10,7 @@ import { Supplier } from '../../../models/supplier/supplier';
 export class SupplierComponent implements OnInit {
 
   suppliers: Supplier[];
-  test_input: any;
+  testInput: any;
 
   constructor(public supplierService: SupplierService) { }
 
@@ -27,7 +27,7 @@ export class SupplierComponent implements OnInit {
   }
 
   deleteSupplier(id: number){
-    if(confirm("Seguro que desea eliminar el proveedor?")){
+    if (confirm('Seguro que desea eliminar el proveedor?')){
       this.supplierService.deleteSupplier(id)
         .subscribe(
           res => this.getAll(),

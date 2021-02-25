@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ArticleService } from './../../../services/article/article.service';
 import { Article } from './../../../models/article/article';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,10 +14,11 @@ export class ArticleComponent implements OnInit {
 
   articles: Article[];
   suppliers: any = [];
-  filterArticle: string = '';
+  filterString = '';
 
   constructor(
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class ArticleComponent implements OnInit {
       );
   }
 
-  deleteArticle(id: number){
+  onArticleDeleted(id: number){
     if (confirm('Seguro que desea eliminar el articulo?')){
       this.articleService.deleteArticle(id)
       .subscribe(
@@ -41,4 +43,7 @@ export class ArticleComponent implements OnInit {
     }
   }
 
+  navigate(route){
+    setTimeout(() => this.router.navigate(route), 500);
+  }
 }

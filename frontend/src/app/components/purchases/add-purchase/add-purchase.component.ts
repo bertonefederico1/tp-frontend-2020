@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticleService } from "../../../services/article/article.service";
+import { ArticleService } from '../../../services/article/article.service';
 import { SupplierService } from '../../../services/supplier/supplier.service';
 import { PurchaseService } from '../../../services/purchase/purchase.service';
 
@@ -24,7 +24,7 @@ export class AddPurchaseComponent implements OnInit {
   fecha: string;
   suppliers: Supplier[] = [];
   articles: Article[] = [];
-  status: Boolean = true;
+  status = true;
 
   constructor(
     private articleService: ArticleService,
@@ -46,7 +46,7 @@ export class AddPurchaseComponent implements OnInit {
         err => console.log(err)
       );
   }
-    
+
   getSuppliers(){
     this.supplierService.getSuppliers()
         .subscribe(
@@ -55,7 +55,7 @@ export class AddPurchaseComponent implements OnInit {
         );
   }
 
-  
+
   addPurchase(){
     this.articleService.loadStock(this.purchase)
       .subscribe(
@@ -71,7 +71,7 @@ export class AddPurchaseComponent implements OnInit {
     if (this.status) {
       this.router.navigate(['/purchases']);
     } else {
-      console.log("Error");
+      console.log('Error');
     }
   }
 
@@ -80,12 +80,12 @@ export class AddPurchaseComponent implements OnInit {
   }
 
   validate(){
-    if(this.purchase.cantidad === undefined || this.purchase.id_articulo === undefined
+    if (this.purchase.cantidad === undefined || this.purchase.id_articulo === undefined
       || this.purchase.id_proveedor === undefined || this.purchase.precio_unitario === undefined){
-      alert('Complete todos los campos')
+      alert('Complete todos los campos');
     }
     else{
-      this.addPurchase()
+      this.addPurchase();
     }
   }
 }

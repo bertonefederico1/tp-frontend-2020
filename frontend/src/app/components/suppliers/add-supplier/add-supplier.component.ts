@@ -14,7 +14,7 @@ export class AddSupplierComponent {
   supplier: Supplier;
 
   constructor(
-    private supplierService: SupplierService, 
+    private supplierService: SupplierService,
     private router: Router
   ) {
       this.supplier = new Supplier();
@@ -34,15 +34,15 @@ export class AddSupplierComponent {
   }
 
   validate(){
-    if(this.supplier.cuit === undefined || this.supplier.razon_social === undefined){
-      alert('Complete el cuit y la razón social')
+    if (this.supplier.cuit === undefined || this.supplier.razon_social === undefined){
+      alert('Complete el cuit y la razón social');
     }
     else{
-      if(this.supplier.cuit.toString() === '' || this.supplier.razon_social === ''){
-        alert('Complete el cuit y la razón social')
+      if (this.supplier.cuit.toString() === '' || this.supplier.razon_social === ''){
+        alert('Complete el cuit y la razón social');
       }
       else{
-        this.addSupplier()
+        this.addSupplier();
       }
     }
   }

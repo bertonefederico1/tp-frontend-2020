@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from "@angular/forms";
-import { MaterialModule } from "./material.module";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { ClientComponent } from './components/clients/client/client.component';
 import { AddClientComponent } from './components/clients/add-client/add-client.component';
 import { EditClientComponent } from './components/clients/edit-client/edit-client.component';
 
-import { HttpClientModule } from "@angular/common/http";
-import { ArticleComponent } from "./components/articles/article/article.component";
+import { HttpClientModule } from '@angular/common/http';
+import { ArticleComponent } from './components/articles/article/article.component';
 import { ArticleDataComponent } from './components/articles/article-data/article-data.component';
 import { AddArticleComponent } from './components/articles/add-article/add-article.component';
 import { SupplierComponent } from './components/suppliers/supplier/supplier.component';
@@ -21,6 +21,9 @@ import { AddPurchaseComponent } from './components/purchases/add-purchase/add-pu
 import { PurchaseComponent } from './components/purchases/purchase/purchase.component';
 import { DataPurchaseComponent } from './components/purchases/data-purchase/data-purchase.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { NavMenuComponent } from './components/menu/nav-menu/nav-menu.component';
+import { MobileMenuComponent } from './components/menu/mobile-menu/mobile-menu.component';
+import { ArticleItemComponent } from './components/articles/article-item/article-item.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     AddPurchaseComponent,
     PurchaseComponent,
     DataPurchaseComponent,
-    FilterPipe
+    FilterPipe,
+    NavMenuComponent,
+    MobileMenuComponent,
+    ArticleItemComponent
   ],
   imports: [
   BrowserModule,
@@ -46,7 +52,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
