@@ -20,9 +20,9 @@ Article.belongsTo(Supplier_Article, {foreignKey: 'id_articulo'});
             include: Article, 
             required: true
         });
-        res.json(suppliers);
+        res.status(200).json(suppliers);
     } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 
@@ -30,13 +30,13 @@ supplierController.getOne = async (req, res) => {
     try {
         const supplier = await Supplier.findByPk(req.params.id);
         if(supplier === null){
-            res.json('This id doesn\'t belong to any supplier')
+            res.status(204).json('This id doesn\'t belong to any supplier')
         }
         else{
-            res.json(supplier);
+            res.status(200).json(supplier);
         }
     } catch (err){
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 
@@ -49,9 +49,9 @@ supplierController.createSupplier = async (req, res) => {
             direccion: req.body.direccion,
             telefono: req.body.telefono
         });
-        res.json("Supplier created");
+        res.status(201).json("Supplier created");
     } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
     } 
 }
 
@@ -69,13 +69,13 @@ supplierController.updateSupplier = async (req, res) => {
             }
         });
         if(rowsUpdated[0] === 0){
-            res.json("Supplier update failed");
+            res.status(204).json("Supplier update failed");
             }
             else {
-                res.json("Supplier updated");
+                res.status(200).json("Supplier updated");
             }
     } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 
@@ -89,13 +89,13 @@ supplierController.suspendSupplier = async (req, res) => {
             }
         });
         if(rowsUpdated[0] === 0){
-            res.json("Supplier suspend failed");
+            res.status(204).json("Supplier suspend failed");
             }
             else {
-                res.json("Supplier suspended");
+                res.status(200).json("Supplier suspended");
             }
     } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 
@@ -106,9 +106,9 @@ supplierController.lastSupplierPurchaseByArticle = async (req, res) => {
         const results = await connection.query(query, {
             replacements: [req.params.id_articulo]
         });
-        res.json(results);
+        res.status(200).json(results);
     } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 

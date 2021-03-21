@@ -23,9 +23,9 @@ supplierArticleController.addPurchase = async (req, res) => {
             precio_unitario: req.body.precio_unitario,
             cantidad: req.body.cantidad
         });
-        res.json("Article added");
+        res.status(201).json("Article added");
     } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 
@@ -45,7 +45,7 @@ supplierArticleController.deletePurchase = async (req, res) => {
         });
         purchased_amount = parseInt(purchase.cantidad, 10);
         if(purchase === null){
-            res.json('Wrong ID')
+            res.status(204).json('Wrong ID')
         }
         else{
             let article = await Article.findOne({
@@ -74,10 +74,10 @@ supplierArticleController.deletePurchase = async (req, res) => {
                     fecha_compra: req.params.fecha_compra
                 }
             });
-            res.json("Purchase deleted");
+            res.status(200).json("Purchase deleted");
         }
     } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
     }
     
 }
@@ -99,7 +99,7 @@ supplierArticleController.getSupplierPurchases = async (req, res) => {
         })
         res.json(purchases);
     } catch (err) {
-        res.json('There aren\'t purchases with this Supplier ID');
+        res.status(204).json('There aren\'t purchases with this Supplier ID');
     }
 
 }

@@ -11,9 +11,9 @@ clientController.getAll = async (req, res) => {
             },
             rejectOnEmpty: true
         });
-        res.json(clients);
+        res.status(200).json(clients);
     } catch (err){
-        res.json('There aren\'t active clients');
+        res.status(204).json('There aren\'t active clients');
     }
     
 }
@@ -27,13 +27,13 @@ clientController.getOne = async (req, res) => {
             }
         });
         if(client === null){
-            res.json('This id doesn\'t belong to any active client')
+            res.status(204).json('This id doesn\'t belong to any active client')
         }
         else{
-            res.json(client);
+            res.status(200).json(client);
         }
     } catch (err) {
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 
@@ -46,9 +46,9 @@ clientController.createClient = async (req, res) => {
             direccion: req.body.direccion,
             telefono: req.body.telefono
         }); 
-        res.json("Client created");
+        res.status(201).json("Client created");
     } catch (err){
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 
@@ -66,13 +66,13 @@ clientController.updateClient = async (req, res) => {
             }
         });
         if(rowsUpdated[0] === 0){
-        res.json("Client update failed");
+        res.status(204).json("Client update failed");
         }
         else {
-            res.json("Client updated");
+            res.status(200).json("Client updated");
         }
     } catch (err){
-        res.json(err);
+        res.status(500).json(err);
     }
     
 }
@@ -87,13 +87,13 @@ clientController.suspendClient = async (req, res) => {
             }
         });
         if(rowsUpdated[0] === 0){
-            res.json("Client suspend failed");
+            res.status(204).json("Client suspend failed");
             }
             else {
-                res.json("Client suspended");
+                res.status(200).json("Client suspended");
             }
     } catch (err){
-        res.json(err);
+        res.status(500).json(err);
     }   
 }
 
@@ -105,13 +105,13 @@ clientController.deleteClient = async (req, res) => {
             }
         });
         if(rowsDeleted === 0){
-            res.json("This id doesn\'t belong to any client")
+            res.status(204).json("This id doesn\'t belong to any client")
         }
         else {
-            res.json("Client deleted")
+            res.status(200).json("Client deleted")
         }
     } catch (err){
-        res.json(err);
+        res.status(500).json(err);
     }
 }
 

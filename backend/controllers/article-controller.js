@@ -18,9 +18,9 @@ articleController.getAll = async (req, res) => {
       },
       rejectOnEmpty: true
     }); 
-    res.json(articles);
+    res.status(200).json(articles);
   } catch (err){
-    res.json('There aren\'t active articles');
+    res.status(500).json('There aren\'t active articles');
   }
   
 }
@@ -36,13 +36,13 @@ articleController.getOne = async (req, res) => {
       }
     }); 
     if(article === null){
-      res.json('This id doesn\'t belong to any active article')
+      res.status(204).json('This id doesn\'t belong to any active article')
     }
     else{
-      res.json(article);
+      res.status(200).json(article);
     }
   } catch (err){
-    res.json(err);
+    res.status(500).json(err);
   }
 }
 
@@ -54,9 +54,9 @@ articleController.createArticle = async (req, res) => {
         precio: req.body.precio,
         imagen: req.body.imagen
       });
-      res.json("Article created");
+      res.status(201).json("Article created");
     } catch(err){
-      res.json(err);
+      res.status(500).json(err);
     }
 }
 
@@ -74,13 +74,13 @@ articleController.updateArticle = async (req, res) => {
         }
       });
       if(rowsUpdated[0] === 0){
-        res.json("Article update failed");
+        res.status(500).json("Article update failed");
         }
         else {
-            res.json("Article updated");
+            res.status(200).json("Article updated");
         }
     } catch (err){
-      res.json(err);
+      res.status(500).json(err);
     }
 }
 
@@ -95,7 +95,7 @@ articleController.loadStock = async (req, res) => {
       cant_total = article.stock + cantidad;
     
       if(article === null){
-        res.json('This id doesn\'t belong to any active article')
+        res.status(204).json('This id doesn\'t belong to any active article')
       }
       else{
         await Article.update({
@@ -105,10 +105,10 @@ articleController.loadStock = async (req, res) => {
             id_articulo: req.body.id_articulo 
           }
         });
-        res.json("Stock loaded");
+        res.status(200).json("Stock loaded");
       }
     } catch (err) {
-      res.json(err);
+      res.status(500).json(err);
     }
    
 }
@@ -123,13 +123,13 @@ articleController.suspendArticle = async (req, res) => {
           }
         });
       if(rowsUpdated[0] === 0){
-          res.json("Article suspend failed");
+          res.status(204).json("Article suspend failed");
         }
         else {
-          res.json("Article suspended");
+          res.status(200).json("Article suspended");
         }
   } catch (err){
-    res.json(err);
+    res.status(500).json(err);
   }
 }
 

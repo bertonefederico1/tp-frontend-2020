@@ -12,7 +12,7 @@ const Article = sequelize.define('articulos', {
     stock: { 
         type: DataTypes.INTEGER, defaultValue: 0
      },
-     imagen: {
+    imagen: {
         type: DataTypes.TEXT, defaultValue: null
      },
     activo: { 
