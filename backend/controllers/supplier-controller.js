@@ -10,7 +10,7 @@ Supplier_Article.hasOne(Article, {foreignKey: 'id_articulo'});
 Article.belongsTo(Supplier_Article, {foreignKey: 'id_articulo'});
 
 
- supplierController.getAll = async (req, res) => {
+supplierController.getAll = async (req, res) => {
     try {
         const suppliers = await Supplier.findAll({
             where: {
@@ -21,8 +21,10 @@ Article.belongsTo(Supplier_Article, {foreignKey: 'id_articulo'});
             required: true
         });
         res.status(200).json(suppliers);
+        // res.json(suppliers);
     } catch (err) {
         res.status(500).json(err);
+        // res.json(err);
     }
 }
 

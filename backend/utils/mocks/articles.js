@@ -34,24 +34,15 @@ const articlesMock = [{
     "imagen": "http://dummyimage.com/221x190.bmp/dddddd/000000",
     "activo": true
   }]
-  
-function filteredArticlesMock(tag) {
-  return articlesMock.filter(product => product.descripcion.includes(tag));
-}
 
 class articleControllerMock {
   async getAll() {
     return Promise.resolve(articlesMock);
   }
-
-  async createArticle() {
-    return Promise.resolve('new Article');
-  }
 }
 
 module.exports = {
     articlesMock,
-    filteredArticlesMock,
     articleControllerMock
 };
   
