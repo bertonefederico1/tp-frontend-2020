@@ -18,7 +18,7 @@ articleController.getAll = async (req, res) => {
       },
       rejectOnEmpty: true
     }); 
-    res.json(articles);
+    res.status(200).json(articles);
   } catch (err){
     res.status(500).json('There aren\'t active articles');
   }
