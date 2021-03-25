@@ -12,6 +12,7 @@ import { AddSupplierComponent } from './components/suppliers/add-supplier/add-su
 import { EditSupplierComponent } from './components/suppliers/edit-supplier/edit-supplier.component';
 import { AddPurchaseComponent } from './components/purchases/add-purchase/add-purchase.component';
 import { PurchaseComponent } from './components/purchases/purchase/purchase.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'purchases',
     component: PurchaseComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

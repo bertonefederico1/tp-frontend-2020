@@ -24,6 +24,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { NavMenuComponent } from './components/menu/nav-menu/nav-menu.component';
 import { MobileMenuComponent } from './components/menu/mobile-menu/mobile-menu.component';
 import { ArticleItemComponent } from './components/articles/article-item/article-item.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ArticleItemComponent } from './components/articles/article-item/article
     FilterPipe,
     NavMenuComponent,
     MobileMenuComponent,
-    ArticleItemComponent
+    ArticleItemComponent,
+    LoginComponent
   ],
   imports: [
   BrowserModule,
