@@ -6,6 +6,8 @@ const app = express();
 const routes = require('./routes/routes');
 const cors = require('cors');
 
+const LoginController = require('./controllers/login-controller');
+
 const port = process.env.PORT || 3000;
 
 //Settings
@@ -14,6 +16,7 @@ app.set('port', port);
 //Middlewares
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(LoginController.verifyToken); //Middleware para validar el token en cada petición
 app.use(cors({
     origin: 'http://localhost:4200'
 }));
