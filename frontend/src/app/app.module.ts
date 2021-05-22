@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
-import { ClientComponent } from './components/clients/client/client.component';
+//import { ClientComponent } from './components/clients/client/client.component';
 import { AddClientComponent } from './components/clients/add-client/add-client.component';
 import { EditClientComponent } from './components/clients/edit-client/edit-client.component';
 
@@ -21,8 +21,6 @@ import { AddPurchaseComponent } from './components/purchases/add-purchase/add-pu
 import { PurchaseComponent } from './components/purchases/purchase/purchase.component';
 import { DataPurchaseComponent } from './components/purchases/data-purchase/data-purchase.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import { NavMenuComponent } from './components/menu/nav-menu/nav-menu.component';
-import { MobileMenuComponent } from './components/menu/mobile-menu/mobile-menu.component';
 import { ArticleItemComponent } from './components/articles/article-item/article-item.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -30,7 +28,6 @@ import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ClientComponent,
     AddClientComponent,
     EditClientComponent,
     ArticleComponent,
@@ -43,8 +40,6 @@ import { LoginComponent } from './components/login/login.component';
     PurchaseComponent,
     DataPurchaseComponent,
     FilterPipe,
-    NavMenuComponent,
-    MobileMenuComponent,
     ArticleItemComponent,
     LoginComponent
   ],
