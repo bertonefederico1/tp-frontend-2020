@@ -41,6 +41,5 @@ router.get('/purchases/:id', supplierArticleController.getSupplierPurchases);
 //Rutas de login y logout
 router.post('/createPassword', LoginController.signup); //Ver si dejar o sacar
 router.post('/signin', LoginController.signin);
-router.post('/verifyToken', LoginController.verifyToken); //temporal
 
 module.exports = router;

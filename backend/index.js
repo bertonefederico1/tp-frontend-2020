@@ -14,12 +14,13 @@ const port = process.env.PORT || 3000;
 app.set('port', port);
 
 //Middlewares
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(LoginController.verifyToken); //Middleware para validar el token en cada petición
 app.use(cors({
     origin: 'http://localhost:4200'
 }));
+app.use(morgan('dev'));
+app.use(express.json());
+
+app.use(LoginController.verifyToken); //Middleware para validar el token en cada petición
 
 //Routes
 app.use('/', routes);

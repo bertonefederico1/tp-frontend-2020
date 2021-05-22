@@ -42,7 +42,10 @@ UserController.signin = async (req, res) => {
 
 UserController.verifyToken = async (req, res, next) => {
     try {
-
+        if(req.originalUrl === '/signin') { //Si estoy tratando de loguearme, no validar y dejarlo pasar
+            next();
+            return;
+        };
         if(!req.headers.authorization){
             throw new Error('You must log in');
         };

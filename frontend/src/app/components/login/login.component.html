@@ -10,14 +10,14 @@
             <div class="col s12 m12 l12">
                 <div class="input-field">
                     <i class="material-icons prefix">person</i>
-                    <input type="text" name="username" id="username" />
+                    <input type="text" name="username" [(ngModel)]="username" id="username" />
                     <label for="username">Username</label>
                 </div>
             </div>
             <div class="col m12 l12">
                 <div class="input-field">
                     <i class="material-icons prefix">lock</i>
-                    <input type="password" name="password" id="password" />
+                    <input type="password" name="password" [(ngModel)]="password" id="password" />
                     <label for="password">Password</label>
                 </div>
             </div>
