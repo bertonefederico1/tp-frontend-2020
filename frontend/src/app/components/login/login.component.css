@@ -1,16 +1,10 @@
-html,
-body {
-  height: 100%;
-}
-
-html {
+.frame {
   display: table;
   margin: auto;
 }
 
-body {
-  display: table-cell;
-  vertical-align: middle;
+.mt5r {
+  margin-top: 5rem;
 }
 
 .block {

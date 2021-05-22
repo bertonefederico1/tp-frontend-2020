@@ -1,31 +1,29 @@
-<html>
-    <body class="cyan">
-        <form>
-            <div class="card-panel z-depth-5">
-                <div class="row margin">
-                    <div class="col s12 m12 l12 center">
-                        <img src="https://i.imgur.com/ypAbAYt.png" alt="" class="responsive-img circle" />
-                        <p class="bold">LOGIN</p>
-                    </div>
-                </div>
-                <div class="col s12 m12 l12">
-                    <div class="input-field">
-                        <i class="material-icons prefix">person</i>
-                        <input type="text" name="username" id="username" />
-                        <label for="username">Username</label>
-                    </div>
-                </div>
-                <div class="col m12 l12">
-                    <div class="input-field">
-                        <i class="material-icons prefix">lock</i>
-                        <input type="password" name="password" id="password" />
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div class="center">
-                    <a class="waves-effect waves-light btn block" (click)="onLogin()">Login</a>
+<div class="container mt5r">
+    <div class="frame cyan">
+        <div class="card-panel z-depth-5">
+            <div class="row margin">
+                <div class="col s12 m12 l12 center">
+                    <img src="https://i.imgur.com/ypAbAYt.png" alt="" class="responsive-img circle" />
+                    <p class="bold">LOGIN</p>
                 </div>
             </div>
-        </form>
-    </body>
-</html>
+            <div class="col s12 m12 l12">
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <input type="text" name="username" id="username" />
+                    <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="col m12 l12">
+                <div class="input-field">
+                    <i class="material-icons prefix">lock</i>
+                    <input type="password" name="password" id="password" />
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="center">
+                <a class="waves-effect waves-light btn block" (click)="onLogin()">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
