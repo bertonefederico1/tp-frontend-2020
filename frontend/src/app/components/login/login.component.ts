@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/services/login/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   constructor(
     private router: Router,
@@ -18,18 +18,22 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  ngOnInit(): void {
-  }
-
   onLogin(){
     let user: User;
     user = new User(this.username, this.password);
     this.loginService.login(user)
       .subscribe(
-        res => console.log(res),
-        err => console.log(err)
+        res => {
+          localStorage.setItem('token', res['token']);
+          this.router.navigate(['/']);
+        },
+        err => {
+          alert(err.error);
+          this.username = '';
+          this.password = '';
+          
+        }
       )
-    //this.router.navigate(['/']);
   }
 
 }
