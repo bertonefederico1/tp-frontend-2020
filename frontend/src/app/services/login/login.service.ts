@@ -14,4 +14,8 @@ export class LoginService {
   login(user: User) {
     return this.http.post(`${this.URL}/signin`, user);
   }
+
+  isLogged() {
+    return !!localStorage.getItem('token');
+  }
 }

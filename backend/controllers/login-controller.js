@@ -19,12 +19,15 @@ UserController.signup = async (req, res) => { //Ver si dejar o comentar
 
 UserController.signin = async (req, res) => {
     try {       
+        if (!req.body.username || !req.body.password) {
+            throw new Error('User or password is empty');
+        };
         const user = await User.findOne({
             where: {
                 nombre_usuario: req.body.username
             }
         });
-        if (!user || !req.body.username || !req.body.password) {
+        if (!user) {
             throw new Error('Wrong username or password');
         };
         const match = await bcrypt.compare(req.body.password, user.contrasenia);
