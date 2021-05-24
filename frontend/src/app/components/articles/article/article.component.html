@@ -2,18 +2,21 @@
   <h4 class="center-align titulo" style="margin-top: 10px">ARTICLES</h4>
   <div class="row">
     <div class="input-field col m4 push-m8 allign-head" matTooltip="Insert a description here">
-      <input id="search" type="text" name="filterString" [(ngModel)]="filterString" >
+      <input id="search" type="text" name="filterString" [(ngModel)]="filterString">
       <label for="search">Search for description...</label>
     </div>
     <!-- Boton para agregar articulo -->
     <div class="col m2 pull-m4 allign-head">
-      <a class="btn-floating btn-medium waves-effect waves-light red" routerLink="/articles/addArticle" matTooltip="Add an article">
+      <a class="btn-floating btn-medium waves-effect waves-light red" routerLink="/articles/addArticle"
+        matTooltip="Add an article">
         <i class="material-icons">add</i>
       </a>
     </div>
   </div>
   <!-- Listado -->
-  <div *ngFor="let article of articles | filter: filterString">
-    <app-article-item [article]=article (itemDeleted)="onArticleDeleted($event)"></app-article-item>
+  <div *ngIf="articles">
+    <div *ngFor="let article of articles | filter: filterString">
+      <app-article-item [article]=article (itemDeleted)="onArticleDeleted($event)"></app-article-item>
+    </div>
   </div>
 </div>

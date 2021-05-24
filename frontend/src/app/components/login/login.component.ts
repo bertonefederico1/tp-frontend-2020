@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/User';
 import { LoginService } from 'src/app/services/login/login.service';
@@ -15,6 +15,8 @@ export class LoginComponent {
     private loginService: LoginService
     ) { }
 
+    @ViewChild('inputUsername') inputUsername: any;
+
   username: string;
   password: string;
 
@@ -25,13 +27,13 @@ export class LoginComponent {
       .subscribe(
         res => {
           localStorage.setItem('token', res['token']);
-          this.router.navigate(['/']);
+          this.router.navigate(['/clients']);
         },
         err => {
           alert(err.error);
           this.username = '';
           this.password = '';
-          
+          this.inputUsername.nativeElement.focus();
         }
       )
   }

@@ -13,8 +13,10 @@ export class NavMenuComponent {
   ) { }
 
   logout(){
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    if(confirm('Are you sure you want to log out?')) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    };
   }
 
 }
