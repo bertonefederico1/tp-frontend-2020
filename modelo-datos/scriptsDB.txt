@@ -1,0 +1,17 @@
+Ejecutar estos scripts:
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre_usuario` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contrasenia` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `tpbackend`.`usuarios`
+(`nombre_usuario`,`contrasenia`) VALUES ('admin', '$2b$10$keukjVSEASb8NXPOzlDFcOo8UBgQJik1ncJlbeZEsw4JJnqTxUPMO');
+La contraseña es "admin" (aca esta encriptada)
+
+
+
+
+
