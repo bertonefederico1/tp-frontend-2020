@@ -34,7 +34,7 @@ export class AddPurchaseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fecha = this.date.getDate() + '/' + this.date.getMonth() + '/' + this.date.getFullYear();
+    this.fecha = this.date.getDate() + '/' + (this.date.getMonth() + 1) + '/' + this.date.getFullYear();
     this.getArticles();
     this.getSuppliers();
   }
