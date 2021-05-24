@@ -12,6 +12,16 @@ INSERT INTO `tpbackend`.`usuarios`
 La contraseña es "admin" (aca esta encriptada)
 
 
+CREATE TABLE `ventas` (
+  `id_venta` int(11) NOT NULL AUTO_INCREMENT,
+  `id_cliente` int(11) NOT NULL,
+  `id_articulo` int(11) NOT NULL,
+  `fecha_hora_venta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_venta`,`id_articulo`,`id_cliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
 
 
 
