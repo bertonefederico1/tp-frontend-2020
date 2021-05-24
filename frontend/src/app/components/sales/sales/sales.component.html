@@ -1,0 +1,29 @@
+<div class="container">
+    <h4 class="center-align titulo" style="margin-top: 10px">SALES</h4>
+    <a class="btn-floating btn-medium waves-effect waves-light red move-top-10" routerLink="/clients/addClient" routerLinkActive="active">
+      <i class="material-icons">add</i>
+    </a>
+    <table class="striped">
+          <thead>
+            <tr>
+                <th>Sale Date</th>
+                <th>Customer</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr *ngFor="let sale of sales">
+              <!-- <td>{{ sale.dni }}</td>
+              <td>{{ sale.nombre }}, {{ client.apellido }}</td>
+              <td>{{ sale.direccion }}</td>
+              <td>{{ sale.telefono }}</td> -->
+              <td>
+                <!-- <a (click)="deleteClient(client.id_cliente)" style="cursor: pointer; color: red"><i class="material-icons">delete</i></a> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>

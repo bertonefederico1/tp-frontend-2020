@@ -40,6 +40,7 @@ router.delete('/deletePurchase/:id_articulo/:id_proveedor/:fecha_compra', suppli
 router.get('/purchases/:id', supplierArticleController.getSupplierPurchases);
 
 //Rutas de ventas
+router.get('/sales', saleController.getAll);
 router.post('/newSale', saleController.createSale);
 
 //Rutas de login y logout
