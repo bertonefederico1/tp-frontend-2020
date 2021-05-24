@@ -6,6 +6,7 @@ const clientController = require('../controllers/client-controller');
 const articleController = require('../controllers/article-controller');
 const supplierController = require('../controllers/supplier-controller');
 const supplierArticleController = require('../controllers/supplier-article-controller');
+const saleController = require('../controllers/sales-controller');
 const LoginController = require('../controllers/login-controller');
 
 //Rutas de clientes
@@ -37,6 +38,9 @@ router.post('/loadStock', articleController.loadStock);
 router.post('/addPurchase', supplierArticleController.addPurchase);
 router.delete('/deletePurchase/:id_articulo/:id_proveedor/:fecha_compra', supplierArticleController.deletePurchase);
 router.get('/purchases/:id', supplierArticleController.getSupplierPurchases);
+
+//Rutas de ventas
+router.post('/newSale', saleController.createSale);
 
 //Rutas de login y logout
 router.post('/createPassword', LoginController.signup); //Ver si dejar o sacar
