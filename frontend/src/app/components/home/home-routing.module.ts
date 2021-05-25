@@ -9,6 +9,7 @@ import { ClientComponent } from '../clients/client/client.component';
 import { EditClientComponent } from '../clients/edit-client/edit-client.component';
 import { AddPurchaseComponent } from '../purchases/add-purchase/add-purchase.component';
 import { PurchaseComponent } from '../purchases/purchase/purchase.component';
+import { AddSaleComponent } from '../sales/add-sale/add-sale.component';
 import { SalesComponent } from '../sales/sales/sales.component';
 import { AddSupplierComponent } from '../suppliers/add-supplier/add-supplier.component';
 import { EditSupplierComponent } from '../suppliers/edit-supplier/edit-supplier.component';
@@ -73,6 +74,10 @@ const routes: Routes = [
         path: 'sales',
         component: SalesComponent
       },
+      {
+        path: 'sales/newSale',
+        component: AddSaleComponent
+      }
     ]
   }
 ];

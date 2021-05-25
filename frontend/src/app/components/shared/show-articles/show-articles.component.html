@@ -1,0 +1,29 @@
+<div class="container">
+    <h4 class="center-align titulo" style="margin-top: 10px">ARTICLES</h4>
+    <table class="highlight">
+        <thead>
+          <tr>
+              <th>Article ID</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Stock</th>
+          </tr>
+        </thead>
+
+        <tbody class="pointer">
+          <tr *ngFor="let article of articles">
+            <td>{{ article.id_articulo }}</td>
+            <td>{{ article.descripcion }}</td>
+            <td>{{ article.precio }}</td>
+            <td>{{ article.stock }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="move-top-2r">
+        <button class="btn waves-effect waves-light" (click)="select()"> Accept
+            <i class="material-icons right">save</i>
+        </button>
+        <button class="btn waves-effect waves-light red" style="margin-left: 5px;" (click)="cancel()"> Cancel</button>
+      </div>
+</div>

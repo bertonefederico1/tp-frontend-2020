@@ -13,4 +13,8 @@ export class SaleService {
   getSales() {
     return this.http.get<any[]>(`${this.URL}/sales`);
   }
+
+  addSale(sale: any) {
+    return this.http.post(`${this.URL}/newSale`, sale);
+  }
 }

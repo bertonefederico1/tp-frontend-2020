@@ -20,7 +20,7 @@ app.use(cors({
 app.use(morgan('dev'));
 app.use(express.json());
 
-//app.use(LoginController.verifyToken); //Middleware para validar el token en cada petición
+app.use(LoginController.verifyToken); //Middleware para validar el token en cada petición
 
 //Routes
 app.use('/', routes);

@@ -1,5 +1,17 @@
+.pointer {
+    cursor: pointer !important;
+}
+
+#max {
+    height: 2px !important;
+}
+
 .move-top-10 {
     margin-top: 10px;
+}
+
+.move-top-2r {
+    margin-top: 2rem;
 }
 
 .size-image-edit{

@@ -1,1 +1,63 @@
-<p>add-sale works!</p>
+<div class="row section container">
+    <h4 class="center-align titulo" style="margin-top: 10px">NEW SALE</h4>
+    <form class="col s12" autocomplete="off">
+        <div class="row">
+            <div class="input-field col s1">
+                <input id="dni" type="text" class="validate" name="customerID">
+                <label class="active" for="dni">Customer</label>
+            </div>
+            <div class="input-field col s5">
+                <input id="dni" type="text" disabled class="validate" name="customerName">
+                <i class="material-icons prefix pointer" (click)="searchCustomer()">search</i>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s1">
+                <input id="dni" type="text" class="validate" name="articleID">
+                <label class="active" for="dni">Article</label>
+            </div>
+            <div class="input-field col s5">
+                <input id="dni" type="text" disabled class="validate" name="articleDescription">
+                <i class="material-icons prefix pointer" (click)="searchArticle()">search</i>
+            </div>
+            <div class="input-field col s2 offset-s1">
+                <input id="dni" type="number" class="validate" name="quantity">
+                <label class="active" for="dni">Quantity</label>
+            </div>
+        </div>
+
+        <table id="max" class="responsive-table">
+            <thead>
+              <tr>
+                  <th>Article ID</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Sub Total</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+             <!--  <tr *ngIf="articles" *ngFor="let article of articles">
+                <td>{{  }}</td>
+                <td>{{  }}</td>
+                <td>{{  }}</td>
+                <td>{{  }}</td>
+              </tr> -->
+              <tr>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+                <th>$10029</th>
+              </tr>
+            </tbody>
+          </table>
+        
+          <div class="move-top-2r">
+            <button class="btn waves-effect waves-light" (click)="save()"> Save
+                <i class="material-icons right">save</i>
+            </button>
+            <button class="btn waves-effect waves-light red" style="margin-left: 5px;" (click)="cancel()"> Cancel</button>
+          </div>
+    </form>
+</div>

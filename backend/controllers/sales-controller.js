@@ -7,8 +7,8 @@ const Article = require('../models/article-model');
 const Client = require('../models/client-model');
 const sequelize = require('../database/db-connection');
 
-Article.belongsToMany(Client, {through: Sale, foreignKey:'id_articulo'});
-Client.belongsToMany(Article, {through: Sale, foreignKey:'id_cliente'}); 
+/* Article.belongsToMany(Client, {through: Sale, foreignKey:'id_articulo'});
+Client.belongsToMany(Article, {through: Sale, foreignKey:'id_cliente'});  */
 
 Article.hasMany(Sale, {foreignKey: 'id_articulo'});
 Sale.belongsTo(Article, {foreignKey: 'id_articulo'});
@@ -28,8 +28,7 @@ saleController.getAll = async (req, res) => {
     try {
         const sales = await Sale.findAll({
             where: {
-                activo: 1,
-                id_cliente: 134
+                activo: 1
             },
             include: [{
                 model: Article

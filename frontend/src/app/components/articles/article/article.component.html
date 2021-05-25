@@ -16,7 +16,7 @@
   <!-- Listado -->
   <div *ngIf="articles">
     <div *ngFor="let article of articles | filter: filterString">
-      <app-article-item [article]=article (itemDeleted)="onArticleDeleted($event)"></app-article-item>
+      <app-article-item [article]="article" (itemDeleted)="onArticleDeleted($event)"></app-article-item>
     </div>
   </div>
 </div>

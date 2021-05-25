@@ -26,6 +26,8 @@ import { TokenInterceptorService } from './services/token-interceptor/token-inte
 import { FilterPipe } from './pipes/filter.pipe';
 import { SalesComponent } from './components/sales/sales/sales.component';
 import { AddSaleComponent } from './components/sales/add-sale/add-sale.component';
+import { ShowCustomersComponent } from './components/shared/show-customers/show-customers.component';
+import { ShowArticlesComponent } from './components/shared/show-articles/show-articles.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { AddSaleComponent } from './components/sales/add-sale/add-sale.component
     ArticleItemComponent,
     LoginComponent,
     SalesComponent,
-    AddSaleComponent
+    AddSaleComponent,
+    ShowCustomersComponent,
+    ShowArticlesComponent
   ],
   imports: [
   BrowserModule,
