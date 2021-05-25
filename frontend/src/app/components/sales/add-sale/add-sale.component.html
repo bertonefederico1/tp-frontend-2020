@@ -3,28 +3,29 @@
     <form class="col s12" autocomplete="off">
         <div class="row">
             <div class="input-field col s1">
-                <input id="dni" type="text" class="validate" name="customerID">
-                <label class="active" for="dni">Customer</label>
+                <input id="customerID" type="text" class="validate" name="customerID" [(ngModel)]="selectedClient.id_cliente" (keyup)="searchCustomer($event)">
+                <label class="active" for="customerID">Customer</label>
             </div>
             <div class="input-field col s5">
-                <input id="dni" type="text" disabled class="validate" name="customerName">
+                <input type="text" disabled class="validate" name="customerName" [(ngModel)]="selectedClient.nombre + ' ' + selectedClient.apellido">
                 <i class="material-icons prefix pointer" (click)="searchCustomer()">search</i>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s1">
-                <input id="dni" type="text" class="validate" name="articleID">
-                <label class="active" for="dni">Article</label>
+                <input id="articleID" type="text" class="validate" name="articleID" [(ngModel)]="selectedArticle.id_articulo" (keyup)="searchArticle($event)">
+                <label class="active" for="articleID">Article</label>
             </div>
             <div class="input-field col s5">
-                <input id="dni" type="text" disabled class="validate" name="articleDescription">
+                <input type="text" disabled class="validate" name="articleDescription" [(ngModel)]="selectedArticle.descripcion">
                 <i class="material-icons prefix pointer" (click)="searchArticle()">search</i>
             </div>
             <div class="input-field col s2 offset-s1">
-                <input id="dni" type="number" class="validate" name="quantity">
-                <label class="active" for="dni">Quantity</label>
+                <input id="quantity" type="number" class="validate" name="quantity" [(ngModel)]="articleQuantity">
+                <label class="active" for="quantity">Quantity</label>
             </div>
+            <button class="btn waves-effect waves-light" style="margin-left: 5px;" (click)="addArticle(selectedArticle)">+ Add</button>
         </div>
 
         <table id="max" class="responsive-table">
@@ -34,16 +35,22 @@
                   <th>Description</th>
                   <th>Quantity</th>
                   <th>Sub Total</th>
+                  <th>Action</th>
               </tr>
             </thead>
     
-            <tbody>
-             <!--  <tr *ngIf="articles" *ngFor="let article of articles">
-                <td>{{  }}</td>
-                <td>{{  }}</td>
-                <td>{{  }}</td>
-                <td>{{  }}</td>
-              </tr> -->
+            <tbody *ngIf="articles.length > 0">
+             <tr *ngFor="let article of articles">
+                <td>{{ article.id_articulo }}</td>
+                <td>{{ article.descripcion }}</td>
+                <td>{{ article.quantity }}</td>
+                <td>{{ article.precio * article.quantity }}</td> 
+                <td>
+                    <a class="pointer" (click)="deleteSelectedArticle(article)">
+                        <i class="material-icons color-red">delete</i>
+                    </a>
+                </td>
+              </tr>
               <tr>
                 <th></th>
                 <th></th>

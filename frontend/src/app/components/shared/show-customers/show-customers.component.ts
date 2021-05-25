@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Client } from 'src/app/models/client/client';
+import { ClientService } from 'src/app/services/client/client.service';
 
 @Component({
   selector: 'app-show-customers',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowCustomersComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<ShowCustomersComponent>,
+    @Inject(MAT_DIALOG_DATA) public data,
+    private clientService: ClientService
+  ) { }
+
+  clients: Client[];
+  filterString: string = '';
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  selectionCustomer(client: Client) {
+    this.dialogRef.close(client);
+  }
+
+  getAll() {
+    this.clientService.getClients()
+      .subscribe(
+        res => this.clients = res,
+        err => console.log(err)
+      )
   }
 
 }

@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { EventManager } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article/article';
 

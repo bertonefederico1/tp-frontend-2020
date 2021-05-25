@@ -17,29 +17,26 @@ export class ShowArticlesComponent implements OnInit {
   ) { }
 
   articles: Article[];
+  filterString: string = '';
 
   ngOnInit(): void {
     this.getAll();
+  }
+
+  selectionArticle(article: Article) {
+    this.dialogRef.close(article);
   }
 
   getAll() {
     this.articleService.getArticles()
       .subscribe(
         res => {
-          this.articles = res.filter(article => {
+          this.articles = res.filter(article => { //Filtro los que tengan stock disponible
             return article.stock > 0;
           })
         },
         err => console.log(err)
       )
-  }
-
-  select() {
-
-  }
-
-  cancel() {
-    this.dialogRef.close();
   }
 
 }
