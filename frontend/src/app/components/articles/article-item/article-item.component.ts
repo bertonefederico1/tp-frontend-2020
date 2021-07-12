@@ -20,6 +20,6 @@ export class ArticleItemComponent {
   }
 
   navigate(route){
-    setTimeout(() => this.router.navigate(route), 500);
+    this.router.navigate(route);
   }
 }
