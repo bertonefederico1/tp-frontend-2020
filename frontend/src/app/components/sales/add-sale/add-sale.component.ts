@@ -20,7 +20,7 @@ export class AddSaleComponent {
 
   customerID: number;
   articleID: number;
-  articles: Article[] = [];
+  articles: any[] = [];
   selectedArticle: any = {};
   selectedClient: Client = new Client();
   articleQuantity: number;
@@ -41,8 +41,8 @@ export class AddSaleComponent {
     if (event){
       if (event.key !== '+'){
         return;
-      };
-    };
+      }
+    }
     const dialogRef = this.dialog.open(ShowArticlesComponent, this.dialogConfig);
     dialogRef.afterClosed()
       .subscribe(selectedArticle => {
@@ -52,14 +52,15 @@ export class AddSaleComponent {
           return;
         }
       });
+      this.clearControls('searchArticle');
   }
 
   searchCustomer(event?: any) {
     if (event){
       if (event.key !== '+'){
         return;
-      };
-    };
+      }
+    }
     const dialogRef = this.dialog.open(ShowCustomersComponent, this.dialogConfig);
     dialogRef.afterClosed()
       .subscribe(selectedClient => {
@@ -69,6 +70,7 @@ export class AddSaleComponent {
           return;
         }
       });
+      this.clearControls('searchCustomer');
   }
 
   deleteSelectedArticle(article: any) {
@@ -76,8 +78,65 @@ export class AddSaleComponent {
   }
 
   addArticle(selectedArticle: Article){
-    this.selectedArticle.quantity = this.articleQuantity
+    if (Object.keys(this.selectedArticle).length === 0) {
+      return;
+    }
+    if (!this.articleQuantity) {
+      alert('You must input quantity');
+      return;
+    }
+    this.selectedArticle.quantity = this.articleQuantity;
+    console.log(this.existsArticle(this.selectedArticle))
+    if (this.existsArticle(this.selectedArticle)) { //El artículo ya existe, solo tengo que actualizar la cantidad
+      this.updateArticleExisting(this.selectedArticle);
+    }
     this.articles.push(selectedArticle);
+    this.selectedArticle = {};
+    this.clearControls('addArticle');
+  }
+
+  updateArticleExisting(selectedArticle: any) {
+    const position = this.getPositionArticle(selectedArticle);
+    console.log(position);
+    selectedArticle.quantity += this.articles[position].quantity;
+    this.articles.splice(position, 1);
+  }
+
+  getPositionArticle(selectedArticle: Article): number {
+    const position = this.articles.map(article => { 
+      return article.id_articulo; 
+    }).indexOf(selectedArticle.id_articulo);
+    return position;
+  }
+
+  existsArticle(selectedArticle: Article): boolean {
+    const position = this.articles.map(article => { 
+      return article.id_articulo; 
+    }).indexOf(selectedArticle.id_articulo);
+    return position >= 0;
+  }
+
+  clearControls(method: string) {
+    switch (method) {
+      case 'searchCustomer': {
+        this.selectedClient.id_cliente = undefined;
+        this.selectedClient.nombre = '';
+        this.selectedClient.apellido = '';
+        break;
+      }
+
+      case 'searchArticle': {
+        this.selectedArticle.id_articulo = undefined;
+        this.selectedArticle.descripcion = '';
+        break;
+      }
+
+      case 'addArticle': {
+        this.articleQuantity = undefined;
+        break;
+      }
+
+    }
   }
 
 }
