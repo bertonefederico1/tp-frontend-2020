@@ -18,11 +18,13 @@ CREATE TABLE `ventas` (
   `fecha_hora_venta` timestamp NOT NULL,
   `cantidad` int(11) NOT NULL,
   `activo` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id_articulo`,`id_cliente`,`fecha_hora_venta`),
+  `numero_venta` int(11) NOT NULL,
+  PRIMARY KEY (`id_articulo`,`id_cliente`,`fecha_hora_venta`,`numero_venta`),
   KEY `fk_ventas_clientes_idx` (`id_cliente`),
   CONSTRAINT `fk_ventas_articulos` FOREIGN KEY (`id_articulo`) REFERENCES `articulos` (`id_articulo`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_ventas_clientes` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 
 

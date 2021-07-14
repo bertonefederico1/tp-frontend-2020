@@ -19,7 +19,7 @@ export class SalesComponent implements OnInit {
   getSales() {
     this.saleService.getSales()
       .subscribe(
-        res => this.sales = res,  
+        res => console.log(res),  
         err => console.log(err)
       )
   }

@@ -37,8 +37,8 @@ export class AddSaleComponent {
     this.sale = new Sale(this.articles, this.selectedClient.id_cliente);
     this.saleService.addSale(this.sale)
       .subscribe(
-        res => console.log(res),
-        err => console.log(err)
+        res => this.router.navigate(['/sales']),
+        err => alert(err.error)
       )
   }
 
