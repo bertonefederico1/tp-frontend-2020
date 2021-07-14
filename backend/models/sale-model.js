@@ -3,12 +3,12 @@
 const sequelize = require('../database/db-connection');
 const { DataTypes } = require('Sequelize');
 const Sequelize = require('Sequelize');
-const Article = require('./article-model');
 const Client = require('./client-model');
 
 const Sale = sequelize.define('ventas', {
-    numero_venta: {
+    id_venta: {
         type: DataTypes.INTEGER, 
+        autoIncrement: true,
         primaryKey: true
     },
     id_cliente: { 
@@ -19,22 +19,11 @@ const Sale = sequelize.define('ventas', {
             key: 'id_cliente'
         }
     },
-    id_articulo: { 
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        references: {
-            model: Article,
-            key: 'id_articulo'
-        }
-    },
     fecha_hora_venta: { 
         type: DataTypes.DATE, 
         primaryKey: true,
         defaultValue: Sequelize.NOW
      },
-    cantidad: { 
-        type: DataTypes.INTEGER
-    },
     activo: { 
         type: DataTypes.BOOLEAN, defaultValue: 1
      }
