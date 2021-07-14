@@ -67,7 +67,7 @@ saleController.createSale = async (req, res) => {
             
             if (articleUpdated.stock < 0) {
                 throw new Error('Stock not available');
-            };
+            }
         });
 
         await transact.commit();
