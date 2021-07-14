@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article/article';
 import { Client } from 'src/app/models/client/client';
+import { Sale } from 'src/app/models/sale/sale';
 import { SaleService } from 'src/app/services/sale/sale.service';
 import { ShowArticlesComponent } from '../../shared/show-articles/show-articles.component';
 import { ShowCustomersComponent } from '../../shared/show-customers/show-customers.component';
@@ -15,9 +17,11 @@ export class AddSaleComponent {
 
   constructor(
     private saleService: SaleService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
     ) { }
 
+  sale: Sale;
   customerID: number;
   articleID: number;
   articles: any[] = [];
@@ -30,11 +34,16 @@ export class AddSaleComponent {
   };
 
   save() {
-
+    this.sale = new Sale(this.articles, this.selectedClient.id_cliente);
+    this.saleService.addSale(this.sale)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      )
   }
 
   cancel() {
-
+    this.router.navigate(['/sales']);
   }
 
   searchArticle(event?: any) {
@@ -86,8 +95,7 @@ export class AddSaleComponent {
       return;
     }
     this.selectedArticle.quantity = this.articleQuantity;
-    console.log(this.existsArticle(this.selectedArticle))
-    if (this.existsArticle(this.selectedArticle)) { //El artículo ya existe, solo tengo que actualizar la cantidad
+    if (this.existsArticle(this.selectedArticle)) { //El artículo ya existe. Solo actualizo la cantidad
       this.updateArticleExisting(this.selectedArticle);
     }
     this.articles.push(selectedArticle);
@@ -97,7 +105,6 @@ export class AddSaleComponent {
 
   updateArticleExisting(selectedArticle: any) {
     const position = this.getPositionArticle(selectedArticle);
-    console.log(position);
     selectedArticle.quantity += this.articles[position].quantity;
     this.articles.splice(position, 1);
   }

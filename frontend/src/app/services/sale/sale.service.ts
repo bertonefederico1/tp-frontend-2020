@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Sale } from 'src/app/models/sale/sale';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class SaleService {
     return this.http.get<any[]>(`${this.URL}/sales`);
   }
 
-  addSale(sale: any) {
+  addSale(sale: Sale) {
     return this.http.post(`${this.URL}/newSale`, sale);
   }
 }

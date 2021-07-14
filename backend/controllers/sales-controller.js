@@ -47,7 +47,7 @@ saleController.getAll = async (req, res) => {
 saleController.createSale = async (req, res) => {
     try {
         transact = await sequelize.transaction();
-
+        console.log(req.body);
         await asyncForEach(req.body.articles, async (article) => {
             await Sale.create({
                 id_cliente: req.body.clientID, 
