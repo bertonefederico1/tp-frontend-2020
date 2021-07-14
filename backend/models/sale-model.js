@@ -7,6 +7,10 @@ const Article = require('./article-model');
 const Client = require('./client-model');
 
 const Sale = sequelize.define('ventas', {
+    numero_venta: {
+        type: DataTypes.INTEGER, 
+        primaryKey: true
+    },
     id_cliente: { 
         type: DataTypes.INTEGER, 
         primaryKey: true,
@@ -24,7 +28,9 @@ const Sale = sequelize.define('ventas', {
         }
     },
     fecha_hora_venta: { 
-        type: DataTypes.DATE, primaryKey: true, defaultValue: Sequelize.NOW
+        type: DataTypes.DATE, 
+        primaryKey: true,
+        defaultValue: Sequelize.NOW
      },
     cantidad: { 
         type: DataTypes.INTEGER

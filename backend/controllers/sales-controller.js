@@ -7,16 +7,17 @@ const Article = require('../models/article-model');
 const Client = require('../models/client-model');
 const sequelize = require('../database/db-connection');
 
-/* Article.belongsToMany(Client, {through: Sale, foreignKey:'id_articulo'});
-Client.belongsToMany(Article, {through: Sale, foreignKey:'id_cliente'});  */
+let transact;
+
+/* Article.belongsToMany(Client, {through: Sale, foreignKey:'id_cliente'});
+Client.belongsToMany(Article, {through: Sale, foreignKey:'id_articulo'}); */
 
 Article.hasMany(Sale, {foreignKey: 'id_articulo'});
 Sale.belongsTo(Article, {foreignKey: 'id_articulo'});
 
 Client.hasMany(Sale, {foreignKey: 'id_cliente'});
-Sale.belongsTo(Client, {foreignKey: 'id_cliente'});  
+Sale.belongsTo(Client, {foreignKey: 'id_cliente'}); 
 
-let transact;
 
 const asyncForEach = async (array, callback) => {
     for (let index = 0; index < array.length; index++) {
@@ -31,13 +32,13 @@ saleController.getAll = async (req, res) => {
                 activo: 1
             },
             include: [{
+                model: Client
+            },{
                 model: Article
-            },
-            {
-                model: Client  
-        }],
+            }],
             rejectOnEmpty: true
         });
+
         res.status(200).json(sales);
     } catch (err){
         res.status(400).json('There aren\'t active sales');
@@ -47,17 +48,21 @@ saleController.getAll = async (req, res) => {
 saleController.createSale = async (req, res) => {
     try {
         transact = await sequelize.transaction();
-        console.log(req.body);
+        
+        const arrSaleID = await sequelize.query('SELECT MAX(numero_venta) as MAX_NUMERO_VENTA FROM ventas');
+        const saleID = arrSaleID[0][0].MAX_NUMERO_VENTA + 1;
+
         await asyncForEach(req.body.articles, async (article) => {
             await Sale.create({
-                id_cliente: req.body.clientID, 
-                id_articulo: article.articleID,
+                numero_venta: saleID,
+                id_cliente: req.body.customerID, 
+                id_articulo: article.id_articulo,
                 cantidad: article.quantity
             }, { transaction: transact }); 
     
             const articleUpdated = await Article.findOne({
                 where: {
-                    id_articulo: article.articleID
+                    id_articulo: article.id_articulo
                 }
             });
 
@@ -71,10 +76,10 @@ saleController.createSale = async (req, res) => {
         });
 
         await transact.commit();
-        res.status(200).json("Sale created");
+        res.status(200).json('Sale created');
     } catch (err){
         await transact.rollback();
-        res.status(400).json(err);
+        res.status(400).json(err.message);
     }
 }
 
