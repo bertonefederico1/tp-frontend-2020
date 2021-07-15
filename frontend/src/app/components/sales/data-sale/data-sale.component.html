@@ -1,60 +1,42 @@
 <div class="row section container">
-    <h4 class="center-align titulo" style="margin-top: 10px">DATA SALE</h4>
+    <h4 class="center-align titulo" style="margin-top: 10px">SALE N° {{ sale.id_venta.toString().padStart(5, '0') }}</h4>
     <form class="col s12" autocomplete="off">
         <div class="row">
             <div class="input-field col s1">
-                <input id="customerID" type="text" class="validate" name="customerID">
+                <input id="customerID" disabled type="text" class="validate" name="customerID" [(ngModel)]="sale.cliente.id_cliente">
                 <label class="active" for="customerID">Customer</label>
             </div>
             <div class="input-field col s5">
-                <input type="text" disabled class="validate" name="customerName">
+                <input type="text" disabled class="validate" name="customerName" [(ngModel)]="sale.cliente.nombre + ' ' + sale.cliente.apellido">
             </div>
         </div>
-
-        <div class="row">
-            <div class="input-field col s1">
-                <input id="articleID" type="text" class="validate" name="articleID">
-                <label class="active" for="articleID">Article</label>
-            </div>
-            <div class="input-field col s5">
-                <input type="text" disabled class="validate" name="articleDescription">
-            </div>
-            <div class="input-field col s2 offset-s1">
-                <input id="quantity" type="number" class="validate" name="quantity">
-                <label class="active" for="quantity">Quantity</label>
-            </div>
-        </div>
-
         <table id="max" class="responsive-table">
             <thead>
               <tr>
                   <th>Article ID</th>
                   <th>Description</th>
+                  <th>Price Per Unity</th>
                   <th>Quantity</th>
                   <th>Sub Total</th>
-                  <th>Action</th>
               </tr>
             </thead>
     
-            <!-- <tbody *ngIf="articles.length > 0">
-             <tr *ngFor="let article of articles">
-                <td>{{ article.id_articulo }}</td>
-                <td>{{ article.descripcion }}</td>
-                <td>{{ article.quantity }}</td>
-                <td>{{ article.precio * article.quantity }}</td> 
-                <td>
-                    <a class="pointer">
-                        <i class="material-icons color-red">delete</i>
-                    </a>
-                </td>
+            <tbody *ngIf="sale.detalle_ventas.length > 0">
+             <tr *ngFor="let article of sale.detalle_ventas">
+                <td>{{ article.articulo.id_articulo }}</td>
+                <td>{{ article.articulo.descripcion }}</td>
+                <td>{{ article.articulo.precio }}</td>
+                <td>{{ article.cantidad }}</td>
+                <td>{{ article.articulo.precio * article.cantidad }}</td> 
               </tr>
               <tr>
                 <th></th>
                 <th></th>
+                <th></th>
                 <th>Total</th>
-                <th>$10029</th>
+                <th>${{sale.total}}</th>
               </tr>
-            </tbody> -->
+            </tbody>
           </table>
         
           <div class="move-top-2r">

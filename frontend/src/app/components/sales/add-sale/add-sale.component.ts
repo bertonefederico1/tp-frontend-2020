@@ -24,6 +24,7 @@ export class AddSaleComponent {
   sale: Sale;
   customerID: number;
   articleID: number;
+  total: number;
   articles: any[] = [];
   selectedArticle: any = {};
   selectedClient: Client = new Client();
@@ -34,7 +35,7 @@ export class AddSaleComponent {
   };
 
   save() {
-    this.sale = new Sale(this.articles, this.selectedClient.id_cliente);
+    this.sale = new Sale(this.articles, this.selectedClient.id_cliente, this.total);
     this.saleService.addSale(this.sale)
       .subscribe(
         res => this.router.navigate(['/sales']),
@@ -87,6 +88,7 @@ export class AddSaleComponent {
       return article.id_articulo; 
     }).indexOf(article.id_articulo);
     this.articles.splice(position, 1);
+    this.calculateTotal();
   }
 
   addArticle(selectedArticle: Article){
@@ -104,6 +106,14 @@ export class AddSaleComponent {
     this.articles.push(selectedArticle);
     this.selectedArticle = {};
     this.clearControls('addArticle');
+    this.calculateTotal();
+  }
+
+  calculateTotal() { //Calcula el monto total de la venta
+    this.total = 0;
+    this.articles.forEach(article => {  
+      this.total = this.total + (article.precio * article.quantity)
+    });
   }
 
   updateArticleExisting(selectedArticle: any) {

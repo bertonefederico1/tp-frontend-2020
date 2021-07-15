@@ -33,6 +33,7 @@
               <tr>
                   <th>Article ID</th>
                   <th>Description</th>
+                  <th>Price Per Unity</th>
                   <th>Quantity</th>
                   <th>Sub Total</th>
                   <th>Action</th>
@@ -43,6 +44,7 @@
              <tr *ngFor="let article of articles">
                 <td>{{ article.id_articulo }}</td>
                 <td>{{ article.descripcion }}</td>
+                <td>{{ article.precio }}</td>
                 <td>{{ article.quantity }}</td>
                 <td>{{ article.precio * article.quantity }}</td> 
                 <td>
@@ -54,8 +56,9 @@
               <tr>
                 <th></th>
                 <th></th>
+                <th></th>
                 <th>Total</th>
-                <th>$10029</th>
+                <th>${{ total }}</th>
               </tr>
             </tbody>
           </table>

@@ -42,6 +42,7 @@ router.get('/purchases/:id', supplierArticleController.getSupplierPurchases);
 //Rutas de ventas
 router.get('/sales', saleController.getAll);
 router.post('/newSale', saleController.createSale);
+router.put('/deleteSale/:saleID', saleController.deleteSale);
 
 //Rutas de login y logout
 router.post('/createPassword', LoginController.signup); //Ver si dejar o sacar

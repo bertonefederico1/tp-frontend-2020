@@ -24,6 +24,9 @@ const Sale = sequelize.define('ventas', {
         primaryKey: true,
         defaultValue: Sequelize.NOW
      },
+     total: {
+        type: DataTypes.DECIMAL(10,2)
+     },
     activo: { 
         type: DataTypes.BOOLEAN, defaultValue: 1
      }

@@ -35,8 +35,7 @@ saleController.getAll = async (req, res) => {
                 include: {
                     model: Article
                 }
-            }],
-            rejectOnEmpty: true
+            }]
         });
 
         res.status(200).json(sales);
@@ -48,14 +47,14 @@ saleController.getAll = async (req, res) => {
 saleController.createSale = async (req, res) => {
     try {
         transact = await sequelize.transaction();
-        console.log(req.body);
-        
+        console.log(req.body.total);
         const sale = await Sale.create({  //Creo la cabecera
-            id_cliente: req.body.customerID
+            id_cliente: req.body.customerID,
+            total: req.body.total
         }, { transaction: transact }); 
         
         
-        await asyncForEach(req.body.articles, async (article) => { //Creo el detalle de cada venta
+        await asyncForEach(req.body.articles, async (article) => { //Creo el detalle de la venta
 
             await Sales_Detail.create({
                 id_articulo: article.id_articulo,
@@ -83,6 +82,46 @@ saleController.createSale = async (req, res) => {
         res.status(400).json(err.message);
     }
 }
+
+saleController.deleteSale = async (req, res) => {
+    try {
+        transact = await sequelize.transaction();
+        
+        const articlesAffected = await Sales_Detail.findAll({
+            where: {
+                id_venta: req.params.saleID
+            }
+        }, { transaction: transact });
+
+        await asyncForEach(articlesAffected, async (article) => {  //Sumo el stock de cada articulo
+
+            const articleAffected = await Article.findOne({
+                where: {
+                    id_articulo: article.id_articulo
+                }
+            }, { transaction: transact });
+
+            articleAffected.stock += article.cantidad;
+            await articleAffected.save({transaction: transact});
+        });
+
+        await Sale.update({  
+            activo: 0
+        }, {
+            where: {
+                id_venta: req.params.saleID
+            }
+        }, { transaction: transact }); 
+
+        await transact.commit();
+        res.status(200).json('Sale deleted');
+    } catch (err){
+        await transact.rollback();
+        res.status(400).json(err.message);
+    }
+}
+
+
 
 const asyncForEach = async (array, callback) => {
     for (let index = 0; index < array.length; index++) {
