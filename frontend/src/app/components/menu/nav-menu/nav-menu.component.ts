@@ -13,7 +13,7 @@ export class NavMenuComponent {
   ) { }
 
   logout(){
-    if(confirm('Are you sure you want to log out?')) {
+    if(confirm('¿Seguro que desea cerrar sesión?')) {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
     };
