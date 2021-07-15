@@ -28,6 +28,7 @@ import { SalesComponent } from './components/sales/sales/sales.component';
 import { AddSaleComponent } from './components/sales/add-sale/add-sale.component';
 import { ShowCustomersComponent } from './components/shared/show-customers/show-customers.component';
 import { ShowArticlesComponent } from './components/shared/show-articles/show-articles.component';
+import { DataSaleComponent } from './components/sales/data-sale/data-sale.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ShowArticlesComponent } from './components/shared/show-articles/show-ar
     SalesComponent,
     AddSaleComponent,
     ShowCustomersComponent,
-    ShowArticlesComponent
+    ShowArticlesComponent,
+    DataSaleComponent
   ],
   imports: [
   BrowserModule,

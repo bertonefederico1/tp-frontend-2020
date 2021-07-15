@@ -30,7 +30,7 @@ export class PurchaseComponent implements OnInit {
     this.supplierService.getSuppliers()
       .subscribe(
         res => this.suppliers = res,
-        err => console.log(err)
+        err => alert(err)
       );
   }
 

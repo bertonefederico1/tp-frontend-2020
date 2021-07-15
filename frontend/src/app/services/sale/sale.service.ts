@@ -18,4 +18,8 @@ export class SaleService {
   addSale(sale: Sale) {
     return this.http.post(`${this.URL}/newSale`, sale);
   }
+
+  deleteSale(saleID: number){
+    return this.http.put(`${this.URL}/deleteSale/${saleID}`, 'Delete');
+  }
 }
