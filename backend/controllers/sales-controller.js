@@ -24,6 +24,7 @@ Sale.belongsTo(Client, {foreignKey: 'id_cliente'});
 saleController.getAll = async (req, res) => {
     try {
         const sales = await Sale.findAll({
+            order: [['fecha_hora_venta', 'DESC']],
             where: {
                 activo: 1
             },

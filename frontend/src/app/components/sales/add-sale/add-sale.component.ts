@@ -82,8 +82,11 @@ export class AddSaleComponent {
       this.clearControls('searchCustomer');
   }
 
-  deleteSelectedArticle(article: any) {
-    
+  deleteSelectedArticle(article: Article) {
+    const position = this.articles.map(article => { 
+      return article.id_articulo; 
+    }).indexOf(article.id_articulo);
+    this.articles.splice(position, 1);
   }
 
   addArticle(selectedArticle: Article){

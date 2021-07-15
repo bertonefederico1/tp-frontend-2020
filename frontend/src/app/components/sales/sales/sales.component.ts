@@ -19,9 +19,17 @@ export class SalesComponent implements OnInit {
   getSales() {
     this.saleService.getSales()
       .subscribe(
-        res => console.log(res),  
+        res => this.sales = res,  
         err => console.log(err)
       )
+  }
+
+  deleteSale(saleID: number) {
+    console.log("elimina una venta")
+  }
+
+  dataSale(sale: any){
+    console.log("muestra los datos de la venta")
   }
 
 }
