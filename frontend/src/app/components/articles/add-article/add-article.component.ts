@@ -7,6 +7,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isNumber } from 'src/app/validations/validations';
 import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
+import { Strategy } from '../../strategies/strategy';
+import { EditArticleStrategy } from './strategies/edit-article-strategy';
+import { AddArticleStrategy } from './strategies/add-article-strategy';
 
 @Component({
   selector: 'app-add-article',
@@ -16,8 +19,9 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
 export class AddArticleComponent implements OnInit {
 
   article: Article;
-  edit = false;
   idArticle: number;
+  strategy: Strategy;
+
   articleForm = new FormGroup({
     id_articulo: new FormControl(''),
     descripcion: new FormControl('', Validators.required),
@@ -33,17 +37,17 @@ export class AddArticleComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.article = new Article();
+    this.article = new Article(); 
   }
-
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
     if (this.idArticle) {
-      this.edit = true;
+      this.strategy = new EditArticleStrategy(this.articleService, this.router);
       this.getArticle();
     }
-    else{ // Aplicacion de local storage
+    else{
+      this.strategy = new AddArticleStrategy(this.articleService, this.router);
       const form = this.getForm();
       this.articleForm.patchValue({
         descripcion: form.descripcion,
@@ -53,20 +57,13 @@ export class AddArticleComponent implements OnInit {
     }
   }
 
-  addArticle(){
-    this.articleService.addArticle(this.articleForm.value)
-      .subscribe(
-        res => this.router.navigate(['/articles']),
-        err => console.log(err)
-      );
+  setStrategy(strategy: Strategy){
+    this.strategy = strategy;
   }
 
-  editArticle(){
-    this.articleService.editArticle(this.idArticle, this.articleForm.value)
-      .subscribe(
-        res => this.router.navigate(['/articles']),
-        err => console.log(err)
-      );
+  sendArticle(articleForm: FormGroup, id: number){
+    this.localStorage.removeForm();
+    this.strategy.sendItem(articleForm, id);
   }
 
   getArticle(){
@@ -95,5 +92,9 @@ export class AddArticleComponent implements OnInit {
 
   saveForm(){
     this.localStorage.setForm(this.articleForm.value);
+  }
+
+  isEdit(){
+    return (this.strategy instanceof EditArticleStrategy)
   }
 }

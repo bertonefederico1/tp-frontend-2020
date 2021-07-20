@@ -1,4 +1,4 @@
-<div *ngIf="edit; then editArt else newArt"></div>
+<div *ngIf="isEdit(); then editArt else newArt"></div>
 <ng-template #editArt>
   <h4 class="center-align section titulo">EDIT ARTICLE</h4>
 </ng-template>
@@ -6,27 +6,27 @@
   <h4 class="center-align section titulo">NEW ARTICLE</h4>
 </ng-template>
 <div class="container section row" style="margin-left: 30rem">
-  <form class="col s12" [formGroup]="articleForm" (ngSubmit)="edit ? editArticle() : addArticle()">
+  <form class="col s12" [formGroup]="articleForm" (ngSubmit)="sendArticle(articleForm, idArticle)">
     <div class="row">
       <div class="input-field col s6 validate">
         <input class="validate" id="descripcion" type="text" formControlName="descripcion">
-        <label [class.active]="edit" for="descripcion">Description</label>
+        <label [class.active]="this.articleForm.controls['descripcion'].value !== ''" for="descripcion">Description</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s3 validate">
         <input id="precio_unitario_venta" type="text" formControlName="precio">
-        <label [class.active]="edit" for="precio_unitario_venta">Sale price ($)</label>
+        <label [class.active]="this.articleForm.controls['precio'].value !== ''" for="precio_unitario_venta">Sale price ($)</label>
       </div>
-      <div class="input-field col s3" *ngIf="edit">
+      <div class="input-field col s3" *ngIf="isEdit()">
         <input id="stock" type="text" formControlName="stock">
-        <label [class.active]="edit" for="stock">Stock</label>
+        <label [class.active]="this.articleForm.controls['stock'].value !== ''" for="stock">Stock</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
         <input id="imagen" type="text" [class.validate]="true" formControlName="imagen">
-        <label [class.active]="edit" for="imagen">Image</label>
+        <label [class.active]="this.articleForm.controls['imagen'].value !== ''" for="imagen">Image</label>
       </div>
     </div>
     <div class="row" *ngIf="!articleForm.valid">
