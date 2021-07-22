@@ -10,6 +10,8 @@ import { LocalStorageService } from 'src/app/services/local-storage/local-storag
 import { Strategy } from '../../strategies/strategy';
 import { EditArticleStrategy } from './strategies/edit-article-strategy';
 import { AddArticleStrategy } from './strategies/add-article-strategy';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-add-article',
@@ -33,9 +35,9 @@ export class AddArticleComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private localStorage: LocalStorageService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private errorService: ErrorService
   ) {
     this.article = new Article(); 
   }
@@ -43,17 +45,11 @@ export class AddArticleComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
     if (this.idArticle) {
-      this.strategy = new EditArticleStrategy(this.articleService, this.router);
+      this.strategy = new EditArticleStrategy(this.articleService, this.router, this.errorService);
       this.getArticle();
     }
     else{
-      this.strategy = new AddArticleStrategy(this.articleService, this.router);
-      const form = this.getForm();
-      this.articleForm.patchValue({
-        descripcion: form.descripcion,
-        precio: form.precio,
-        imagen: form.imagen
-      });
+      this.strategy = new AddArticleStrategy(this.articleService, this.router, this.errorService);
     }
   }
 
@@ -62,7 +58,6 @@ export class AddArticleComponent implements OnInit {
   }
 
   sendArticle(articleForm: FormGroup, id: number){
-    this.localStorage.removeForm();
     this.strategy.sendItem(articleForm, id);
   }
 
@@ -77,21 +72,12 @@ export class AddArticleComponent implements OnInit {
           imagen: res.imagen,
           proveedores: res.proveedores
         }),
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 
   cancel(){
-    this.saveForm();
     this.router.navigate(['/articles']);
-  }
-
-  getForm(){
-    return this.localStorage.getForm();
-  }
-
-  saveForm(){
-    this.localStorage.setForm(this.articleForm.value);
   }
 
   isEdit(){

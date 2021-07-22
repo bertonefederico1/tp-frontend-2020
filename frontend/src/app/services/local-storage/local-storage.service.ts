@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { ErrorService } from '../error-service/error.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  constructor() { }
+  constructor(
+    private errorService: ErrorService
+  ) { }
 
   getForm(){
     const form = JSON.parse(localStorage.getItem('articleForm'));
@@ -17,7 +20,7 @@ export class LocalStorageService {
       localStorage.setItem('articleForm', JSON.stringify(form));
     }
     catch (err){
-      console.log(err);
+      this.errorService.openSnackBar(err.name)
     }
   }
 
