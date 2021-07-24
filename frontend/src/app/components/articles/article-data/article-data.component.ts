@@ -5,6 +5,7 @@ import { Article } from 'src/app/models/article/article';
 
 import { ArticleService } from '../../../services/article/article.service';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
+import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-article-data',
@@ -22,7 +23,8 @@ export class ArticleDataComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
     private supplierService: SupplierService,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
     ) { }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class ArticleDataComponent implements OnInit {
         res => {
           this.article = res;
         },
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 
@@ -47,7 +49,7 @@ export class ArticleDataComponent implements OnInit {
     this.supplierService.lastSuplierPurchaseByArticle(idArticle)
       .subscribe(
         res => this.supplierPurchase = res,
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 

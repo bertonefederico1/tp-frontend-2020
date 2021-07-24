@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
 import { Supplier } from 'src/app/models/supplier/Supplier';
+import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-edit-supplier',
@@ -16,7 +17,8 @@ export class EditSupplierComponent implements OnInit {
   constructor(
     private supplierService: SupplierService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
   ) {
     this.selectedSupplier = new Supplier();
   }
@@ -30,7 +32,7 @@ export class EditSupplierComponent implements OnInit {
     this.supplierService.getById(this.idSupplier)
       .subscribe(
         res => this.selectedSupplier = res,
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 
@@ -39,7 +41,7 @@ export class EditSupplierComponent implements OnInit {
     this.supplierService.editSupplier(this.idSupplier, this.selectedSupplier)
       .subscribe(
         res => this.router.navigate(['/suppliers']),
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 

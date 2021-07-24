@@ -9,6 +9,7 @@ import { Supplier } from '../../../models/supplier/Supplier';
 import { Article } from '../../../models/article/article';
 import { ArticleSupplier } from '../../../models/article-supplier/article-supplier';
 import { ThrowStmt } from '@angular/compiler';
+import { ErrorService } from 'src/app/services/error-service/error.service';
 
 
 
@@ -30,7 +31,8 @@ export class AddPurchaseComponent implements OnInit {
     private articleService: ArticleService,
     private supplierService: SupplierService,
     private purchaseService: PurchaseService,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class AddPurchaseComponent implements OnInit {
     this.articleService.getArticles()
       .subscribe(
         res => this.articles = res,
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 
@@ -51,7 +53,7 @@ export class AddPurchaseComponent implements OnInit {
     this.supplierService.getSuppliers()
         .subscribe(
           res => this.suppliers = res,
-          err => console.log(err)
+          err => this.errorService.openSnackBar(err.name)
         );
   }
 

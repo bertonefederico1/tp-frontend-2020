@@ -3,6 +3,7 @@ import { Client } from '../../../models/client/client';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ClientService } from '../../../services/client/client.service';
+import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-edit-client',
@@ -17,7 +18,8 @@ export class EditClientComponent implements OnInit {
   constructor(
     private clientService: ClientService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
     ) {
     this.selectedClient = new Client();
   }
@@ -31,7 +33,7 @@ export class EditClientComponent implements OnInit {
     this.clientService.getById(this.idSupplier)
       .subscribe(
         res => this.selectedClient = res,
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 
@@ -40,7 +42,7 @@ export class EditClientComponent implements OnInit {
     this.clientService.editClient(this.idSupplier, this.selectedClient)
       .subscribe(
         res => this.router.navigate(['/clients']),
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 

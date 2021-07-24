@@ -5,6 +5,7 @@ import { SupplierService } from '../../../services/supplier/supplier.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataPurchaseComponent } from '../data-purchase/data-purchase.component';
 import { Router } from '@angular/router';
+import { ErrorService } from 'src/app/services/error-service/error.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class PurchasesComponent implements OnInit {
   constructor(
     private supplierService: SupplierService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +51,7 @@ export class PurchasesComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(
         res => this.getAll(),
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 

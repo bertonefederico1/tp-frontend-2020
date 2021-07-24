@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ErrorService } from 'src/app/services/error-service/error.service';
 import { PurchaseService } from './../../../services/purchase/purchase.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class DataPurchaseComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DataPurchaseComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
-    public purchaseService: PurchaseService
+    public purchaseService: PurchaseService,
+    private errorService: ErrorService
   ) {
     this.supplier = data;
   }
@@ -29,7 +31,7 @@ export class DataPurchaseComponent implements OnInit {
      this.purchaseService.getSupplierPurchases(this.supplier.supplier.id_proveedor)
       .subscribe(
         res => this.purchases = res,
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
   }
 
@@ -38,7 +40,7 @@ export class DataPurchaseComponent implements OnInit {
        this.purchaseService.deletePurchase(purchase.id_articulo, purchase.id_proveedor, purchase.fecha_compra)
        .subscribe(
           res => this.close(),
-          err => console.log(err)
+          err => this.errorService.openSnackBar(err.name)
         );
      }
   }
