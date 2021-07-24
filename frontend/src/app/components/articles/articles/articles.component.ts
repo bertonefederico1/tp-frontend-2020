@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ArticleService } from './../../../services/article/article.service';
-import { Article } from './../../../models/article/article';
+import { ArticleService } from '../../../services/article/article.service';
+import { Article } from '../../../models/article/article';
 import { Router } from '@angular/router';
+import { ErrorService } from 'src/app/services/error-service/error.service';
 
 
 @Component({
   selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css']
+  templateUrl: './articles.component.html',
+  styleUrls: ['./articles.component.css']
 })
-export class ArticleComponent implements OnInit {
+export class ArticlesComponent implements OnInit {
 
   articles: Article[];
   suppliers: any = [];
@@ -18,7 +19,8 @@ export class ArticleComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
     ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticles()
       .subscribe(
          res => this.articles = res,
-         err => console.log(err)
+         err => this.errorService.openSnackBar(err.name)
       );
   }
 
@@ -38,7 +40,7 @@ export class ArticleComponent implements OnInit {
       this.articleService.deleteArticle(id)
       .subscribe(
         res => this.getAll(),
-        err => console.log(err)
+        err => this.errorService.openSnackBar(err.name)
       );
     }
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Supplier } from 'src/app/models/supplier/Supplier';
-import { SupplierService } from './../../../services/supplier/supplier.service';
+import { SupplierService } from '../../../services/supplier/supplier.service';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataPurchaseComponent } from '../data-purchase/data-purchase.component';
@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-purchase',
-  templateUrl: './purchase.component.html',
-  styleUrls: ['./purchase.component.css']
+  templateUrl: './purchases.component.html',
+  styleUrls: ['./purchases.component.css']
 })
-export class PurchaseComponent implements OnInit {
+export class PurchasesComponent implements OnInit {
 
   suppliers: Supplier[];
 

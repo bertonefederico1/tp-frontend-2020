@@ -7,17 +7,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ClientComponent } from './components/clients/client/client.component';
+import { ClientsComponent } from './components/clients/clients/clients.component';
 import { AddClientComponent } from './components/clients/add-client/add-client.component';
 import { EditClientComponent } from './components/clients/edit-client/edit-client.component';
-import { ArticleComponent } from './components/articles/article/article.component';
+import { ArticlesComponent } from './components/articles/articles/articles.component';
 import { ArticleDataComponent } from './components/articles/article-data/article-data.component';
 import { AddArticleComponent } from './components/articles/add-article/add-article.component';
-import { SupplierComponent } from './components/suppliers/supplier/supplier.component';
+import { SupplierComponent } from './components/suppliers/suppliers/suppliers.component';
 import { AddSupplierComponent } from './components/suppliers/add-supplier/add-supplier.component';
 import { EditSupplierComponent } from './components/suppliers/edit-supplier/edit-supplier.component';
 import { AddPurchaseComponent } from './components/purchases/add-purchase/add-purchase.component';
-import { PurchaseComponent } from './components/purchases/purchase/purchase.component';
+import { PurchasesComponent } from './components/purchases/purchases/purchases.component';
 import { DataPurchaseComponent } from './components/purchases/data-purchase/data-purchase.component';
 import { ArticleItemComponent } from './components/articles/article-item/article-item.component';
 import { LoginComponent } from './components/login/login.component';
@@ -29,22 +29,23 @@ import { AddSaleComponent } from './components/sales/add-sale/add-sale.component
 import { ShowCustomersComponent } from './components/shared/show-customers/show-customers.component';
 import { ShowArticlesComponent } from './components/shared/show-articles/show-articles.component';
 import { DataSaleComponent } from './components/sales/data-sale/data-sale.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientComponent,
+    ClientsComponent,
     AddClientComponent,
     EditClientComponent,
-    ArticleComponent,
+    ArticlesComponent,
     ArticleDataComponent,
     AddArticleComponent,
     SupplierComponent,
     AddSupplierComponent,
     EditSupplierComponent,
     AddPurchaseComponent,
-    PurchaseComponent,
+    PurchasesComponent,
     DataPurchaseComponent,
     FilterPipe,
     ArticleItemComponent,
@@ -62,7 +63,8 @@ import { DataSaleComponent } from './components/sales/data-sale/data-sale.compon
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [
     {

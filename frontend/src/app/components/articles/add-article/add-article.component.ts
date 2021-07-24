@@ -45,11 +45,11 @@ export class AddArticleComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
     if (this.idArticle) {
-      this.strategy = new EditArticleStrategy(this.articleService, this.router, this.errorService);
+      this.strategy = new EditArticleStrategy(this.articleService, this.router);
       this.getArticle();
     }
     else{
-      this.strategy = new AddArticleStrategy(this.articleService, this.router, this.errorService);
+      this.strategy = new AddArticleStrategy(this.articleService, this.router);
     }
   }
 

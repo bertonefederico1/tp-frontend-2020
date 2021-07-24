@@ -3,17 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AddArticleComponent } from '../articles/add-article/add-article.component';
 import { ArticleDataComponent } from '../articles/article-data/article-data.component';
-import { ArticleComponent } from '../articles/article/article.component';
+import { ArticlesComponent } from '../articles/articles/articles.component';
 import { AddClientComponent } from '../clients/add-client/add-client.component';
-import { ClientComponent } from '../clients/client/client.component';
+import { ClientsComponent } from '../clients/clients/clients.component';
 import { EditClientComponent } from '../clients/edit-client/edit-client.component';
 import { AddPurchaseComponent } from '../purchases/add-purchase/add-purchase.component';
-import { PurchaseComponent } from '../purchases/purchase/purchase.component';
+import { PurchasesComponent } from '../purchases/purchases/purchases.component';
 import { AddSaleComponent } from '../sales/add-sale/add-sale.component';
 import { SalesComponent } from '../sales/sales/sales.component';
 import { AddSupplierComponent } from '../suppliers/add-supplier/add-supplier.component';
 import { EditSupplierComponent } from '../suppliers/edit-supplier/edit-supplier.component';
-import { SupplierComponent } from '../suppliers/supplier/supplier.component';
+import { SupplierComponent } from '../suppliers/suppliers/suppliers.component';
 import { HomeComponent } from './home.component';
 
 
@@ -24,7 +24,7 @@ const routes: Routes = [
     children: [
       {
         path: 'clients',
-        component: ClientComponent
+        component: ClientsComponent
       },
       {
         path: 'clients/addClient',
@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'articles',
-        component: ArticleComponent
+        component: ArticlesComponent
       },
       {
         path: 'articles/articleData/:id',
@@ -68,7 +68,7 @@ const routes: Routes = [
       },
       {
         path: 'purchases',
-        component: PurchaseComponent
+        component: PurchasesComponent
       },
       {
         path: 'sales',
