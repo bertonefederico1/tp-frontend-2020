@@ -7,8 +7,7 @@ import { SupplierService } from 'src/app/services/supplier/supplier.service';
 
 @Component({
   selector: 'app-add-supplier',
-  templateUrl: './add-supplier.component.html',
-  styleUrls: ['./add-supplier.component.css']
+  templateUrl: './add-supplier.component.html'
 })
 export class AddSupplierComponent {
 

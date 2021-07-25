@@ -6,17 +6,14 @@ import { ArticleService } from '../../../services/article/article.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isNumber } from 'src/app/validations/validations';
-import { LocalStorageService } from 'src/app/services/local-storage/local-storage.service';
 import { Strategy } from '../../strategies/strategy';
 import { EditArticleStrategy } from './strategies/edit-article-strategy';
 import { AddArticleStrategy } from './strategies/add-article-strategy';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-add-article',
-  templateUrl: './add-article.component.html',
-  styleUrls: ['./add-article.component.css']
+  templateUrl: './add-article.component.html'
 })
 export class AddArticleComponent implements OnInit {
 

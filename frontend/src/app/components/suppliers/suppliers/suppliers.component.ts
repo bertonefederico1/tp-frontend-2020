@@ -5,8 +5,7 @@ import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-supplier',
-  templateUrl: './suppliers.component.html',
-  styleUrls: ['./suppliers.component.css']
+  templateUrl: './suppliers.component.html'
 })
 export class SupplierComponent implements OnInit {
 

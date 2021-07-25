@@ -7,8 +7,7 @@ import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-client',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.css']
+  templateUrl: './clients.component.html'
 })
 export class ClientsComponent implements OnInit {
 

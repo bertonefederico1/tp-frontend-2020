@@ -7,8 +7,7 @@ import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-edit-client',
-  templateUrl: './edit-client.component.html',
-  styleUrls: ['./edit-client.component.css']
+  templateUrl: './edit-client.component.html'
 })
 export class EditClientComponent implements OnInit {
 

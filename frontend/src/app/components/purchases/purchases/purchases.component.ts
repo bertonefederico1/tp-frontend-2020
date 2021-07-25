@@ -10,8 +10,7 @@ import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-purchase',
-  templateUrl: './purchases.component.html',
-  styleUrls: ['./purchases.component.css']
+  templateUrl: './purchases.component.html'
 })
 export class PurchasesComponent implements OnInit {
 

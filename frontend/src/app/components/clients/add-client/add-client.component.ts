@@ -6,8 +6,7 @@ import { ClientService } from '../../../services/client/client.service';
 
 @Component({
   selector: 'app-add-client',
-  templateUrl: './add-client.component.html',
-  styleUrls: ['./add-client.component.css']
+  templateUrl: './add-client.component.html'
 })
 export class AddClientComponent {
 
