@@ -1,5 +1,5 @@
 <div class="row section container">
-    <h4 class="center-align titulo" style="margin-top: 10px">NEW PURCHASE</h4>
+    <h4 class="center-align titulo" >NEW PURCHASE</h4>
       <form class="col s12" autocomplete="off">
         
         <div class="row">
@@ -10,7 +10,7 @@
         </div>
 
         <div class="row">
-            <h4 style="padding-left: 1rem">Article</h4>
+            <h4 class="add-purchase-subtitle">Article</h4>
             <mat-form-field class="col s4">
                 <mat-select [(ngModel)]="purchase.id_articulo" name="purchase">
                     <mat-option *ngFor="let article of articles" [value]="article.id_articulo">
@@ -21,7 +21,7 @@
         </div>
 
         <div class="row">
-            <h4 style="padding-left: 1rem">Supplier</h4>
+            <h4 class="add-purchase-subtitle">Supplier</h4>
             <mat-form-field class="col s7">
                 <mat-select [(ngModel)]="purchase.id_proveedor" name="proveedor">
                     <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id_proveedor">
@@ -47,6 +47,6 @@
       <button class="btn waves-effect waves-light" (click)="validate()"> Save
           <i class="material-icons right">save</i>
       </button>
-      <button class="btn waves-effect waves-light red" style="margin-left: 5px;" (click)= "cancel()"> Cancel</button>
+      <button class="btn waves-effect waves-light red cancel-button"  (click)= "cancel()"> Cancel</button>
       </form>
     </div>

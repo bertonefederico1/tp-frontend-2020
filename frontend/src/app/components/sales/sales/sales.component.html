@@ -1,5 +1,5 @@
 <div class="container">
-    <h4 class="center-align titulo" style="margin-top: 10px">SALES</h4>
+    <h4 class="center-align titulo" >SALES</h4>
     <a class="btn-floating btn-medium waves-effect waves-light red move-top-10" routerLink="/sales/newSale" routerLinkActive="active">
       <i class="material-icons">add</i>
     </a>
@@ -18,7 +18,7 @@
               <td>{{ sale.cliente.nombre }}, {{ sale.cliente.apellido }}</td>
               <td>
                 <a (click)="dataSale(sale)"><i class="material-icons pointer">assignment</i></a>
-                <a (click)="deleteSale(sale.id_venta)" style="color: red"><i class="material-icons pointer">delete</i></a>
+                <a (click)="deleteSale(sale.id_venta)"><i class="material-icons pointer-red">delete</i></a>
               </td>
             </tr>
           </tbody>

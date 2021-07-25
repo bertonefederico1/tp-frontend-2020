@@ -9,7 +9,8 @@ import { ErrorService } from 'src/app/services/error-service/error.service';
 
 @Component({
   selector: 'app-article-data',
-  templateUrl: './article-data.component.html'
+  templateUrl: './article-data.component.html',
+  styleUrls: ['./article-data.component.css']
 })
 export class ArticleDataComponent implements OnInit {
 

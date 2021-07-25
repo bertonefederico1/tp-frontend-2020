@@ -5,7 +5,7 @@
 <ng-template #newArt>
   <h4 class="center-align section titulo">NEW ARTICLE</h4>
 </ng-template>
-<div class="container section row" style="margin-left: 30rem">
+<div class="container section row container-form">
   <form class="col s12" [formGroup]="articleForm" (ngSubmit)="sendArticle(articleForm, idArticle)">
     <div class="row">
       <div class="input-field col s6 validate">
@@ -36,6 +36,6 @@
       Save
       <i class="material-icons right">save</i>
     </button>
-    <button class="btn waves-effect waves-light red" style="margin-left: 5px;" (click)="cancel()">Cancel </button>
+    <button class="btn waves-effect waves-light red cancel-button" (click)="cancel()">Cancel </button>
   </form>
 </div>

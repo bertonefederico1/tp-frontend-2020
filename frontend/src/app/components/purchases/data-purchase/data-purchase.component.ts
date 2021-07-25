@@ -5,7 +5,8 @@ import { PurchaseService } from './../../../services/purchase/purchase.service';
 
 @Component({
   selector: 'app-data-purchase',
-  templateUrl: './data-purchase.component.html'
+  templateUrl: './data-purchase.component.html',
+  styleUrls: ['./data-purchase.component.css']
 })
 export class DataPurchaseComponent implements OnInit {
 

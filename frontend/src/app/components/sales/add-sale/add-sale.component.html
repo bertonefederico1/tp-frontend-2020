@@ -1,5 +1,5 @@
 <div class="row section container">
-    <h4 class="center-align titulo" style="margin-top: 10px">NEW SALE</h4>
+    <h4 class="center-align titulo" >NEW SALE</h4>
     <form class="col s12" autocomplete="off">
         <div class="row">
             <div class="input-field col s1">
@@ -25,7 +25,7 @@
                 <input id="quantity" type="number" class="validate" name="quantity" [(ngModel)]="articleQuantity">
                 <label class="active" for="quantity">Quantity</label>
             </div>
-            <button class="btn waves-effect waves-light" style="margin-left: 5px;" (click)="addArticle(selectedArticle)">+ Add</button>
+            <button class="btn waves-effect waves-light cancel-button"  (click)="addArticle(selectedArticle)">+ Add</button>
         </div>
 
         <table id="max" class="responsive-table">
@@ -67,7 +67,7 @@
             <button class="btn waves-effect waves-light" (click)="save()"> Save
                 <i class="material-icons right">save</i>
             </button>
-            <button class="btn waves-effect waves-light red" style="margin-left: 5px;" (click)="cancel()"> Cancel</button>
+            <button class="btn waves-effect waves-light red cancel-button"  (click)="cancel()"> Cancel</button>
           </div>
     </form>
 </div>

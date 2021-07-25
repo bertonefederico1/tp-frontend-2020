@@ -47,6 +47,7 @@
     font-weight: bold !important;
     font-size: 2rem !important;
     padding-top: 1rem;
+    margin-top: 10px;
 }
 
 .etiqueta {
@@ -74,4 +75,13 @@ img:hover {
 .wrong {
     color: tomato;
     font-weight: bold;
+}
+
+.pointer-red {
+    cursor: pointer;
+    color: red;
+}
+
+.cancel-button {
+    margin-left: 5px;
 }
