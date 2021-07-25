@@ -11,6 +11,7 @@ export class SupplierComponent implements OnInit {
 
   suppliers: Supplier[];
   testInput: any;
+  filterString: string;
 
   constructor(
     public supplierService: SupplierService,
@@ -39,4 +40,11 @@ export class SupplierComponent implements OnInit {
     }
   }
 
+  getSuppliersByCity(city: string){
+    this.supplierService.getSuppliersByCity(city)
+      .subscribe(
+        res => this.suppliers = res,
+        err => this.errorService.openSnackBar(err.name)
+      )
+  }
 }

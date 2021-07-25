@@ -112,4 +112,27 @@ supplierController.lastSupplierPurchaseByArticle = async (req, res) => {
     }
 }
 
+supplierController.getSuppliersByCity = async (req, res) => {
+    try{
+        console.log(req);
+        let suppliers = [];
+        suppliers = await Supplier.findAll({
+            where: {
+                ciudad: req.body.ciudad
+            }
+        });
+
+        if(suppliers === null){
+            res.json('There aren\'t suppliers in this city')
+        }
+        else{
+            res.json(suppliers);
+        }
+
+    } catch (err) {
+        res.json(err);
+    }
+}
+
+
 module.exports = supplierController;

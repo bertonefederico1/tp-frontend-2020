@@ -35,4 +35,12 @@ export class SupplierService {
     return this.http.get<any[]>(`${this.URL}/lastSupplierPurchaseByArticle/${idArticulo}`);
   }
 
+  getSuppliersByCity(ciudad: string){
+    const body = {
+      ciudad: ciudad
+    }
+
+    return this.http.post<Supplier[]>(`${this.URL}/suppliersByCity`,body);
+  }
+
 }

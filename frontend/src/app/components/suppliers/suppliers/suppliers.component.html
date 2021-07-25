@@ -1,8 +1,23 @@
 <div class="container">
   <h4 class="center-align titulo">SUPPLIERS</h4>
-  <a class="btn-floating btn-medium waves-effect waves-light red move-top-10" routerLink="/suppliers/addSupplier" routerLinkActive="active">
-    <i class="material-icons">add</i>
-  </a>
+  <table>
+    <td>
+      <a class="btn-floating btn-medium waves-effect waves-light red move-top-10" routerLink="/suppliers/addSupplier" routerLinkActive="active">
+        <i class="material-icons">add</i>
+      </a>
+    </td>
+    <td>
+      <div class="input-field col m4 push-m8 allign-head" matTooltip="Insert a description here">
+        <input id="search" type="text" name="filterString" [(ngModel)]="filterString">
+        <label for="search">Search for description...</label>
+      </div>
+    </td>
+    <td class="td-no-padding">
+      <a (click)="getSuppliersByCity(filterString)" class="centering-content pointer">
+        <i class="material-icons centering-content">search</i>
+      </a>
+    </td>
+  </table>
   <table class="striped">
         <thead>
           <tr>

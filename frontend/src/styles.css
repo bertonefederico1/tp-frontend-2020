@@ -77,6 +77,10 @@ img:hover {
     font-weight: bold;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .pointer-red {
     cursor: pointer;
     color: red;
@@ -84,4 +88,13 @@ img:hover {
 
 .cancel-button {
     margin-left: 5px;
+}
+
+.centering-content {
+    margin-top: 25px;
+}
+
+.td-no-padding {
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
