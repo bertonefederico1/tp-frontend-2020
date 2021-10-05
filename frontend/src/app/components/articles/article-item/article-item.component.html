@@ -2,14 +2,15 @@
 <div>
   <section>
   <aside>
-    <img [src]="article.imagen" [alt]="article.descripcion">
+    <img *ngIf="article.imagen" [src]="article.imagen" [alt]="article.descripcion">
+    <img *ngIf="!article.imagen" src="../../../../assets/default image.jpg" [alt]="article.descripcion">
   </aside>
   <article>
     <div class="article-data">
-      <p class="etiqueta">Precio: <span class="contenido">{{ article.precio | currency: '$' }}</span></p>
-      <p class="etiqueta">En stock: {{ article.stock }} unidades</p>
+      <p class="etiqueta">Price: <span class="contenido">{{ article.precio | currency: '$' }}</span></p>
+      <p class="etiqueta">Stock: {{ article.stock }} unidades</p>
     </div>
-    <div class="buttons">
+    <div class="buttons pointer">
       <a  (click)="navigate(['/articles/articleData', article.id_articulo])">
         <i class="material-icons">assignment</i>
       </a>

@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="planilla" *ngIf="article">
+    <div class="planilla" *ngIf="article && supplierPurchase.length > 0">
         <p>
 
         <!-- Informacion del articulo -->
@@ -16,7 +16,10 @@
               <tr>
                 <td class="etiqueta">ID</td>
                 <td class="contenido">{{ article.id_articulo }}</td>
-                <td rowspan="4" *ngIf="article.imagen !== ''"><img [src]="article.imagen" [alt]="article.descripcion" class="img size-image-edit"></td>
+                <td rowspan="4">
+                    <img *ngIf="article.imagen" [src]="article.imagen" [alt]="article.descripcion" class="img size-image-edit">
+                    <img *ngIf="!article.imagen" src="../../../../assets/default image.jpg" [alt]="article.descripcion">
+                </td>
               </tr>
               <tr>
                   <td class="etiqueta">Description</td>

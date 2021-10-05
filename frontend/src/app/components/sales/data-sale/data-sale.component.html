@@ -2,7 +2,7 @@
     <h4 class="center-align titulo" >SALE N° {{ sale.id_venta.toString().padStart(5, '0') }}</h4>
     <form class="col s12" autocomplete="off">
         <div class="row">
-            <div class="input-field col s1">
+            <div class="input-field col s2">
                 <input id="customerID" disabled type="text" class="validate" name="customerID" [(ngModel)]="sale.cliente.id_cliente">
                 <label class="active" for="customerID">Customer</label>
             </div>

@@ -8,12 +8,12 @@
     </td>
     <td>
       <div class="input-field col m4 push-m8 allign-head" matTooltip="Insert a description here">
-        <input id="search" type="text" name="filterString" [(ngModel)]="filterString">
+        <input id="search" type="text" name="filterString" [(ngModel)]="filterString" (keyup)="verifySearch()" (keyup.enter)="getSuppliersByParam(filterString)">
         <label for="search">Search for description...</label>
       </div>
     </td>
     <td class="td-no-padding">
-      <a (click)="getSuppliersByCity(filterString)" class="centering-content pointer">
+      <a (click)="getSuppliersByParam(filterString)" class="centering-content pointer">
         <i class="material-icons centering-content">search</i>
       </a>
     </td>

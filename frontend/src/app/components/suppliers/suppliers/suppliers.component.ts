@@ -40,11 +40,18 @@ export class SupplierComponent implements OnInit {
     }
   }
 
-  getSuppliersByCity(city: string){
-    this.supplierService.getSuppliersByCity(city)
+  getSuppliersByParam(strParam: string){
+    this.supplierService.getSuppliersByParam(strParam)
       .subscribe(
         res => this.suppliers = res,
         err => this.errorService.openSnackBar(err.name)
       )
   }
+
+  verifySearch() {
+    if (!this.filterString) {
+      this.getAll();
+    }
+  }
+
 }

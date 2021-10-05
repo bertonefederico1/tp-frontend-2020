@@ -1,5 +1,6 @@
 'use strict'
 
+const { Op } = require("sequelize");
 const Supplier = require('../models/supplier-model');
 const Article = require('../models/article-model');
 const Supplier_Article = require('../models/supplier-article-model');
@@ -112,13 +113,15 @@ supplierController.lastSupplierPurchaseByArticle = async (req, res) => {
     }
 }
 
-supplierController.getSuppliersByCity = async (req, res) => {
+supplierController.getSuppliersByParam = async (req, res) => {
     try{
-        console.log(req);
         let suppliers = [];
         suppliers = await Supplier.findAll({
             where: {
-                ciudad: req.body.ciudad
+                [Op.or]: [
+                    { ciudad: req.body.searchParam },
+                    { razon_social: req.body.searchParam }
+                  ]
             }
         });
 
