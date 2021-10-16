@@ -49,7 +49,7 @@ export class SupplierComponent implements OnInit {
   }
 
   verifySearch() {
-    if (!this.filterString) {
+    if (!this.filterString || this.filterString == '') {
       this.getAll();
     }
   }

@@ -39,12 +39,14 @@ clientController.getOne = async (req, res) => {
 
 clientController.createClient = async (req, res) => {
     try {
+        console.log('vengo a crear el cli')
         await Client.create({
             dni: req.body.dni,
             nombre: req.body.nombre,
             apellido: req.body.apellido,
             direccion: req.body.direccion,
-            telefono: req.body.telefono
+            telefono: req.body.telefono,
+            activo: 1
         }); 
         res.json("Client created");
     } catch (err){

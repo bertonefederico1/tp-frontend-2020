@@ -3,7 +3,7 @@
     <form class="col s12" autocomplete="off">
         <div class="row">
             <div class="input-field col s1">
-                <input id="customerID" type="text" class="validate" name="customerID" [(ngModel)]="selectedClient.id_cliente" (keyup)="searchCustomer($event)">
+                <input id="customerID" type="text" class="validate" name="customerID" [(ngModel)]="selectedClient.id_cliente" (keyup)="searchCustomer($event)" readonly>
                 <label class="active" for="customerID">Customer</label>
             </div>
             <div class="input-field col s5">
@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="input-field col s1">
-                <input id="articleID" type="text" class="validate" name="articleID" [(ngModel)]="selectedArticle.id_articulo" (keyup)="searchArticle($event)">
+                <input id="articleID" type="text" class="validate" name="articleID" [(ngModel)]="selectedArticle.id_articulo" (keyup)="searchArticle($event)" readonly>
                 <label class="active" for="articleID">Article</label>
             </div>
             <div class="input-field col s5">

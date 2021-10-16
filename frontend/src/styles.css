@@ -16,6 +16,9 @@
 
 .move-top-2r {
     margin-top: 2rem;
+    position: fixed;
+	bottom: 40px;
+	right: 40px;
 }
 
 .size-image-edit{

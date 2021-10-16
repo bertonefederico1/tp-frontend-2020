@@ -118,10 +118,13 @@ supplierController.getSuppliersByParam = async (req, res) => {
         let suppliers = [];
         suppliers = await Supplier.findAll({
             where: {
-                [Op.or]: [
-                    { ciudad: req.body.searchParam },
-                    { razon_social: req.body.searchParam }
-                  ]
+                [Op.and]: [
+                    {[Op.or]: [
+                        { ciudad: {[Op.like] : '%'+req.body.searchParam+'%'} },
+                        { razon_social: {[Op.like] : '%'+req.body.searchParam+'%'} },
+                    ]},
+                    { activo: 1 }
+                ]
             }
         });
 

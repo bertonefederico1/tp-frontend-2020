@@ -95,8 +95,8 @@ export class AddSaleComponent {
     if (Object.keys(this.selectedArticle).length === 0) {
       return;
     }
-    if (!this.articleQuantity) {
-      alert('You must input quantity');
+    if (!this.articleQuantity || this.articleQuantity > this.selectedArticle.stock) {
+      alert('Ingrese una cantidad menor o igual al stock');
       return;
     }
     this.selectedArticle.quantity = this.articleQuantity;
