@@ -46,14 +46,15 @@ export class EditClientComponent implements OnInit {
   }
 
   cancel(){
-    if (confirm('Desea cancelar?')){
-      this.router.navigate(['/clients']);
-    }
+    this.errorService.confirm('Are you sure you want to cancel?').afterClosed()
+      .subscribe(
+        action => action ? this.router.navigate(['/clients']) : null
+      );
   }
 
   validate(){
     if (this.selectedClient.dni === '' || this.selectedClient.apellido === '' || this.selectedClient.nombre === ''){
-      alert('Complete dni, nombre y apellido');
+      this.errorService.openSnackBar('Complete dni, nombre y apellido');
     }
     else{
       this.editClient();

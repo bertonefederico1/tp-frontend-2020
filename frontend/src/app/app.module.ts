@@ -30,6 +30,7 @@ import { ShowCustomersComponent } from './components/shared/show-customers/show-
 import { ShowArticlesComponent } from './components/shared/show-articles/show-articles.component';
 import { DataSaleComponent } from './components/sales/data-sale/data-sale.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AlertMessageComponent } from './components/shared/alert-message/alert-message.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AddSaleComponent,
     ShowCustomersComponent,
     ShowArticlesComponent,
-    DataSaleComponent
+    DataSaleComponent,
+    AlertMessageComponent
   ],
   imports: [
   BrowserModule,

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { AlertMessageComponent } from 'src/app/components/shared/alert-message/alert-message.component';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +9,26 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ErrorService {
 
   constructor(
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
-  openSnackBar(message: string) {
-    this.snackBar.open(message,  '', {duration: 2500});
+  private snackBarConfig: MatSnackBarConfig = {
+    duration: 2500,
+    verticalPosition: 'top'
   }
+
+  openSnackBar(message: string, action: string = 'Close') {
+    return this.snackBar.open(message, action, this.snackBarConfig);
+  }
+
+  confirm(message: string) {
+    return this.dialog.open(AlertMessageComponent, {
+      width: '35%',
+      height: '30%',
+      disableClose: true,
+      data: { message }
+    });
+  }
+
 }
