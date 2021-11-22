@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 import { Client } from '../../../models/client/client';
 import { ClientService } from '../../../services/client/client.service';
 
@@ -15,7 +15,7 @@ export class AddClientComponent {
   constructor(
     private clientService: ClientService,
     private router: Router,
-    private errorService: ErrorService
+    private alertService: alertService
     ) {
     this.client = new Client();
   }
@@ -25,7 +25,7 @@ export class AddClientComponent {
     this.clientService.addClient(this.client)
       .subscribe(
         res => this.router.navigate(['/clients']),
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       );
   }
 

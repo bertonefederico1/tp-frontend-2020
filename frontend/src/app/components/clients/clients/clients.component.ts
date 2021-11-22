@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../../services/client/client.service';
 
 import { Client } from '../../../models/client/client';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-client',
@@ -15,7 +15,7 @@ export class ClientsComponent implements OnInit {
 
   constructor(
     public clientService: ClientService,
-    private errorService: ErrorService) { }
+    private alertService: alertService) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -25,7 +25,7 @@ export class ClientsComponent implements OnInit {
     this.clientService.getClients()
       .subscribe(
         res => this.clients = res,
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       );
   }
 
@@ -34,7 +34,7 @@ export class ClientsComponent implements OnInit {
       this.clientService.deleteClient(id)
         .subscribe(
           res => this.getAll(),
-          err => this.errorService.openSnackBar(err.name)
+          err => this.alertService.openSnackBar(err.name)
         );
     }
   }

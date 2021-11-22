@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 import { SaleService } from 'src/app/services/sale/sale.service';
 import { DataSaleComponent } from '../data-sale/data-sale.component';
 
@@ -16,7 +16,7 @@ export class SalesComponent implements OnInit {
     private saleService: SaleService,
     private router: Router,
     private dialog: MatDialog,
-    private errorService: ErrorService
+    private alertService: alertService
     ) { }
 
   sales: any[];
@@ -29,7 +29,7 @@ export class SalesComponent implements OnInit {
     this.saleService.getSales()
       .subscribe(
         res => this.sales = res,  
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       )
   }
 
@@ -63,7 +63,7 @@ export class SalesComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(
         res => this.getSales(),
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       );
   }
 

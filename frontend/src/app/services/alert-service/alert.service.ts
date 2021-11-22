@@ -6,7 +6,7 @@ import { AlertMessageComponent } from 'src/app/components/shared/alert-message/a
 @Injectable({
   providedIn: 'root'
 })
-export class ErrorService {
+export class alertService {
 
   constructor(
     private snackBar: MatSnackBar,
@@ -25,7 +25,7 @@ export class ErrorService {
   confirm(message: string) {
     return this.dialog.open(AlertMessageComponent, {
       width: '35%',
-      height: '30%',
+      height: '45%',
       disableClose: true,
       data: { message }
     });

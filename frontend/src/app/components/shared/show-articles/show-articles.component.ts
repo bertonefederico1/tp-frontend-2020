@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Article } from 'src/app/models/article/article';
 import { ArticleService } from 'src/app/services/article/article.service';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-show-articles',
@@ -15,7 +15,7 @@ export class ShowArticlesComponent implements OnInit {
     public dialogRef: MatDialogRef<ShowArticlesComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     private articleService: ArticleService,
-    private errorService: ErrorService
+    private alertService: alertService
   ) { }
 
   articles: Article[];
@@ -37,7 +37,7 @@ export class ShowArticlesComponent implements OnInit {
             return article.stock > 0;
           })
         },
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       )
   }
 

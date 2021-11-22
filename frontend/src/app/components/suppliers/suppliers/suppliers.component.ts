@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { SupplierService } from '../../../services/supplier/supplier.service';
 import { Supplier } from '../../../models/supplier/supplier';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-supplier',
@@ -15,7 +15,7 @@ export class SupplierComponent implements OnInit {
 
   constructor(
     public supplierService: SupplierService,
-    private errorService: ErrorService) {
+    private alertService: alertService) {
     }
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class SupplierComponent implements OnInit {
     this.supplierService.getSuppliers()
       .subscribe(
         res => this.suppliers = res,
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       );
   }
 
@@ -35,7 +35,7 @@ export class SupplierComponent implements OnInit {
       this.supplierService.deleteSupplier(id)
         .subscribe(
           res => this.getAll(),
-          err => this.errorService.openSnackBar(err.name)
+          err => this.alertService.openSnackBar(err.name)
         );
     }
   }
@@ -44,7 +44,7 @@ export class SupplierComponent implements OnInit {
     this.supplierService.getSuppliersByParam(strParam)
       .subscribe(
         res => this.suppliers = res,
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       )
   }
 

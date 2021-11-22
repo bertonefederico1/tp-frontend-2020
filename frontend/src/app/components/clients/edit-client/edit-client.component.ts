@@ -3,7 +3,7 @@ import { Client } from '../../../models/client/client';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ClientService } from '../../../services/client/client.service';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-edit-client',
@@ -18,7 +18,7 @@ export class EditClientComponent implements OnInit {
     private clientService: ClientService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private errorService: ErrorService
+    private alertService: alertService
     ) {
     this.selectedClient = new Client();
   }
@@ -32,7 +32,7 @@ export class EditClientComponent implements OnInit {
     this.clientService.getById(this.idSupplier)
       .subscribe(
         res => this.selectedClient = res,
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       );
   }
 
@@ -41,12 +41,12 @@ export class EditClientComponent implements OnInit {
     this.clientService.editClient(this.idSupplier, this.selectedClient)
       .subscribe(
         res => this.router.navigate(['/clients']),
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       );
   }
 
   cancel(){
-    this.errorService.confirm('Are you sure you want to cancel?').afterClosed()
+    this.alertService.confirm('Are you sure you want to cancel?').afterClosed()
       .subscribe(
         action => action ? this.router.navigate(['/clients']) : null
       );
@@ -54,7 +54,7 @@ export class EditClientComponent implements OnInit {
 
   validate(){
     if (this.selectedClient.dni === '' || this.selectedClient.apellido === '' || this.selectedClient.nombre === ''){
-      this.errorService.openSnackBar('Complete dni, nombre y apellido');
+      this.alertService.openSnackBar('Complete dni, nombre y apellido');
     }
     else{
       this.editClient();

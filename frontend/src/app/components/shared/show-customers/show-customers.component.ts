@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Client } from 'src/app/models/client/client';
 import { ClientService } from 'src/app/services/client/client.service';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-show-customers',
@@ -15,7 +15,7 @@ export class ShowCustomersComponent implements OnInit {
     public dialogRef: MatDialogRef<ShowCustomersComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     private clientService: ClientService,
-    private errorService: ErrorService
+    private alertService: alertService
   ) { }
 
   clients: Client[];
@@ -33,7 +33,7 @@ export class ShowCustomersComponent implements OnInit {
     this.clientService.getClients()
       .subscribe(
         res => this.clients = res,
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       )
   }
 

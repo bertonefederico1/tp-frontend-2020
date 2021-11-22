@@ -9,7 +9,7 @@ import { isNumber } from 'src/app/validations/validations';
 import { Strategy } from '../../strategies/strategy';
 import { EditArticleStrategy } from './strategies/edit-article-strategy';
 import { AddArticleStrategy } from './strategies/add-article-strategy';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-add-article',
@@ -35,7 +35,7 @@ export class AddArticleComponent implements OnInit {
     private articleService: ArticleService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private errorService: ErrorService
+    private alertService: alertService
   ) {
     this.article = new Article(); 
   }
@@ -43,11 +43,11 @@ export class AddArticleComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
     if (this.idArticle) {
-      this.strategy = new EditArticleStrategy(this.articleService, this.router, this.errorService);
+      this.strategy = new EditArticleStrategy(this.articleService, this.router, this.alertService);
       this.getArticle();
     }
     else{
-      this.strategy = new AddArticleStrategy(this.articleService, this.router, this.errorService);
+      this.strategy = new AddArticleStrategy(this.articleService, this.router, this.alertService);
     }
   }
 
@@ -70,7 +70,7 @@ export class AddArticleComponent implements OnInit {
           imagen: res.imagen,
           proveedores: res.proveedores
         }),
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       );
   }
 

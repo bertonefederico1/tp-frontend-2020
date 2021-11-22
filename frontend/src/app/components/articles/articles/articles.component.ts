@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../../services/article/article.service';
 import { Article } from '../../../models/article/article';
 import { Router } from '@angular/router';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private router: Router,
-    private errorService: ErrorService
+    private alertService: alertService
     ) { }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class ArticlesComponent implements OnInit {
     this.articleService.getArticles()
       .subscribe(
          res => this.articles = res,
-         err => this.errorService.openSnackBar(err.name)
+         err => this.alertService.openSnackBar(err.name)
       );
   }
 
@@ -40,7 +40,7 @@ export class ArticlesComponent implements OnInit {
       this.articleService.deleteArticle(id)
       .subscribe(
         res => this.getAll(),
-        err => this.errorService.openSnackBar(err.name)
+        err => this.alertService.openSnackBar(err.name)
       );
     }
   }

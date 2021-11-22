@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ErrorService } from '../error-service/error.service';
+import { alertService } from '../alert-service/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { ErrorService } from '../error-service/error.service';
 export class LocalStorageService {
 
   constructor(
-    private errorService: ErrorService
+    private alertService: alertService
   ) { }
 
   getForm(){
@@ -20,7 +20,7 @@ export class LocalStorageService {
       localStorage.setItem('articleForm', JSON.stringify(form));
     }
     catch (err){
-      this.errorService.openSnackBar(err.name)
+      this.alertService.openSnackBar(err.name)
     }
   }
 

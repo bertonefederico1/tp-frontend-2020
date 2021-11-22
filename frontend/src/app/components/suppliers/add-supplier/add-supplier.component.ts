@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Supplier } from 'src/app/models/supplier/Supplier';
-import { ErrorService } from 'src/app/services/error-service/error.service';
+import { alertService } from 'src/app/services/alert-service/alert.service';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class AddSupplierComponent {
   constructor(
     private supplierService: SupplierService,
     private router: Router,
-    private errorService: ErrorService
+    private alertService: alertService
   ) {
       this.supplier = new Supplier();
     }
@@ -26,7 +26,7 @@ export class AddSupplierComponent {
     this.supplierService.addSupplier(this.supplier)
     .subscribe(
       res => this.router.navigate(['/suppliers']),
-      err => this.errorService.openSnackBar(err.name)
+      err => this.alertService.openSnackBar(err.name)
     );
   }
 
