@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Supplier } from 'src/app/models/supplier/Supplier';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class AddSupplierComponent {
   constructor(
     private supplierService: SupplierService,
     private router: Router,
-    private alertService: alertService
+    private alertService: AlertService
   ) {
       this.supplier = new Supplier();
     }

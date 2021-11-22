@@ -5,7 +5,7 @@ import { SupplierService } from '../../../services/supplier/supplier.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataPurchaseComponent } from '../data-purchase/data-purchase.component';
 import { Router } from '@angular/router';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class PurchasesComponent implements OnInit {
     private supplierService: SupplierService,
     private dialog: MatDialog,
     private router: Router,
-    private alertService: alertService
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {

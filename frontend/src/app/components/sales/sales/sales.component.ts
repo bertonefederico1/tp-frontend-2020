@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 import { SaleService } from 'src/app/services/sale/sale.service';
 import { DataSaleComponent } from '../data-sale/data-sale.component';
 
@@ -16,7 +16,7 @@ export class SalesComponent implements OnInit {
     private saleService: SaleService,
     private router: Router,
     private dialog: MatDialog,
-    private alertService: alertService
+    private alertService: AlertService
     ) { }
 
   sales: any[];

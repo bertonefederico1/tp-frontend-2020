@@ -9,7 +9,7 @@ import { isNumber } from 'src/app/validations/validations';
 import { Strategy } from '../../strategies/strategy';
 import { EditArticleStrategy } from './strategies/edit-article-strategy';
 import { AddArticleStrategy } from './strategies/add-article-strategy';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-add-article',
@@ -35,7 +35,7 @@ export class AddArticleComponent implements OnInit {
     private articleService: ArticleService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private alertService: alertService
+    private alertService: AlertService
   ) {
     this.article = new Article(); 
   }

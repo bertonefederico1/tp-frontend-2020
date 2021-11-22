@@ -5,7 +5,7 @@ import { Article } from 'src/app/models/article/article';
 
 import { ArticleService } from '../../../services/article/article.service';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-article-data',
@@ -24,7 +24,7 @@ export class ArticleDataComponent implements OnInit {
     private articleService: ArticleService,
     private supplierService: SupplierService,
     private router: Router,
-    private alertService: alertService
+    private alertService: AlertService
     ) { }
 
   ngOnInit(): void {

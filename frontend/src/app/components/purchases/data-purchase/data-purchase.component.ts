@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 import { PurchaseService } from './../../../services/purchase/purchase.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class DataPurchaseComponent implements OnInit {
     private dialogRef: MatDialogRef<DataPurchaseComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     public purchaseService: PurchaseService,
-    private alertService: alertService
+    private alertService: AlertService
   ) {
     this.supplier = data;
   }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../../services/article/article.service';
 import { Article } from '../../../models/article/article';
 import { Router } from '@angular/router';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private router: Router,
-    private alertService: alertService
+    private alertService: AlertService
     ) { }
 
   ngOnInit(): void {

@@ -2,14 +2,14 @@ import { FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Strategy } from "src/app/components/strategies/strategy";
 import { ArticleService } from "src/app/services/article/article.service";
-import { alertService } from "src/app/services/alert-service/alert.service";
+import { AlertService } from "src/app/services/alert-service/alert.service";
 
 export class EditArticleStrategy implements Strategy{
 
     constructor(
         private articleService: ArticleService,
         private router: Router,
-        private alertService: alertService ){
+        private alertService: AlertService ){
     }    
 
     sendItem(articleForm: FormGroup, id: number){

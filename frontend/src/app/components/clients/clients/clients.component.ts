@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../../services/client/client.service';
 
 import { Client } from '../../../models/client/client';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-client',
@@ -15,7 +15,7 @@ export class ClientsComponent implements OnInit {
 
   constructor(
     public clientService: ClientService,
-    private alertService: alertService) { }
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.getAll();

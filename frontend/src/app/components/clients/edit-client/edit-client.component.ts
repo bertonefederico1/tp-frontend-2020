@@ -3,7 +3,7 @@ import { Client } from '../../../models/client/client';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ClientService } from '../../../services/client/client.service';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-edit-client',
@@ -18,7 +18,7 @@ export class EditClientComponent implements OnInit {
     private clientService: ClientService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private alertService: alertService
+    private alertService: AlertService
     ) {
     this.selectedClient = new Client();
   }

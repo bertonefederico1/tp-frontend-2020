@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { alertService } from '../alert-service/alert.service';
+import { AlertService } from '../alert-service/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { alertService } from '../alert-service/alert.service';
 export class LocalStorageService {
 
   constructor(
-    private alertService: alertService
+    private alertService: AlertService
   ) { }
 
   getForm(){

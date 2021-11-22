@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { SupplierService } from '../../../services/supplier/supplier.service';
 import { Supplier } from '../../../models/supplier/supplier';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-supplier',
@@ -15,7 +15,7 @@ export class SupplierComponent implements OnInit {
 
   constructor(
     public supplierService: SupplierService,
-    private alertService: alertService) {
+    private alertService: AlertService) {
     }
 
   ngOnInit(): void {

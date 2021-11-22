@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SupplierService } from 'src/app/services/supplier/supplier.service';
 import { Supplier } from 'src/app/models/supplier/Supplier';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-edit-supplier',
@@ -17,7 +17,7 @@ export class EditSupplierComponent implements OnInit {
     private supplierService: SupplierService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private alertService: alertService
+    private alertService: AlertService
   ) {
     this.selectedSupplier = new Supplier();
   }

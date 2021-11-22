@@ -9,7 +9,7 @@ import { Supplier } from '../../../models/supplier/Supplier';
 import { Article } from '../../../models/article/article';
 import { ArticleSupplier } from '../../../models/article-supplier/article-supplier';
 import { ThrowStmt } from '@angular/compiler';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 
 
@@ -32,7 +32,7 @@ export class AddPurchaseComponent implements OnInit {
     private supplierService: SupplierService,
     private purchaseService: PurchaseService,
     private router: Router,
-    private alertService: alertService
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {

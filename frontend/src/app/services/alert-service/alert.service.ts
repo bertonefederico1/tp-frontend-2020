@@ -6,7 +6,7 @@ import { AlertMessageComponent } from 'src/app/components/shared/alert-message/a
 @Injectable({
   providedIn: 'root'
 })
-export class alertService {
+export class AlertService {
 
   constructor(
     private snackBar: MatSnackBar,

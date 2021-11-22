@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { alertService } from 'src/app/services/alert-service/alert.service';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 import { Client } from '../../../models/client/client';
 import { ClientService } from '../../../services/client/client.service';
 
@@ -15,7 +15,7 @@ export class AddClientComponent {
   constructor(
     private clientService: ClientService,
     private router: Router,
-    private alertService: alertService
+    private alertService: AlertService
     ) {
     this.client = new Client();
   }
