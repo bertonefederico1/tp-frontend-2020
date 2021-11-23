@@ -21,7 +21,7 @@ export class AlertMessageComponent implements OnInit {
 
  
 
-  buttonPress(action: boolean) {
+  buttonPressed(action: boolean) {
     this.dialogRef.close(action);
   }
 

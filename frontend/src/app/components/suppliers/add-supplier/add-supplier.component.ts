@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Supplier } from 'src/app/models/supplier/Supplier';
 import { AlertService } from 'src/app/services/alert-service/alert.service';
@@ -36,11 +35,11 @@ export class AddSupplierComponent {
 
   validate(){
     if (this.supplier.cuit === undefined || this.supplier.razon_social === undefined){
-      alert('Complete el cuit y la razón social');
+      this.alertService.openSnackBar('Complete el cuit y la razón social');
     }
     else{
       if (this.supplier.cuit.toString() === '' || this.supplier.razon_social === ''){
-        alert('Complete el cuit y la razón social');
+        this.alertService.openSnackBar('Complete el cuit y la razón social');
       }
       else{
         this.addSupplier();

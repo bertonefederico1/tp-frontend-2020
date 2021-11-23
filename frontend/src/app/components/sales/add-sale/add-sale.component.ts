@@ -163,7 +163,11 @@ export class AddSaleComponent {
     }
   }
 
-  validate() { //TODO: Hacer la lógica
+  validate() { 
+    if (this.articles.length === 0 || !this.selectedClient) {
+      this.alertService.openSnackBar('Debe completar todos los datos');
+      return false;
+    }
     return true;
   }
 

@@ -44,15 +44,15 @@ export class EditSupplierComponent implements OnInit {
       );
   }
 
-  cancel(){
-    if (confirm('Desea cancelar?')){
+  async cancel(){
+    if (await this.alertService.confirm('Are you sure you want to cancel?')){
       this.router.navigate(['/suppliers']);
     }
   }
 
   validate(){
     if (this.selectedSupplier.cuit.toString() === '' || this.selectedSupplier.razon_social === ''){
-      alert('Complete el cuit y la razón social');
+      this.alertService.openSnackBar('Complete el cuit y la razón social');
     }
     else{
       this.editSupplier();

@@ -30,8 +30,8 @@ export class SupplierComponent implements OnInit {
       );
   }
 
-  deleteSupplier(id: number){
-    if (confirm('Seguro que desea eliminar el proveedor?')){
+  async deleteSupplier(id: number){
+    if (await this.alertService.confirm('Seguro que desea eliminar el proveedor?')){
       this.supplierService.deleteSupplier(id)
         .subscribe(
           res => this.getAll(),
