@@ -8,7 +8,6 @@ import { PurchaseService } from '../../../services/purchase/purchase.service';
 import { Supplier } from '../../../models/supplier/Supplier';
 import { Article } from '../../../models/article/article';
 import { ArticleSupplier } from '../../../models/article-supplier/article-supplier';
-import { ThrowStmt } from '@angular/compiler';
 import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 
@@ -59,21 +58,18 @@ export class AddPurchaseComponent implements OnInit {
 
 
   addPurchase(){
-    this.articleService.loadStock(this.purchase)
+    if (this.validate()) {
+      this.articleService.loadStock(this.purchase)
       .subscribe(
         res => this.router.navigate(['/purchases']),
         err => this.status = false
       );
 
     this.purchaseService.addPurchase(this.purchase)
-        .subscribe(
-          err => this.status = false
-        );
-
-    if (this.status) {
-      this.router.navigate(['/purchases']);
-    } else {
-      console.log('Error');
+        .subscribe(err => {
+          this.status = false;
+          this.router.navigate(['/purchases']);
+        });
     }
   }
 
@@ -82,12 +78,11 @@ export class AddPurchaseComponent implements OnInit {
   }
 
   validate(){
-    if (this.purchase.cantidad === undefined || this.purchase.id_articulo === undefined
-      || this.purchase.id_proveedor === undefined || this.purchase.precio_unitario === undefined){
-      alert('Complete todos los campos');
+    if (!this.purchase.cantidad || !this.purchase.id_articulo
+      || !this.purchase.id_proveedor || !this.purchase.precio_unitario){
+      this.alertService.openSnackBar('Complete todos los campos');
+      return false;
     }
-    else{
-      this.addPurchase();
-    }
+    return true;
   }
 }

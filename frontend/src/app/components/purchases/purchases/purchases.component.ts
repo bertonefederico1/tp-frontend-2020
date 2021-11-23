@@ -4,7 +4,6 @@ import { SupplierService } from '../../../services/supplier/supplier.service';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataPurchaseComponent } from '../data-purchase/data-purchase.component';
-import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 
@@ -19,7 +18,6 @@ export class PurchasesComponent implements OnInit {
   constructor(
     private supplierService: SupplierService,
     private dialog: MatDialog,
-    private router: Router,
     private alertService: AlertService
   ) { }
 
@@ -31,7 +29,7 @@ export class PurchasesComponent implements OnInit {
     this.supplierService.getSuppliers()
       .subscribe(
         res => this.suppliers = res,
-        err => alert(err)
+        err => this.alertService.openSnackBar(err)
       );
   }
 
@@ -41,9 +39,7 @@ export class PurchasesComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '350rem';
     dialogConfig.height = '40rem';
-    dialogConfig.data = {
-      supplier
-    };
+    dialogConfig.data = { supplier };
 
     const dialogRef = this.dialog.open(DataPurchaseComponent, dialogConfig);
 

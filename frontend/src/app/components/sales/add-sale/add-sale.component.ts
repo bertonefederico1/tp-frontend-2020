@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article/article';
 import { Client } from 'src/app/models/client/client';
 import { Sale } from 'src/app/models/sale/sale';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 import { SaleService } from 'src/app/services/sale/sale.service';
 import { ShowArticlesComponent } from '../../shared/show-articles/show-articles.component';
 import { ShowCustomersComponent } from '../../shared/show-customers/show-customers.component';
@@ -17,6 +18,7 @@ export class AddSaleComponent {
 
   constructor(
     private saleService: SaleService,
+    private alertService: AlertService,
     public dialog: MatDialog,
     private router: Router
     ) { }
@@ -35,12 +37,14 @@ export class AddSaleComponent {
   };
 
   save() {
-    this.sale = new Sale(this.articles, this.selectedClient.id_cliente, this.total);
-    this.saleService.addSale(this.sale)
+    if (this.validate()) {
+      this.sale = new Sale(this.articles, this.selectedClient.id_cliente, this.total);
+      this.saleService.addSale(this.sale)
       .subscribe(
         res => this.router.navigate(['/sales']),
-        err => alert(err.error)
-      )
+        err => this.alertService.openSnackBar(err.name)
+      );
+    }
   }
 
   cancel() {
@@ -49,7 +53,7 @@ export class AddSaleComponent {
 
   searchArticle(event?: any) {
     if (event){
-      if (event.key !== '+'){
+      if (event.key !== '+') {
         return;
       }
     }
@@ -96,7 +100,7 @@ export class AddSaleComponent {
       return;
     }
     if (!this.articleQuantity || this.articleQuantity > this.selectedArticle.stock) {
-      alert('Ingrese una cantidad menor o igual al stock');
+      this.alertService.openSnackBar('Ingrese una cantidad menor o igual al stock');
       return;
     }
     this.selectedArticle.quantity = this.articleQuantity;
@@ -157,6 +161,10 @@ export class AddSaleComponent {
       }
 
     }
+  }
+
+  validate() { //TODO: Hacer la lógica
+    return true;
   }
 
 }
