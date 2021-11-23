@@ -30,13 +30,17 @@ export class ClientsComponent implements OnInit {
   }
 
   deleteClient(id: number){
-    if (confirm('Seguro que desea eliminar el cliente?')){
-      this.clientService.deleteClient(id)
-        .subscribe(
-          res => this.getAll(),
-          err => this.alertService.openSnackBar(err.name)
-        );
+    this.alertService.confirm('Seguro que desea eliminar el cliente?').afterClosed()
+      .subscribe(action => {
+        if (action) {
+          this.clientService.deleteClient(id)
+          .subscribe(
+            res => this.getAll(),
+            err => this.alertService.openSnackBar(err.name)
+          );
+        }
+      });
     }
-  }
+    
 
 }
