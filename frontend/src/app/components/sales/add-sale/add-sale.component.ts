@@ -100,7 +100,7 @@ export class AddSaleComponent {
       return;
     }
     if (!this.articleQuantity || this.articleQuantity > this.selectedArticle.stock) {
-      this.alertService.openSnackBar('Ingrese una cantidad menor o igual al stock');
+      this.alertService.openSnackBar('Insufficient stock');
       return;
     }
     this.selectedArticle.quantity = this.articleQuantity;
@@ -165,7 +165,7 @@ export class AddSaleComponent {
 
   validate() { 
     if (this.articles.length === 0 || !this.selectedClient) {
-      this.alertService.openSnackBar('Debe completar todos los datos');
+      this.alertService.openSnackBar('Complete all fields');
       return false;
     }
     return true;

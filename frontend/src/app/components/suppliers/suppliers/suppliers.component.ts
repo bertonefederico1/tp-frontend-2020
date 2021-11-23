@@ -31,7 +31,7 @@ export class SupplierComponent implements OnInit {
   }
 
   async deleteSupplier(id: number){
-    if (await this.alertService.confirm('Seguro que desea eliminar el proveedor?')){
+    if (await this.alertService.confirm('Are you sure you want to delete the supplier?')){
       this.supplierService.deleteSupplier(id)
         .subscribe(
           res => this.getAll(),
@@ -49,7 +49,7 @@ export class SupplierComponent implements OnInit {
   }
 
   verifySearch() {
-    if (!this.filterString || this.filterString == '') {
+    if (!this.filterString || !this.filterString) {
       this.getAll();
     }
   }

@@ -53,7 +53,7 @@ export class EditClientComponent implements OnInit {
 
   validate(){
     if (this.selectedClient.dni === '' || this.selectedClient.apellido === '' || this.selectedClient.nombre === ''){
-      this.alertService.openSnackBar('Complete dni, nombre y apellido');
+      this.alertService.openSnackBar('Complete dni, name and surname');
     }
     else{
       this.editClient();

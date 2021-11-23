@@ -34,16 +34,11 @@ export class AddSupplierComponent {
   }
 
   validate(){
-    if (this.supplier.cuit === undefined || this.supplier.razon_social === undefined){
-      this.alertService.openSnackBar('Complete el cuit y la razón social');
-    }
-    else{
-      if (this.supplier.cuit.toString() === '' || this.supplier.razon_social === ''){
-        this.alertService.openSnackBar('Complete el cuit y la razón social');
-      }
-      else{
+    if (!this.supplier.cuit || !this.supplier.razon_social){
+      this.alertService.openSnackBar('Complete cuit and business name');
+    } else {
         this.addSupplier();
-      }
     }
   }
+
 }

@@ -34,16 +34,11 @@ export class AddClientComponent {
   }
 
   validate(){
-    if (this.client.dni === undefined || this.client.apellido === undefined || this.client.nombre === undefined){
-      this.alertService.openSnackBar('Complete dni, nombre y apellido');
-    }
-    else{
-      if (this.client.dni === '' || this.client.apellido === '' || this.client.nombre === ''){
-        this.alertService.openSnackBar('Complete dni, nombre y apellido');
-      }
-      else{
+    if (!this.client.dni || !this.client.apellido || !this.client.nombre){
+      this.alertService.openSnackBar('Complete dni, name y surname');
+    } else {
         this.addClient();
-      }
     }
   }
+
 }

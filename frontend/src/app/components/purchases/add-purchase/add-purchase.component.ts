@@ -80,7 +80,7 @@ export class AddPurchaseComponent implements OnInit {
   validate(){
     if (!this.purchase.cantidad || !this.purchase.id_articulo
       || !this.purchase.id_proveedor || !this.purchase.precio_unitario){
-      this.alertService.openSnackBar('Complete todos los campos');
+      this.alertService.openSnackBar('Complete all fields');
       return false;
     }
     return true;

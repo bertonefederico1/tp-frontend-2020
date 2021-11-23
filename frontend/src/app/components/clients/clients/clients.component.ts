@@ -30,7 +30,7 @@ export class ClientsComponent implements OnInit {
   }
 
   async deleteClient(id: number){
-    if (await this.alertService.confirm("Seguro que desea eliminar el cliente?")) {
+    if (await this.alertService.confirm("Are you sure you want to delete the customer?")) {
       this.clientService.deleteClient(id)
         .subscribe(
           res => this.getAll(),

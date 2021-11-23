@@ -51,8 +51,8 @@ export class EditSupplierComponent implements OnInit {
   }
 
   validate(){
-    if (this.selectedSupplier.cuit.toString() === '' || this.selectedSupplier.razon_social === ''){
-      this.alertService.openSnackBar('Complete el cuit y la razón social');
+    if (!this.selectedSupplier.cuit || !this.selectedSupplier.razon_social){
+      this.alertService.openSnackBar('Complete cuit and business name');
     }
     else{
       this.editSupplier();
