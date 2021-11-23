@@ -23,12 +23,17 @@ export class AlertService {
   }
 
   confirm(message: string) {
-    return this.dialog.open(AlertMessageComponent, {
-      width: '35%',
-      height: '45%',
-      disableClose: true,
-      data: { message }
+
+    return new Promise (resolve => {
+      this.dialog.open(AlertMessageComponent, {
+        width: '35%',
+        height: '45%',
+        disableClose: true,
+        data: { message }
+      }).afterClosed()
+        .subscribe(action => resolve(action));
     });
+
   }
 
 }

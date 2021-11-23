@@ -24,7 +24,7 @@ export class EditClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( (params) => {this.idSupplier = params.id; });
+    this.activatedRoute.params.subscribe( params => this.idSupplier = params.id);
     this.getClient();
   }
 
@@ -45,11 +45,10 @@ export class EditClientComponent implements OnInit {
       );
   }
 
-  cancel(){
-    this.alertService.confirm('Are you sure you want to cancel?').afterClosed()
-      .subscribe(
-        action => action ? this.router.navigate(['/clients']) : null
-      );
+  async cancel(){
+    if (await this.alertService.confirm('Are you sure you want to cancel?')) {
+      this.router.navigate(['/clients']);
+    }
   }
 
   validate(){
