@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,11 +10,12 @@ import { Router } from '@angular/router';
 export class NavMenuComponent {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
-  logout(){
-    if(confirm('¿Seguro que desea cerrar sesión?')) {
+  async logout(){
+    if(await this.alertService.confirm('Are you sure you want to log out?')) {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
     };

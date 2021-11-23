@@ -35,8 +35,8 @@ export class ArticlesComponent implements OnInit {
       );
   }
 
-  onArticleDeleted(id: number){
-    if (confirm('Seguro que desea eliminar el articulo?')){
+  async onArticleDeleted(id: number){
+    if (await this.alertService.confirm('Are you sure you want to delete the article?')){
       this.articleService.deleteArticle(id)
       .subscribe(
         res => this.getAll(),

@@ -35,8 +35,8 @@ export class DataPurchaseComponent implements OnInit {
       );
   }
 
-  deletePurchase(purchase: any){
-     if (confirm('Are you sure you want to delete the purchase?')){
+  async deletePurchase(purchase: any){
+     if (await this.alertService.confirm('Are you sure you want to delete the purchase?')){
        this.purchaseService.deletePurchase(purchase.id_articulo, purchase.id_proveedor, purchase.fecha_compra)
        .subscribe(
           res => this.close(),
