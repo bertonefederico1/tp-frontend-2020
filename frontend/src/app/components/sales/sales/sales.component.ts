@@ -39,7 +39,7 @@ export class SalesComponent implements OnInit {
     }
     this.saleService.deleteSale(saleID)
       .subscribe(
-        res => {
+        () => {
           this.getSales();
           this.router.navigate(['/sales'])
         },
@@ -62,7 +62,7 @@ export class SalesComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe(
-        res => this.getSales(),
+        () => this.getSales(),
         err => this.alertService.openSnackBar(err.name)
       );
   }

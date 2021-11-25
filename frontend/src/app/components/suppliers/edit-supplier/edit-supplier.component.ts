@@ -39,7 +39,7 @@ export class EditSupplierComponent implements OnInit {
     delete this.selectedSupplier.id_proveedor;
     this.supplierService.editSupplier(this.idSupplier, this.selectedSupplier)
       .subscribe(
-        res => this.router.navigate(['/suppliers']),
+        () => this.router.navigate(['/suppliers']),
         err => this.alertService.openSnackBar(err.name)
       );
   }

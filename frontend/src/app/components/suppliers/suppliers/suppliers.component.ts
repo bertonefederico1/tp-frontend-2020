@@ -34,7 +34,7 @@ export class SupplierComponent implements OnInit {
     if (await this.alertService.confirm('Are you sure you want to delete the supplier?')){
       this.supplierService.deleteSupplier(id)
         .subscribe(
-          res => this.getAll(),
+          () => this.getAll(),
           err => this.alertService.openSnackBar(err.name)
         );
     }

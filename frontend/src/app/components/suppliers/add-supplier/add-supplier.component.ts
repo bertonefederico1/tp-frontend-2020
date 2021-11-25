@@ -24,7 +24,7 @@ export class AddSupplierComponent {
   addSupplier(){
     this.supplierService.addSupplier(this.supplier)
     .subscribe(
-      res => this.router.navigate(['/suppliers']),
+      () => this.router.navigate(['/suppliers']),
       err => this.alertService.openSnackBar(err.name)
     );
   }

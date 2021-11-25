@@ -39,7 +39,7 @@ export class ArticlesComponent implements OnInit {
     if (await this.alertService.confirm('Are you sure you want to delete the article?')){
       this.articleService.deleteArticle(id)
       .subscribe(
-        res => this.getAll(),
+        () => this.getAll(),
         err => this.alertService.openSnackBar(err.name)
       );
     }

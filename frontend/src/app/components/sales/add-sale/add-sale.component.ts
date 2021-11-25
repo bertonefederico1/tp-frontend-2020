@@ -41,7 +41,7 @@ export class AddSaleComponent {
       this.sale = new Sale(this.articles, this.selectedClient.id_cliente, this.total);
       this.saleService.addSale(this.sale)
       .subscribe(
-        res => this.router.navigate(['/sales']),
+        () => this.router.navigate(['/sales']),
         err => this.alertService.openSnackBar(err.name)
       );
     }

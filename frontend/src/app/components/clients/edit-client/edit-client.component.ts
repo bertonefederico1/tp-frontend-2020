@@ -40,7 +40,7 @@ export class EditClientComponent implements OnInit {
     delete this.selectedClient.id_cliente;
     this.clientService.editClient(this.idSupplier, this.selectedClient)
       .subscribe(
-        res => this.router.navigate(['/clients']),
+        () => this.router.navigate(['/clients']),
         err => this.alertService.openSnackBar(err.name)
       );
   }

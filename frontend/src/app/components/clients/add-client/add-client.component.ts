@@ -24,7 +24,7 @@ export class AddClientComponent {
   addClient(){
     this.clientService.addClient(this.client)
       .subscribe(
-        res => this.router.navigate(['/clients']),
+        () => this.router.navigate(['/clients']),
         err => this.alertService.openSnackBar(err.name)
       );
   }

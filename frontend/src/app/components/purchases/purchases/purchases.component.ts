@@ -45,7 +45,7 @@ export class PurchasesComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe(
-        res => this.getAll(),
+        () => this.getAll(),
         err => this.alertService.openSnackBar(err.name)
       );
   }
