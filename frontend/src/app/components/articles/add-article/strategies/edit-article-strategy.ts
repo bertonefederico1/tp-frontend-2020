@@ -4,19 +4,17 @@ import { Strategy } from "src/app/components/strategies/strategy";
 import { ArticleService } from "src/app/services/article/article.service";
 import { AlertService } from "src/app/services/alert-service/alert.service";
 
-export class EditArticleStrategy implements Strategy{
+export class EditArticleStrategy extends Strategy{
 
     constructor(
-        private articleService: ArticleService,
-        private router: Router,
-        private alertService: AlertService ){
-    }    
+        protected articleService: ArticleService)
+    {
+        super();
+        this.title = 'EDIT ARTICLE';
+        this.route = '/articles';
+    }
 
     sendItem(articleForm: FormGroup, id: number){
-        this.articleService.editArticle(id, articleForm.value)
-        .subscribe(
-        res => this.router.navigate(['/articles']),
-        err => this.alertService.openSnackBar(err.name)
-        );
+        return this.articleService.editArticle(id, articleForm.value);
     }
 }

@@ -1,10 +1,4 @@
-<div *ngIf="isEdit(); then editArt else newArt"></div>
-<ng-template #editArt>
-  <h4 class="center-align section titulo">EDIT ARTICLE</h4>
-</ng-template>
-<ng-template #newArt>
-  <h4 class="center-align section titulo">NEW ARTICLE</h4>
-</ng-template>
+<h4 class="center-align section titulo">{{strategy?.title}}</h4>
 <div class="container section row container-form">
   <form class="col s12" [formGroup]="articleForm" (ngSubmit)="sendArticle(articleForm, idArticle)">
     <div class="row">

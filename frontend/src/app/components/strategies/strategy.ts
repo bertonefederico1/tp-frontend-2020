@@ -1,6 +1,11 @@
-import { FormGroup } from "@angular/forms";
 
-export interface Strategy{
+export abstract class Strategy{
     
-    sendItem(form: FormGroup, id: number): void;
+    route: string;
+    title: string;
+    
+    constructor(){
+    }
+
+    abstract sendItem(articleServiceMethod, id?);
 }

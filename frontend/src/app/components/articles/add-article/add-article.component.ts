@@ -43,20 +43,12 @@ export class AddArticleComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
     if (this.idArticle) {
-      this.strategy = new EditArticleStrategy(this.articleService, this.router, this.alertService);
+      this.strategy = new EditArticleStrategy(this.articleService);
       this.getArticle();
     }
     else{
-      this.strategy = new AddArticleStrategy(this.articleService, this.router, this.alertService);
+      this.strategy = new AddArticleStrategy(this.articleService);
     }
-  }
-
-  setStrategy(strategy: Strategy){
-    this.strategy = strategy;
-  }
-
-  sendArticle(articleForm: FormGroup, id: number){
-    this.strategy.sendItem(articleForm, id);
   }
 
   getArticle(){
@@ -72,6 +64,14 @@ export class AddArticleComponent implements OnInit {
         }),
         err => this.alertService.openSnackBar(err.name)
       );
+  }
+
+  sendArticle(articleForm: FormGroup, id: number){
+    this.strategy.sendItem(articleForm, id)
+      .subscribe(
+            () => this.router.navigate([this.strategy.route]),
+            err => this.alertService.openSnackBar(err.name)
+        );
   }
 
   cancel(){
