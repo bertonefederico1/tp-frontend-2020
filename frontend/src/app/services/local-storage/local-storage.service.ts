@@ -24,7 +24,15 @@ export class LocalStorageService {
     }
   }
 
-  removeForm(){
-    localStorage.removeItem('articleForm');
+  remove(key: string){
+    localStorage.removeItem(key);
+  }
+
+  get(key: string){
+    return localStorage.getItem(key);
+  }
+
+  set(key: string, object: any){
+    localStorage.setItem(key, object);
   }
 }
