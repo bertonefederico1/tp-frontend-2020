@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/User';
+import { AlertService } from 'src/app/services/alert-service/alert.service';
 import { LoginService } from 'src/app/services/login/login.service';
 import { TokenService } from 'src/app/services/token-service/token.service';
 
@@ -14,7 +15,8 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private alertService: AlertService
     ) { }
 
     @ViewChild('inputUsername') inputUsername: any;
@@ -32,7 +34,7 @@ export class LoginComponent {
           this.router.navigate(['/clients']);
         },
         err => {
-          alert(err.error);
+          this.alertService.openSnackBar(err.error);
           this.username = '';
           this.password = '';
           this.inputUsername.nativeElement.focus();

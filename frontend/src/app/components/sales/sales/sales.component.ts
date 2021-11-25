@@ -43,7 +43,7 @@ export class SalesComponent implements OnInit {
           this.getSales();
           this.router.navigate(['/sales'])
         },
-        err => alert(err.error.message)
+        err => this.alertService.openSnackBar(err.error.message)
       );
   }
 
