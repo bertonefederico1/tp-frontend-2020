@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/User';
 import { LoginService } from 'src/app/services/login/login.service';
+import { TokenService } from 'src/app/services/token-service/token.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private tokenService: TokenService
     ) { }
 
     @ViewChild('inputUsername') inputUsername: any;
@@ -26,7 +28,7 @@ export class LoginComponent {
     this.loginService.login(user)
       .subscribe(
         res => {
-          localStorage.setItem('token', res['token']);
+          this.tokenService.setToken(res['token']);
           this.router.navigate(['/clients']);
         },
         err => {
