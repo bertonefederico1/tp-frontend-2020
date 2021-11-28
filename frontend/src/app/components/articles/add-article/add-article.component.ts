@@ -23,12 +23,12 @@ export class AddArticleComponent implements OnInit {
   strategy: Strategy;
 
   articleForm = new FormGroup({
-    id_articulo: new FormControl(''),
-    descripcion: new FormControl('', Validators.required),
-    precio: new FormControl('', [Validators.required, isNumber]),
+    articleId: new FormControl(''),
+    description: new FormControl('', Validators.required),
+    price: new FormControl('', [Validators.required, isNumber]),
     stock: new FormControl('0', [Validators.required, isNumber]),
-    imagen: new FormControl(''),
-    proveedores: new FormControl(''),
+    picture: new FormControl(''),
+    supplier: new FormControl(''),
   });
 
   constructor(
@@ -36,9 +36,7 @@ export class AddArticleComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private alertService: AlertService
-  ) {
-    this.article = new Article(); 
-  }
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( (params) => {this.idArticle = params.id; });
@@ -55,19 +53,19 @@ export class AddArticleComponent implements OnInit {
     this.articleService.getArticle(this.idArticle)
       .subscribe(
         res => this.articleForm.patchValue({
-          id_articulo: res.id_articulo,
-          descripcion: res.descripcion,
-          precio: res.precio,
-          stock: res.stock,
-          imagen: res.imagen,
-          proveedores: res.proveedores
+          articleId: res.articleId,
+          description: res.description,
+          price: res.price,
+          stock: res.stock || 0,
+          picture: res.picture,
+          suppliers: res.suppliers
         }),
         err => this.alertService.openSnackBar(err.name)
       );
   }
 
   sendArticle(articleForm: FormGroup, id: number){
-    this.strategy.sendItem(articleForm, id)
+    this.strategy.sendItem(articleForm.value, id)
       .subscribe(
             () => this.router.navigate([this.strategy.route]),
             err => this.alertService.openSnackBar(err.name)

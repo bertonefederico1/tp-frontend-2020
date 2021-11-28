@@ -15,19 +15,19 @@
             <tbody>
               <tr>
                 <td class="etiqueta">ID</td>
-                <td class="contenido">{{ article.id_articulo }}</td>
+                <td class="contenido">{{ article.articleId }}</td>
                 <td rowspan="4">
-                    <img *ngIf="article.imagen" [src]="article.imagen" [alt]="article.descripcion" class="img size-image-edit">
-                    <img *ngIf="!article.imagen" src="../../../../assets/default image.jpg" [alt]="article.descripcion">
+                    <img *ngIf="article.picture" [src]="article.picture" [alt]="article.description" class="img size-image-edit">
+                    <img *ngIf="!article.picture" src="../../../../assets/default image.jpg" [alt]="article.description">
                 </td>
               </tr>
               <tr>
                   <td class="etiqueta">Description</td>
-                  <td class="contenido">{{ article.descripcion }}</td>
+                  <td class="contenido">{{ article.description }}</td>
               </tr>
               <tr>
                 <td class="etiqueta">Price</td>
-                <td class="contenido">{{ article.precio | currency: '$' }}</td>
+                <td class="contenido">{{ article.price | currency: '$' }}</td>
             </tr>
             <tr>
                 <td class="etiqueta">Stock</td>

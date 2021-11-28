@@ -13,8 +13,8 @@
             <h4 class="add-purchase-subtitle">Article</h4>
             <mat-form-field class="col s4">
                 <mat-select [(ngModel)]="purchase.id_articulo" name="purchase">
-                    <mat-option *ngFor="let article of articles" [value]="article.id_articulo">
-                        {{article.descripcion}}
+                    <mat-option *ngFor="let article of articles" [value]="article.articleId">
+                        {{article.description}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

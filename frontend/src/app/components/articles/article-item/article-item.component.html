@@ -1,23 +1,23 @@
-<header>{{ article.descripcion }}</header>
+<header>{{ article.description }}</header>
 <div>
   <section>
   <aside>
-    <img *ngIf="article.imagen" [src]="article.imagen" [alt]="article.descripcion">
-    <img *ngIf="!article.imagen" src="../../../../assets/default image.jpg" [alt]="article.descripcion">
+    <img *ngIf="article.picture" [src]="article.picture" [alt]="article.description">
+    <img *ngIf="!article.picture" src="../../../../assets/default image.jpg" [alt]="article.description">
   </aside>
   <article>
     <div class="article-data">
-      <p class="etiqueta">Price: <span class="contenido">{{ article.precio | currency: '$' }}</span></p>
+      <p class="etiqueta">Price: <span class="contenido">{{ article.price | currency: '$' }}</span></p>
       <p class="etiqueta">Stock: {{ article.stock }} unidades</p>
     </div>
     <div class="buttons pointer">
-      <a  (click)="navigate(['/articles/articleData', article.id_articulo])">
+      <a  (click)="navigate(['/articles/articleData', article.articleId])">
         <i class="material-icons">assignment</i>
       </a>
-      <a  (click)="navigate(['/articles/addArticle', article.id_articulo])">
+      <a  (click)="navigate(['/articles/addArticle', article.articleId])">
         <i class="material-icons">edit</i>
       </a>
-      <a class="pointer-red" (click)="deleteArticle(article.id_articulo)">
+      <a class="pointer-red" (click)="deleteArticle(article.articleId)">
         <i class="material-icons">delete</i>
       </a>
     </div>

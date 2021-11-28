@@ -89,8 +89,8 @@ export class AddSaleComponent {
 
   deleteSelectedArticle(article: Article) {
     const position = this.articles.map(article => { 
-      return article.id_articulo; 
-    }).indexOf(article.id_articulo);
+      return article.articleId; 
+    }).indexOf(article.articleId);
     this.articles.splice(position, 1);
     this.calculateTotal();
   }
@@ -116,7 +116,7 @@ export class AddSaleComponent {
   calculateTotal() { //Calcula el monto total de la venta
     this.total = 0;
     this.articles.forEach(article => {  
-      this.total = this.total + (article.precio * article.quantity)
+      this.total = this.total + (article.price * article.quantity)
     });
   }
 
@@ -128,15 +128,15 @@ export class AddSaleComponent {
 
   getPositionArticle(selectedArticle: Article): number {
     const position = this.articles.map(article => { 
-      return article.id_articulo; 
-    }).indexOf(selectedArticle.id_articulo);
+      return article.articleId; 
+    }).indexOf(selectedArticle.articleId);
     return position;
   }
 
   existsArticle(selectedArticle: Article): boolean {
     const position = this.articles.map(article => { 
-      return article.id_articulo; 
-    }).indexOf(selectedArticle.id_articulo);
+      return article.articleId; 
+    }).indexOf(selectedArticle.articleId);
     return position >= 0;
   }
 
@@ -150,7 +150,7 @@ export class AddSaleComponent {
       }
 
       case 'searchArticle': {
-        this.selectedArticle.id_articulo = undefined;
+        this.selectedArticle.articleId = undefined;
         this.selectedArticle.descripcion = '';
         break;
       }

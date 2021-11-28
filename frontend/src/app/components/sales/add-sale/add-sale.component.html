@@ -14,11 +14,11 @@
 
         <div class="row">
             <div class="input-field col s1">
-                <input id="articleID" type="text" class="validate" name="articleID" [(ngModel)]="selectedArticle.id_articulo" (keyup)="searchArticle($event)" readonly>
+                <input id="articleID" type="text" class="validate" name="articleID" [(ngModel)]="selectedArticle.articleId" (keyup)="searchArticle($event)" readonly>
                 <label class="active" for="articleID">Article</label>
             </div>
             <div class="input-field col s5">
-                <input type="text" disabled class="validate" name="articleDescription" [(ngModel)]="selectedArticle.descripcion">
+                <input type="text" disabled class="validate" name="articleDescription" [(ngModel)]="selectedArticle.description">
                 <i class="material-icons prefix pointer" (click)="searchArticle()">search</i>
             </div>
             <div class="input-field col s2 offset-s1">
@@ -42,11 +42,11 @@
     
             <tbody *ngIf="articles.length > 0">
              <tr *ngFor="let article of articles">
-                <td>{{ article.id_articulo }}</td>
-                <td>{{ article.descripcion }}</td>
-                <td>{{ article.precio }}</td>
+                <td>{{ article.articleId }}</td>
+                <td>{{ article.description }}</td>
+                <td>{{ article.price }}</td>
                 <td>{{ article.quantity }}</td>
-                <td>{{ article.precio * article.quantity }}</td> 
+                <td>{{ article.price * article.quantity }}</td> 
                 <td>
                     <a class="pointer" (click)="deleteSelectedArticle(article)">
                         <i class="material-icons color-red">delete</i>

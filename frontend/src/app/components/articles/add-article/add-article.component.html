@@ -3,14 +3,14 @@
   <form class="col s12" [formGroup]="articleForm" (ngSubmit)="sendArticle(articleForm, idArticle)">
     <div class="row">
       <div class="input-field col s6 validate">
-        <input class="validate" id="descripcion" type="text" formControlName="descripcion">
-        <label [class.active]="this.articleForm.controls['descripcion'].value !== ''" for="descripcion">Description</label>
+        <input class="validate" id="description" type="text" formControlName="description">
+        <label [class.active]="this.articleForm.controls['description'].value !== ''" for="description">Description</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s3 validate">
-        <input id="precio_unitario_venta" type="text" formControlName="precio">
-        <label [class.active]="this.articleForm.controls['precio'].value !== ''" for="precio_unitario_venta">Sale price ($)</label>
+        <input id="price" type="text" formControlName="price">
+        <label [class.active]="this.articleForm.controls['price'].value !== ''" for="price">Sale price ($)</label>
       </div>
       <div class="input-field col s3" *ngIf="isEdit()">
         <input id="stock" type="text" formControlName="stock">
@@ -19,8 +19,8 @@
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input id="imagen" type="text" [class.validate]="true" formControlName="imagen">
-        <label [class.active]="this.articleForm.controls['imagen'].value !== ''" for="imagen">Image</label>
+        <input id="picture" type="text" [class.validate]="true" formControlName="picture">
+        <label [class.active]="this.articleForm.controls['picture'].value !== ''" for="picture">Picture</label>
       </div>
     </div>
     <div class="row" *ngIf="!articleForm.valid">

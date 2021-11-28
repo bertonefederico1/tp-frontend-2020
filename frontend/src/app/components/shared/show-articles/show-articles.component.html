@@ -18,9 +18,9 @@
 
         <tbody class="pointer" *ngIf="articles">
           <tr *ngFor="let article of articles | filter: filterString" (click)="selectionArticle(article)">
-            <td>{{ article.id_articulo }}</td>
-            <td>{{ article.descripcion }}</td>
-            <td>{{ article.precio }}</td>
+            <td>{{ article.articleId }}</td>
+            <td>{{ article.description }}</td>
+            <td>{{ article.price }}</td>
             <td>{{ article.stock }}</td>
           </tr>
         </tbody>
