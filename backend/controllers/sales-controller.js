@@ -47,7 +47,6 @@ saleController.getAll = async (req, res) => {
 saleController.createSale = async (req, res) => {
     try {
         transact = await sequelize.transaction();
-        console.log(req.body.total);
         const sale = await Sale.create({  //Creo la cabecera
             id_cliente: req.body.customerID,
             total: req.body.total

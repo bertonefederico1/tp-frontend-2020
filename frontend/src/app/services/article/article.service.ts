@@ -62,7 +62,6 @@ export class ArticleService {
 
   getArticleModelSpanish(article: Article){
     const articleSpanish: any = {};
-    console.log(article)
     if(article.articleId) articleSpanish.id_articulo = article.articleId;
     if(article.description) articleSpanish.descripcion = article.description;
     if(article.price) articleSpanish.precio = article.price;
