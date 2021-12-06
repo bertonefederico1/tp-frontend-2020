@@ -34,7 +34,7 @@ export class SalesComponent implements OnInit {
   }
 
   async deleteSale(saleID: number) {
-    if (await !this.alertService.confirm('Are you sure you want to delete the sale?')) {
+    if (!await this.alertService.confirm('Are you sure you want to delete the sale?')) {
       return;
     }
     this.saleService.deleteSale(saleID)

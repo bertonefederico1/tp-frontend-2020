@@ -1,14 +1,14 @@
 export class Client {
 
     constructor() {
-        this.nombre = '';
-        this.apellido = '';
+        this.name = '';
+        this.surname = '';
     }
 
-    id_cliente: number;
+    clientID: number;
     dni: string;
-    nombre: string;
-    apellido: string;
-    direccion: string;
-    telefono: string;
+    name: string;
+    surname: string;
+    address: string;
+    telephoneNumber: string;
 }

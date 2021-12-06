@@ -6,29 +6,33 @@ const Sequelize = require('Sequelize');
 const Client = require('./client-model');
 
 const Sale = sequelize.define('ventas', {
-    id_venta: {
+    saleID: {
         type: DataTypes.INTEGER, 
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        field: 'id_venta'
     },
-    id_cliente: { 
+    clientID: { 
         type: DataTypes.INTEGER, 
         primaryKey: true,
+        field: 'id_cliente',
         references: { 
             model: Client, 
             key: 'id_cliente'
         }
     },
-    fecha_hora_venta: { 
+    saleDateTime: { 
         type: DataTypes.DATE, 
         primaryKey: true,
-        defaultValue: Sequelize.NOW
+        defaultValue: Sequelize.NOW,
+        field: 'fecha_hora_venta'
      },
      total: {
-        type: DataTypes.DECIMAL(10,2)
+        type: DataTypes.DECIMAL(10,2),
+        field: 'total'
      },
-    activo: { 
-        type: DataTypes.BOOLEAN, defaultValue: 1
+    active: { 
+        type: DataTypes.BOOLEAN, defaultValue: 1, field: 'activo'
      }
 },{ 
     createdAt: false,

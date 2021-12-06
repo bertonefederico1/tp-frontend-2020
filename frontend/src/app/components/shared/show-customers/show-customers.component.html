@@ -18,10 +18,10 @@
 
         <tbody class="pointer" *ngIf="clients">
           <tr *ngFor="let client of clients" (dblclick)="selectionCustomer(client)">
-            <td>{{ client.id_cliente }}</td>
-            <td>{{ client.nombre }} {{ client.apellido }}</td>
-            <td>{{ client.direccion }}</td>
-            <td>{{ client.telefono }}</td>
+            <td>{{ client.clientID }}</td>
+            <td>{{ client.name }} {{ client.surname }}</td>
+            <td>{{ client.address }}</td>
+            <td>{{ client.telephoneNumber }}</td>
           </tr>
         </tbody>
       </table>

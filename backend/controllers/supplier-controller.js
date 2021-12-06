@@ -43,13 +43,7 @@ supplierController.getOne = async (req, res) => {
 
 supplierController.createSupplier = async (req, res) => {
     try {
-        await Supplier.create({
-            cuit: req.body.cuit,
-            razon_social: req.body.razon_social,
-            ciudad: req.body.ciudad,
-            direccion: req.body.direccion,
-            telefono: req.body.telefono
-        });
+        await Supplier.create(req.body);
         res.json("Supplier created");
     } catch (err) {
         res.json(err);
@@ -58,13 +52,7 @@ supplierController.createSupplier = async (req, res) => {
 
 supplierController.updateSupplier = async (req, res) => {
     try {
-        const rowsUpdated = await Supplier.update({
-            cuit: req.body.cuit,
-            razon_social: req.body.razon_social,
-            ciudad: req.body.ciudad,
-            direccion: req.body.direccion,
-            telefono: req.body.telefono
-        }, {
+        const rowsUpdated = await Supplier.update(req.body, {
             where: {
                 id_proveedor: req.params.id
             }
@@ -83,7 +71,7 @@ supplierController.updateSupplier = async (req, res) => {
 supplierController.suspendSupplier = async (req, res) => {
     try {
         const rowsUpdated = await Supplier.update({
-            activo: 0
+            active: 0
         }, {
             where: { 
                 id_proveedor: req.params.id 

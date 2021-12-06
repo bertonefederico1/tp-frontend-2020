@@ -78,8 +78,8 @@ export class AddPurchaseComponent implements OnInit {
   }
 
   validate(){
-    if (!this.purchase.cantidad || !this.purchase.id_articulo
-      || !this.purchase.id_proveedor || !this.purchase.precio_unitario){
+    if (!this.purchase.quantity || !this.purchase.articleID
+      || !this.purchase.supplierID || !this.purchase.unityPrice){
       this.alertService.openSnackBar('Complete all fields');
       return false;
     }

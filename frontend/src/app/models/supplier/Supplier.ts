@@ -1,11 +1,11 @@
 import { ArticleSupplier } from '../article-supplier/article-supplier';
 
 export class Supplier {
-    id_proveedor: number;
+    supplierID: number;
     cuit: string;
-    razon_social: string;
-    ciudad: string;
-    direccion: string;
-    telefono: string;
+    businessName: string;
+    city: string;
+    address: string;
+    telephoneNumber: string;
     proveedores_articulos: ArticleSupplier;
 }

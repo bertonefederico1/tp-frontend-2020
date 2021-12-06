@@ -39,14 +39,7 @@ clientController.getOne = async (req, res) => {
 
 clientController.createClient = async (req, res) => {
     try {
-        await Client.create({
-            dni: req.body.dni,
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            direccion: req.body.direccion,
-            telefono: req.body.telefono,
-            activo: 1
-        }); 
+        await Client.create(req.body); 
         res.json("Client created");
     } catch (err){
         res.json(err);
@@ -55,13 +48,7 @@ clientController.createClient = async (req, res) => {
 
 clientController.updateClient = async (req, res) => {
     try {
-        const rowsUpdated = await Client.update({
-            dni: req.body.dni,
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            direccion: req.body.direccion,
-            telefono: req.body.telefono
-        }, {
+        const rowsUpdated = await Client.update(req.body, {
             where: {
                 id_cliente: req.params.id
             }
@@ -81,7 +68,7 @@ clientController.updateClient = async (req, res) => {
 clientController.suspendClient = async (req, res) => {
     try{
         const rowsUpdated = await Client.update({
-            activo: 0
+            active: 0
         },{
             where: {
                 id_cliente: req.params.id
@@ -96,24 +83,6 @@ clientController.suspendClient = async (req, res) => {
     } catch (err){
         res.json(err);
     }   
-}
-
-clientController.deleteClient = async (req, res) => {
-    try{
-        const rowsDeleted = await Client.destroy({
-            where: {
-                id_cliente: req.params.id
-            }
-        });
-        if(rowsDeleted === 0){
-            res.json("This id doesn\'t belong to any client")
-        }
-        else {
-            res.json("Client deleted")
-        }
-    } catch (err){
-        res.json(err);
-    }
 }
 
 module.exports = clientController;

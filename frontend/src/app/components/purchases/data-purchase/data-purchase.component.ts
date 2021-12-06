@@ -28,7 +28,7 @@ export class DataPurchaseComponent implements OnInit {
   }
 
   getAll(){
-     this.purchaseService.getSupplierPurchases(this.supplier.supplier.id_proveedor)
+     this.purchaseService.getSupplierPurchases(this.supplier.supplier.supplierID)
       .subscribe(
         res => this.purchases = res,
         err => this.alertService.openSnackBar(err.name)
@@ -37,7 +37,7 @@ export class DataPurchaseComponent implements OnInit {
 
   async deletePurchase(purchase: any){
      if (await this.alertService.confirm('Are you sure you want to delete the purchase?')){
-       this.purchaseService.deletePurchase(purchase.id_articulo, purchase.id_proveedor, purchase.fecha_compra)
+       this.purchaseService.deletePurchase(purchase.articleID, purchase.supplierID, purchase.purchaseDate)
        .subscribe(
           () => this.close(),
           err => this.alertService.openSnackBar(err.name)

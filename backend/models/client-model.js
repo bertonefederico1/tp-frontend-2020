@@ -4,16 +4,26 @@ const sequelize = require('../database/db-connection');
 const Sequelize = require('sequelize');
 
 const Client = sequelize.define('clientes', {
-    id_cliente: { 
-        type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
+    clientID: { 
+        type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true, field: 'id_cliente'
      },
-    dni: Sequelize.STRING,
-    nombre: Sequelize.STRING,
-    apellido: Sequelize.STRING,
-    direccion: Sequelize.STRING,
-    telefono: Sequelize.STRING,
-    activo: { 
-        type: Sequelize.BOOLEAN, defaultValue: 1
+    dni: {
+        type: Sequelize.STRING, field: 'dni'
+    },
+    name: {
+        type: Sequelize.STRING, field: 'nombre'
+    },
+    surname: {
+        type: Sequelize.STRING, field: 'apellido'
+    },
+    address: {
+        type: Sequelize.STRING, field: 'direccion'
+    },
+    telephoneNumber: {
+        type: Sequelize.STRING, field: 'telefono'
+    },
+    active: { 
+        type: Sequelize.BOOLEAN, defaultValue: 1, field: 'activo'
      }
 },{
     createdAt: false,

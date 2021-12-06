@@ -34,7 +34,7 @@ export class AddSupplierComponent {
   }
 
   validate(){
-    if (!this.supplier.cuit || !this.supplier.razon_social){
+    if (!this.supplier.cuit || !this.supplier.businessName){
       this.alertService.openSnackBar('Complete cuit and business name');
     } else {
         this.addSupplier();

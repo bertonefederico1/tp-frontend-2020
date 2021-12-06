@@ -33,10 +33,10 @@
         <tbody>
           <tr *ngFor="let supplier of suppliers">
             <td>{{ supplier.cuit }}</td>
-            <td>{{ supplier.razon_social }}</td>
-            <td>{{ supplier.ciudad }}</td>
-            <td>{{ supplier.direccion }}</td>
-            <td>{{ supplier.telefono }}</td>
+            <td>{{ supplier.businessName }}</td>
+            <td>{{ supplier.city }}</td>
+            <td>{{ supplier.address }}</td>
+            <td>{{ supplier.telephoneNumber }}</td>
             <td>
               <a [routerLink]="['/suppliers/edit-supplier', supplier.id_proveedor]"><i class="material-icons">edit</i></a>
               <a (click)="deleteSupplier(supplier.id_proveedor)"><i class="material-icons pointer-red">delete</i></a>

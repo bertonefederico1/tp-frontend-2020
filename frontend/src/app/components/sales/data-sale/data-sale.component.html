@@ -1,13 +1,13 @@
 <div class="row section container">
-    <h4 class="center-align titulo" >SALE N° {{ sale.id_venta.toString().padStart(5, '0') }}</h4>
+    <h4 class="center-align titulo" >SALE N° {{ sale.saleID.toString().padStart(5, '0') }}</h4>
     <form class="col s12" autocomplete="off">
         <div class="row">
             <div class="input-field col s2">
-                <input id="customerID" disabled type="text" class="validate" name="customerID" [(ngModel)]="sale.cliente.id_cliente">
+                <input id="customerID" disabled type="text" class="validate" name="customerID" [(ngModel)]="sale.cliente.clientID">
                 <label class="active" for="customerID">Customer</label>
             </div>
             <div class="input-field col s5">
-                <input type="text" disabled class="validate" name="customerName" [(ngModel)]="sale.cliente.nombre + ' ' + sale.cliente.apellido">
+                <input type="text" disabled class="validate" name="customerName" [(ngModel)]="sale.cliente.name + ' ' + sale.cliente.surname">
             </div>
         </div>
         <table id="max" class="responsive-table">
@@ -23,11 +23,11 @@
     
             <tbody *ngIf="sale.detalle_ventas.length > 0">
              <tr *ngFor="let article of sale.detalle_ventas">
-                <td>{{ article.articulo.id_articulo }}</td>
-                <td>{{ article.articulo.descripcion }}</td>
-                <td>{{ article.articulo.precio }}</td>
-                <td>{{ article.cantidad }}</td>
-                <td>{{ article.articulo.precio * article.cantidad }}</td> 
+                <td>{{ article.articulo.articleID }}</td>
+                <td>{{ article.articulo.description }}</td>
+                <td>{{ article.articulo.price }}</td>
+                <td>{{ article.quantity }}</td>
+                <td>{{ article.articulo.price * article.quantity }}</td> 
               </tr>
               <tr>
                 <th></th>

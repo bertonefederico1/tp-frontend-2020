@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article/article';
 
@@ -22,4 +22,5 @@ export class ArticleItemComponent {
   navigate(route){
     this.router.navigate(route);
   }
+
 }

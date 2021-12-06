@@ -4,19 +4,23 @@ const sequelize = require('../database/db-connection');
 const { DataTypes } = require('Sequelize');
 
 const Article = sequelize.define('articulos', {
-    id_articulo: { 
-        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
+    articleID: { 
+        type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, field: 'id_articulo'
      },
-    descripcion: DataTypes.STRING,
-    precio: DataTypes.DECIMAL(10, 2),
+    description: {
+        type: DataTypes.STRING, field: 'descripcion'
+    },
+    price: {
+        type: DataTypes.DECIMAL(10,2), field: 'precio'
+    },
     stock: { 
-        type: DataTypes.INTEGER, defaultValue: 0
+        type: DataTypes.INTEGER, defaultValue: 0, field: 'stock'
      },
-     imagen: {
-        type: DataTypes.TEXT, defaultValue: null
+     picture: {
+        type: DataTypes.TEXT, defaultValue: null, field: 'imagen'
      },
-    activo: { 
-        type: DataTypes.BOOLEAN, defaultValue: 1
+    active: { 
+        type: DataTypes.BOOLEAN, defaultValue: 1, field: 'activo'
      }
 },{
     createdAt: false,

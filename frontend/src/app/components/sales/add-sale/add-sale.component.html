@@ -3,18 +3,18 @@
     <form class="col s12" autocomplete="off">
         <div class="row">
             <div class="input-field col s1">
-                <input id="customerID" type="text" class="validate" name="customerID" [(ngModel)]="selectedClient.id_cliente" (keyup)="searchCustomer($event)" readonly>
+                <input id="customerID" type="text" class="validate" name="customerID" [(ngModel)]="selectedClient.clientID" (keyup)="searchCustomer($event)">
                 <label class="active" for="customerID">Customer</label>
             </div>
             <div class="input-field col s5">
-                <input type="text" disabled class="validate" name="customerName" [(ngModel)]="selectedClient.nombre + ' ' + selectedClient.apellido">
+                <input type="text" disabled class="validate" name="customerName" [(ngModel)]="selectedClient.name + ' ' + selectedClient.surname">
                 <i class="material-icons prefix pointer" (click)="searchCustomer()">search</i>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s1">
-                <input id="articleID" type="text" class="validate" name="articleID" [(ngModel)]="selectedArticle.articleId" (keyup)="searchArticle($event)" readonly>
+                <input id="articleID" type="text" class="validate" name="articleID" [(ngModel)]="selectedArticle.articleID" (keyup)="searchArticle($event)">
                 <label class="active" for="articleID">Article</label>
             </div>
             <div class="input-field col s5">
@@ -25,7 +25,7 @@
                 <input id="quantity" type="number" class="validate" name="quantity" [(ngModel)]="articleQuantity">
                 <label class="active" for="quantity">Quantity</label>
             </div>
-            <button class="btn waves-effect waves-light cancel-button"  (click)="addArticle(selectedArticle)">+ Add</button>
+            <button class="btn waves-effect waves-light cancel-button" (click)="addArticle(selectedArticle)">+ Add</button>
         </div>
 
         <table id="max" class="responsive-table">
@@ -42,7 +42,7 @@
     
             <tbody *ngIf="articles.length > 0">
              <tr *ngFor="let article of articles">
-                <td>{{ article.articleId }}</td>
+                <td>{{ article.articleID }}</td>
                 <td>{{ article.description }}</td>
                 <td>{{ article.price }}</td>
                 <td>{{ article.quantity }}</td>

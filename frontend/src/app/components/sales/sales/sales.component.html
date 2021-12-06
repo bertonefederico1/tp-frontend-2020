@@ -14,11 +14,11 @@
       
           <tbody>
             <tr *ngFor="let sale of sales">
-              <td>{{ sale.fecha_hora_venta | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
-              <td>{{ sale.cliente.nombre }}, {{ sale.cliente.apellido }}</td>
+              <td>{{ sale.saleDateTime | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+              <td>{{ sale.cliente.name }}, {{ sale.cliente.surname }}</td>
               <td>
                 <a (click)="dataSale(sale)"><i class="material-icons pointer">assignment</i></a>
-                <a (click)="deleteSale(sale.id_venta)"><i class="material-icons pointer-red">delete</i></a>
+                <a (click)="deleteSale(sale.saleID)"><i class="material-icons pointer-red">delete</i></a>
               </td>
             </tr>
           </tbody>

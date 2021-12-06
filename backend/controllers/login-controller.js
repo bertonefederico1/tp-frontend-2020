@@ -34,7 +34,13 @@ UserController.signin = async (req, res) => {
         if(!match) {
             throw new Error('Wrong username or password');
         };
-        const token = jwt.sign({username: user.nombre_usuario, password: user.contrasenia}, 'wordKey');
+        const token = jwt.sign({
+            username: user.nombre_usuario, 
+            password: user.contrasenia
+        }, 
+        'wordKey', { 
+            expiresIn: '3h' 
+        });
         res.status(200).json({token});
     } catch (err){
         res.status(400).json(err.message);

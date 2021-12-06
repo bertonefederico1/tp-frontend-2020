@@ -8,9 +8,6 @@ const Client = require('../models/client-model');
 const Sales_Detail = require('../models/sale-detail-model')
 const sequelize = require('../database/db-connection');
 
-let transact;
-
-
 Sale.hasMany(Sales_Detail, {foreignKey: 'id_venta'});
 Sales_Detail.belongsTo(Sale, {foreignKey: 'id_venta'});
 
@@ -19,6 +16,8 @@ Article.belongsTo(Sales_Detail, {foreignKey: 'id_articulo'});
 
 Client.hasOne(Sale, {foreignKey: 'id_cliente'});
 Sale.belongsTo(Client, {foreignKey: 'id_cliente'}); 
+
+let transact;
 
 
 saleController.getAll = async (req, res) => {
@@ -47,23 +46,24 @@ saleController.getAll = async (req, res) => {
 saleController.createSale = async (req, res) => {
     try {
         transact = await sequelize.transaction();
-        const sale = await Sale.create({  //Creo la cabecera
-            id_cliente: req.body.customerID,
+
+        const sale = await Sale.create({ //Creo la cabecera de la venta
+            clientID: req.body.customerID,
             total: req.body.total
         }, { transaction: transact }); 
-        
         
         await asyncForEach(req.body.articles, async (article) => { //Creo el detalle de la venta
 
             await Sales_Detail.create({
-                id_articulo: article.id_articulo,
-                id_venta: sale.id_venta,
-                cantidad: article.quantity
+                saleID: sale.saleID,
+                articleID: article.articleID,
+                saleDateTime: sale.saleID,
+                quantity: article.quantity
             }, { transaction: transact });
 
             const articleUpdated = await Article.findOne({
                 where: {
-                    id_articulo: article.id_articulo
+                    id_articulo: article.articleID
                 }
             });
     
@@ -77,6 +77,7 @@ saleController.createSale = async (req, res) => {
         await transact.commit();
         res.status(200).json('Sale created');
     } catch (err){
+        console.log(err.message);
         await transact.rollback();
         res.status(400).json(err.message);
     }
@@ -96,16 +97,16 @@ saleController.deleteSale = async (req, res) => {
 
             const articleAffected = await Article.findOne({
                 where: {
-                    id_articulo: article.id_articulo
+                    id_articulo: article.articleID
                 }
             }, { transaction: transact });
 
-            articleAffected.stock += article.cantidad;
+            articleAffected.stock += article.quantity;
             await articleAffected.save({transaction: transact});
         });
 
         await Sale.update({  
-            activo: 0
+            active: 0
         }, {
             where: {
                 id_venta: req.params.saleID
@@ -119,8 +120,6 @@ saleController.deleteSale = async (req, res) => {
         res.status(400).json(err.message);
     }
 }
-
-
 
 const asyncForEach = async (array, callback) => {
     for (let index = 0; index < array.length; index++) {

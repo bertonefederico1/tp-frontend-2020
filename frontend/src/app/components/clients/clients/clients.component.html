@@ -17,12 +17,12 @@
         <tbody>
           <tr *ngFor="let client of clients">
             <td>{{ client.dni }}</td>
-            <td>{{ client.nombre }}, {{ client.apellido }}</td>
-            <td>{{ client.direccion }}</td>
-            <td>{{ client.telefono }}</td>
+            <td>{{ client.name }}, {{ client.surname }}</td>
+            <td>{{ client.address }}</td>
+            <td>{{ client.telephoneNumber }}</td>
             <td>
-              <a [routerLink]="['/clients/edit-client', client.id_cliente]"><i class="material-icons">edit</i></a>
-              <a (click)="deleteClient(client.id_cliente)"><i class="material-icons pointer-red">delete</i></a>
+              <a [routerLink]="['/clients/edit-client', client.clientID]"><i class="material-icons">edit</i></a>
+              <a (click)="deleteClient(client.clientID)"><i class="material-icons pointer-red">delete</i></a>
             </td>
           </tr>
         </tbody>

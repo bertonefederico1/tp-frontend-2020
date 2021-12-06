@@ -38,7 +38,8 @@ export class AddSaleComponent {
 
   save() {
     if (this.validate()) {
-      this.sale = new Sale(this.articles, this.selectedClient.id_cliente, this.total);
+      this.sale = new Sale(this.articles, this.selectedClient.clientID, this.total);
+      console.log(this.sale);
       this.saleService.addSale(this.sale)
       .subscribe(
         () => this.router.navigate(['/sales']),
@@ -90,7 +91,7 @@ export class AddSaleComponent {
   deleteSelectedArticle(article: Article) {
     const position = this.articles.map(article => { 
       return article.articleId; 
-    }).indexOf(article.articleId);
+    }).indexOf(article.articleID);
     this.articles.splice(position, 1);
     this.calculateTotal();
   }
@@ -99,7 +100,11 @@ export class AddSaleComponent {
     if (Object.keys(this.selectedArticle).length === 0) {
       return;
     }
-    if (!this.articleQuantity || this.articleQuantity > this.selectedArticle.stock) {
+    if (!this.articleQuantity) {
+      this.alertService.openSnackBar('Complete quantity');
+      return;
+    }
+    if (this.articleQuantity > this.selectedArticle.stock) {
       this.alertService.openSnackBar('Insufficient stock');
       return;
     }
@@ -128,24 +133,24 @@ export class AddSaleComponent {
 
   getPositionArticle(selectedArticle: Article): number {
     const position = this.articles.map(article => { 
-      return article.articleId; 
-    }).indexOf(selectedArticle.articleId);
+      return article.articleID; 
+    }).indexOf(selectedArticle.articleID);
     return position;
   }
 
   existsArticle(selectedArticle: Article): boolean {
     const position = this.articles.map(article => { 
-      return article.articleId; 
-    }).indexOf(selectedArticle.articleId);
+      return article.articleID; 
+    }).indexOf(selectedArticle.articleID);
     return position >= 0;
   }
 
   clearControls(method: string) {
     switch (method) {
       case 'searchCustomer': {
-        this.selectedClient.id_cliente = undefined;
-        this.selectedClient.nombre = '';
-        this.selectedClient.apellido = '';
+        this.selectedClient.clientID = undefined;
+        this.selectedClient.name = '';
+        this.selectedClient.surname = '';
         break;
       }
 

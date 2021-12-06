@@ -13,7 +13,7 @@ export class DataSaleComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
-  sale: any;
+  public sale: any;
 
   ngOnInit(): void {
     this.sale = this.data.sale;

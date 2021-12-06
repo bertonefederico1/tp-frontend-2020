@@ -1,5 +1,5 @@
     <div class="container">
-        <h4 class="center-align titulo data-purchase-align">PURCHASES TO "{{ supplier.supplier.razon_social }}"</h4>
+        <h4 class="center-align titulo data-purchase-align">PURCHASES TO "{{ supplier.supplier.businessName }}"</h4>
         <div mat-dialog-content>  
         <table class="striped responsive-table">   
                 <thead>
@@ -15,11 +15,11 @@
             
                 <tbody>
                   <tr *ngFor="let purchase of purchases">
-                    <td>{{ purchase.id_articulo }}</td>
-                    <td>{{ purchase.articulo.descripcion }}</td>
-                    <td>{{ purchase.precio_unitario | currency: '$' }}</td>
-                    <td>{{ purchase.cantidad }}</td>
-                    <td>{{ purchase.fecha_compra | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ purchase.articleID }}</td>
+                    <td>{{ purchase.articulo.description }}</td>
+                    <td>{{ purchase.unityPrice | currency: '$' }}</td>
+                    <td>{{ purchase.quantity }}</td>
+                    <td>{{ purchase.purchaseDate | date: 'dd/MM/yyyy' }}</td>
                     <td>
                       <a (click)="deletePurchase(purchase)"><i class="material-icons pointer-red">delete</i></a>
                     </td>

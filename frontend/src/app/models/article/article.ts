@@ -2,7 +2,7 @@ import { Supplier } from '../supplier/Supplier';
 
 export class Article {
 
-    articleId: number;
+    articleID: number;
     description: string;
     price: number;
     stock: number;
@@ -10,14 +10,14 @@ export class Article {
     suppliers: Supplier[] = [];
 
     constructor(
-        articleId?: number,
+        articleID?: number,
         description?: string,
         price?: number,
         stock?: number,
         picture?: string,
         suppliers?: Supplier[]
     ){
-        if(articleId)   this.articleId = articleId;
+        if(articleID)   this.articleID = articleID;
         if(description)    this.description = description;
         if(price)    this.price = price;
         if(stock)    this.stock = stock;

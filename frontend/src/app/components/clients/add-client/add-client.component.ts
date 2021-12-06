@@ -34,7 +34,7 @@ export class AddClientComponent {
   }
 
   validate(){
-    if (!this.client.dni || !this.client.apellido || !this.client.nombre){
+    if (!this.client.dni || !this.client.surname || !this.client.name){
       this.alertService.openSnackBar('Complete dni, name y surname');
     } else {
         this.addClient();

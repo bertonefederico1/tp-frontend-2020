@@ -1,5 +1,6 @@
 'use strict'
 
+const sequelize = require('../database/db-connection');
 const Supplier_Article = require('../models/supplier-article-model');
 const Article = require('../models/article-model');
 const Supplier = require('../models/supplier-model');
@@ -14,36 +15,40 @@ Supplier.belongsTo(Supplier_Article, {foreignKey: 'id_proveedor'});
 Supplier_Article.hasOne(Article, {foreignKey: 'id_articulo'});
 Article.belongsTo(Supplier_Article, {foreignKey: 'id_articulo'});
 
+let transact;
 
 supplierArticleController.addPurchase = async (req, res) => {
     try {
-        await Supplier_Article.create({
-            id_proveedor: req.body.id_proveedor,
-            id_articulo: req.body.id_articulo,
-            precio_unitario: req.body.precio_unitario,
-            cantidad: req.body.cantidad
-        });
-        res.json("Article added");
+        transact = await sequelize.transaction();
+        await Supplier_Article.create(req.body, {transaction: transact});
+
+        const article = await Article.findByPk(req.body.articleID);
+        article.stock += parseInt(req.body.quantity);
+        await article.save({transaction: transact});
+        
+        await transact.commit();
+        res.json("Purchase added");
     } catch (err) {
+        await transact.rollback();
         res.json(err);
     }
 }
 
 supplierArticleController.deletePurchase = async (req, res) => {
+    transact = await sequelize.transaction();
+
     let purchased_amount = 0;
     let stock_actual = 0;
     let current_amount = 0;
-
     try {
         let purchase = await Supplier_Article.findOne({
-            attributes: ['cantidad'], 
             where: {
                 id_articulo: req.params.id_articulo,
                 id_proveedor: req.params.id_proveedor,
                 fecha_compra: req.params.fecha_compra
             }
         });
-        purchased_amount = parseInt(purchase.cantidad, 10);
+        purchased_amount = parseInt(purchase.quantity, 10);
         if(purchase === null){
             res.json('Wrong ID')
         }
@@ -65,7 +70,7 @@ supplierArticleController.deletePurchase = async (req, res) => {
                     where: {
                         id_articulo: req.params.id_articulo
                     }
-                })  
+                }, {transaction: transact});
             
             Supplier_Article.destroy({
                 where: {
@@ -73,10 +78,12 @@ supplierArticleController.deletePurchase = async (req, res) => {
                     id_proveedor: req.params.id_proveedor,
                     fecha_compra: req.params.fecha_compra
                 }
-            });
+            }, {transaction: transact});
+            transact.commit();
             res.json("Purchase deleted");
         }
     } catch (err) {
+        transact.rollback();
         res.json(err);
     }
     

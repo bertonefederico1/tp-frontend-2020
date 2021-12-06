@@ -11,13 +11,13 @@
       <p class="etiqueta">Stock: {{ article.stock }} unidades</p>
     </div>
     <div class="buttons pointer">
-      <a  (click)="navigate(['/articles/articleData', article.articleId])">
+      <a  (click)="navigate(['/articles/articleData', article.articleID])">
         <i class="material-icons">assignment</i>
       </a>
-      <a  (click)="navigate(['/articles/addArticle', article.articleId])">
+      <a  (click)="navigate(['/articles/addArticle', article.articleID])">
         <i class="material-icons">edit</i>
       </a>
-      <a class="pointer-red" (click)="deleteArticle(article.articleId)">
+      <a class="pointer-red" (click)="deleteArticle(article.articleID)">
         <i class="material-icons">delete</i>
       </a>
     </div>

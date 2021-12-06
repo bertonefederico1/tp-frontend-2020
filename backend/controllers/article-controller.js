@@ -49,11 +49,7 @@ articleController.getOne = async (req, res) => {
 
 articleController.createArticle = async (req, res) => {
     try{
-      await Article.create({
-        descripcion: req.body.descripcion,
-        precio: req.body.precio,
-        imagen: req.body.imagen
-      });
+      await Article.create(req.body);
       res.json("Article created");
     } catch(err){
       res.json(err);
@@ -63,12 +59,7 @@ articleController.createArticle = async (req, res) => {
 
 articleController.updateArticle = async (req, res) => {
     try {
-      const rowsUpdated = await Article.update({
-        descripcion: req.body.descripcion,
-        precio: req.body.precio,
-        stock: req.body.stock,
-        imagen: req.body.imagen
-      }, {
+      const rowsUpdated = await Article.update(req.body, {
         where: {
           id_articulo: req.params.id
         }
@@ -89,7 +80,7 @@ articleController.loadStock = async (req, res) => {
   let cantidad = parseInt(req.body.cantidad, 10);
   
     try {
-      const article = await Article.findByPk(req.body.id_articulo,{
+      const article = await Article.findByPk(req.body.articleID,{
         attributes: ['stock']
       });
       cant_total = article.stock + cantidad;
@@ -116,7 +107,7 @@ articleController.loadStock = async (req, res) => {
 articleController.suspendArticle = async (req, res) => {
   try {
     const rowsUpdated = await Article.update({
-      activo: 0
+      active: 0
       }, {
         where: {
            id_articulo: req.params.id 

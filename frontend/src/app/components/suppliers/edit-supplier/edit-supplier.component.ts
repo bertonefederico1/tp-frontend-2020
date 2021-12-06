@@ -36,7 +36,7 @@ export class EditSupplierComponent implements OnInit {
   }
 
   editSupplier(){
-    delete this.selectedSupplier.id_proveedor;
+    delete this.selectedSupplier.supplierID;
     this.supplierService.editSupplier(this.idSupplier, this.selectedSupplier)
       .subscribe(
         () => this.router.navigate(['/suppliers']),
@@ -51,7 +51,7 @@ export class EditSupplierComponent implements OnInit {
   }
 
   validate(){
-    if (!this.selectedSupplier.cuit || !this.selectedSupplier.razon_social){
+    if (!this.selectedSupplier.cuit || !this.selectedSupplier.businessName){
       this.alertService.openSnackBar('Complete cuit and business name');
     }
     else{

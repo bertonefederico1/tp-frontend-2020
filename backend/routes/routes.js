@@ -15,7 +15,6 @@ router.get('/clients/:id', clientController.getOne);
 router.post('/addClient', clientController.createClient);
 router.put('/clients/:id', clientController.updateClient);
 router.put('/suspendClient/:id', clientController.suspendClient);
-router.delete('/deleteClient/:id', clientController.deleteClient);
 
 //Rutas de proveedores
 router.get('/suppliers', supplierController.getAll); 

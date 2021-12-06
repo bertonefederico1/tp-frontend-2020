@@ -53,7 +53,7 @@ export class AddArticleComponent implements OnInit {
     this.articleService.getArticle(this.idArticle)
       .subscribe(
         res => this.articleForm.patchValue({
-          articleId: res.articleId,
+          articleId: res.articleID,
           description: res.description,
           price: res.price,
           stock: res.stock || 0,

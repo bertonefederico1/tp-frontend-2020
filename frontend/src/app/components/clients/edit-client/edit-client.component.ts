@@ -37,7 +37,7 @@ export class EditClientComponent implements OnInit {
   }
 
   editClient(){
-    delete this.selectedClient.id_cliente;
+    delete this.selectedClient.clientID;
     this.clientService.editClient(this.idSupplier, this.selectedClient)
       .subscribe(
         () => this.router.navigate(['/clients']),
@@ -52,7 +52,7 @@ export class EditClientComponent implements OnInit {
   }
 
   validate(){
-    if (this.selectedClient.dni === '' || this.selectedClient.apellido === '' || this.selectedClient.nombre === ''){
+    if (this.selectedClient.dni === '' || this.selectedClient.surname === '' || this.selectedClient.name === ''){
       this.alertService.openSnackBar('Complete dni, name and surname');
     }
     else{

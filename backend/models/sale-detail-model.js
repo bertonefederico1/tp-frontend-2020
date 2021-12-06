@@ -6,24 +6,27 @@ const Article = require('./article-model');
 const Sale = require('./sale-model');
 
 const Sales_Detail = sequelize.define('detalle_ventas', {
-    id_articulo: { 
+    articleID: { 
         type: DataTypes.INTEGER, 
         primaryKey: true,
+        field: 'id_articulo',
         references: { 
             model: Article, 
             key: 'id_articulo'
         }
     },
-    id_venta: { 
+    saleID: { 
         type: DataTypes.INTEGER,
         primaryKey: true,
+        field: 'id_venta',
         references: {
             model: Sale,
             key: 'id_venta'
         }
     },
-    cantidad: { 
-        type: DataTypes.INTEGER
+    quantity: { 
+        type: DataTypes.INTEGER,
+        field: 'cantidad'
     }
 },{ 
     createdAt: false,
