@@ -80,7 +80,7 @@ UserController.checkTokenExpiration = async (req, res) => {
         if(token === null){
             throw new Error();
         }
-        const payload = jwt.verify(token, 'wordKey');
+        jwt.verify(token, 'wordKey');
         res.status(200).json('Token is valid');
     } catch (err) {
         res.status(200).json('Token is not valid');
