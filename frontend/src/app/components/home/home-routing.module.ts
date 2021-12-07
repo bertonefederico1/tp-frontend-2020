@@ -21,6 +21,10 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/clients',
+    pathMatch: 'full'
+  }, {
+    path: '',
     component: HomeComponent,
     canActivateChild: [AuthGuard],
     children: [
