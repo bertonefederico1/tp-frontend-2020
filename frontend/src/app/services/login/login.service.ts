@@ -22,4 +22,5 @@ export class LoginService {
   isLogged() {
     return !!this.tokenService.getToken();
   }
+  
 }

@@ -7,5 +7,5 @@ export class Supplier {
     city: string;
     address: string;
     telephoneNumber: string;
-    proveedores_articulos: ArticleSupplier;
+    suppliersArticles: ArticleSupplier;
 }

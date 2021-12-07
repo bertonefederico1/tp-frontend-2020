@@ -45,7 +45,8 @@ router.post('/newSale', saleController.createSale);
 router.put('/deleteSale/:saleID', saleController.deleteSale);
 
 //Rutas de login y logout
-router.post('/createPassword', LoginController.signup); //Ver si dejar o sacar
+router.post('/createPassword', LoginController.signup); 
 router.post('/signin', LoginController.signin);
+router.get('/checkExpirationToken', LoginController.checkTokenExpiration); //Verifica la expiracion del token
 
 module.exports = router;

@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { TokenService } from '../token-service/token.service';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class TokenInterceptorService implements HttpInterceptor {
 
     const token: string = this.tokenService.getToken();
     let request = req;
+    
     if(token) {
       request = req.clone({
         setHeaders: {
@@ -25,6 +26,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     }
 
     return next.handle(request);
+
   }
 
   

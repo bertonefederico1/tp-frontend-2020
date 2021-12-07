@@ -51,7 +51,8 @@ UserController.signin = async (req, res) => {
 
 UserController.verifyToken = async (req, res, next) => {
     try {
-        if(req.originalUrl === '/signin') { //Si estoy tratando de loguearme, no validar y dejarlo pasar
+        //Si estoy tratando de loguearme o checkear el token, no validar y dejarlo pasar
+        if(req.originalUrl === '/signin' || req.originalUrl === '/checkExpirationToken') { 
             next();
             return;
         };
@@ -73,6 +74,18 @@ UserController.verifyToken = async (req, res, next) => {
     }    
 } 
 
+UserController.checkTokenExpiration = async (req, res) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+        if(token === null){
+            throw new Error();
+        }
+        const payload = jwt.verify(token, 'wordKey');
+        res.status(200).json('Token is valid');
+    } catch (err) {
+        res.status(200).json('Token is not valid');
+    }  
+}
 
 const checkUserAndPassword = async (payload) => {
     try {

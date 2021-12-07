@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-alert-message',
   templateUrl: './alert-message.component.html',
-  styleUrls: ['./alert-message.component.css']
+  styleUrls: []
 })
 export class AlertMessageComponent implements OnInit {
 
