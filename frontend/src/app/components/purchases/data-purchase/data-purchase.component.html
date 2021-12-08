@@ -1,31 +1,34 @@
     <div class="container">
         <h4 class="center-align titulo data-purchase-align">PURCHASES TO "{{ supplier.supplier.businessName }}"</h4>
         <div mat-dialog-content>  
-        <table class="striped responsive-table">   
-                <thead>
-                  <tr>
-                      <th>Article ID</th>
-                      <th>Description</th>
-                      <th>Purchase price</th>
-                      <th>Purchased amount</th>
-                      <th>Date</th>
-                      <th>Action</th>
-                  </tr>
-                </thead>
-            
-                <tbody>
-                  <tr *ngFor="let purchase of purchases">
-                    <td>{{ purchase.articleID }}</td>
-                    <td>{{ purchase.articulo.description }}</td>
-                    <td>{{ purchase.unityPrice | currency: '$' }}</td>
-                    <td>{{ purchase.quantity }}</td>
-                    <td>{{ purchase.purchaseDate | date: 'dd/MM/yyyy' }}</td>
-                    <td>
-                      <a (click)="deletePurchase(purchase)"><i class="material-icons pointer-red">delete</i></a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <h3 class="center-align" *ngIf="purchases.length == 0">
+            There are no purchases from this supplier
+          </h3>
+          <table class="striped responsive-table" *ngIf="purchases.length > 0">
+            <thead>
+              <tr>
+                  <th>Article ID</th>
+                  <th>Description</th>
+                  <th>Purchase price</th>
+                  <th>Purchased amount</th>
+                  <th>Date</th>
+                  <th>Action</th>
+              </tr>
+            </thead>
+        
+            <tbody>
+              <tr *ngFor="let purchase of purchases">
+                <td>{{ purchase.articleID }}</td>
+                <td>{{ purchase.articulo.description }}</td>
+                <td>{{ purchase.unityPrice | currency: '$' }}</td>
+                <td>{{ purchase.quantity }}</td>
+                <td>{{ purchase.purchaseDate | date: 'dd/MM/yyyy' }}</td>
+                <td>
+                  <a (click)="deletePurchase(purchase)"><i class="material-icons pointer-red">delete</i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 </div>
 

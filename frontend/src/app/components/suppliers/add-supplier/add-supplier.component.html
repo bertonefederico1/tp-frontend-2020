@@ -9,22 +9,22 @@
       </div>
       <div class="row">
        <div class="input-field col s5">
-          <input id="business_name" type="text" class="validate" name="razon_social" [(ngModel)]="supplier.businessName">
-          <label for="business_name">Business Name</label>
+          <input id="businessName" type="text" class="validate" name="businessName" [(ngModel)]="supplier.businessName">
+          <label for="businessName">Business Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s5">
-            <input id="city" type="text" class="validate" name="ciudad" [(ngModel)]="supplier.city">
+            <input id="city" type="text" class="validate" name="city" [(ngModel)]="supplier.city">
             <label for="city">City</label>
           </div>
         <div class="input-field col s5">
-          <input id="address" type="text" class="validate" name="direccion" [(ngModel)]="supplier.address">
+          <input id="address" type="text" class="validate" name="address" [(ngModel)]="supplier.address">
           <label for="address">Address</label>
         </div>
         <div class="input-field col s5">
-          <input id="phone" type="text" class="validate" name="telefono" [(ngModel)]="supplier.telephoneNumber">
-          <label for="phone">Phone</label>
+          <input id="telephoneNumber" type="text" class="validate" name="telephoneNumber" [(ngModel)]="supplier.telephoneNumber">
+          <label for="telephoneNumber">Phone</label>
         </div>
       </div>
     <button class="btn waves-effect waves-light" (click)= "validate()"> Save

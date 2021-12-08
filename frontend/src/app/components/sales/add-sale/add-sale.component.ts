@@ -155,8 +155,8 @@ export class AddSaleComponent {
       }
 
       case 'searchArticle': {
-        this.selectedArticle.articleId = undefined;
-        this.selectedArticle.descripcion = '';
+        this.selectedArticle.articleID = undefined;
+        this.selectedArticle.description = '';
         break;
       }
 

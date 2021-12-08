@@ -38,8 +38,8 @@
             <td>{{ supplier.address }}</td>
             <td>{{ supplier.telephoneNumber }}</td>
             <td>
-              <a [routerLink]="['/suppliers/edit-supplier', supplier.id_proveedor]"><i class="material-icons">edit</i></a>
-              <a (click)="deleteSupplier(supplier.id_proveedor)"><i class="material-icons pointer-red">delete</i></a>
+              <a [routerLink]="['/suppliers/edit-supplier', supplier.supplierID]"><i class="material-icons">edit</i></a>
+              <a (click)="deleteSupplier(supplier.supplierID)"><i class="material-icons pointer-red">delete</i></a>
             </td>
           </tr>
         </tbody>

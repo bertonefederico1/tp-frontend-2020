@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="planilla" *ngIf="article && supplierPurchase.length > 0">
+
+    <div class="planilla" *ngIf="article">
         <p>
 
         <!-- Informacion del articulo -->
@@ -37,23 +38,25 @@
         </table>
 
         <!-- Informacion del primer proveedor -->
-        <h4 class="center-align titulo">SUPPLIER</h4>
+        <div *ngIf="supplierPurchase.length > 0">
+            <h4 class="center-align titulo">SUPPLIER</h4>
 
-        <p>
-            <label class="black-text etiqueta">Supplier CUIT: </label>
-            <span class="contenido">{{ supplierPurchase[0].cuit }}</span>
-        <p>
-            <label class="black-text etiqueta">Business name: </label>
-            <span class="contenido">{{ supplierPurchase[0].razon_social }}</span>
+            <p>
+                <label class="black-text etiqueta">Supplier CUIT: </label>
+                <span class="contenido">{{ supplierPurchase[0].cuit }}</span>
+            <p>
+                <label class="black-text etiqueta">Business name: </label>
+                <span class="contenido">{{ supplierPurchase[0].businessName }}</span>
 
-        <p>
-            <label class="black-text etiqueta">Purchase price: </label>
-            <span class="contenido">{{ supplierPurchase[0].precio_unitario | currency: '$' }}</span>
+            <p>
+                <label class="black-text etiqueta">Purchase price: </label>
+                <span class="contenido">{{ supplierPurchase[0].unityPrice | currency: '$' }}</span>
 
-        <p>
-            <label class="black-text etiqueta">Date of purchase: </label>
-            <span class="contenido">{{ supplierPurchase[0].fecha_compra | date: 'fullDate' }}</span>
-        <p>
+            <p>
+                <label class="black-text etiqueta">Date of purchase: </label>
+                <span class="contenido">{{ supplierPurchase[0].purchaseDate | date: 'fullDate' }}</span>
+            <p>
+        </div>
 
     </div>
     <div class="article-data-button-container">

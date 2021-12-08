@@ -30,7 +30,7 @@ export class DataPurchaseComponent implements OnInit {
   getAll(){
      this.purchaseService.getSupplierPurchases(this.supplier.supplier.supplierID)
       .subscribe(
-        res => this.purchases = res,
+        res => this.purchases = Array.isArray(res) ? res : [],
         err => this.alertService.openSnackBar(err.name)
       );
   }

@@ -4,8 +4,8 @@
         
         <div class="row">
           <div class="input-field col s5">
-              <input id="fecha_compra" type="text" class="validate" name="fecha_compra" [value]="fecha" disabled>
-              <label class="active" for="fecha_compra">Fecha</label>
+              <input id="purchaseDate" type="text" class="validate" name="purchaseDate" [value]="fecha" disabled>
+              <label class="active" for="purchaseDate">Fecha</label>
           </div>
         </div>
 
@@ -34,13 +34,13 @@
   
         <div class="row">
           <div class="input-field col s5">
-            <input id="precio_unitario" type="text" class="validate" name="precio_unitario" [(ngModel)]="purchase.unityPrice">
-            <label for="precio_unitario">Price for unity ($)</label>
+            <input id="unityPrice" type="text" class="validate" name="unityPrice" [(ngModel)]="purchase.unityPrice">
+            <label for="unityPrice">Price for unity ($)</label>
           </div>
   
           <div class="input-field col s5">
-            <input id="cantidad" type="text" class="validate" name="cantidad" [(ngModel)]="purchase.quantity">
-            <label for="cantidad">Amount</label>
+            <input id="quantity" type="text" class="validate" name="quantity" [(ngModel)]="purchase.quantity">
+            <label for="quantity">Amount</label>
           </div>
         </div>
   
