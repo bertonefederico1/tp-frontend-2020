@@ -1,65 +1,84 @@
 <div class="container">
+  <div class="planilla" *ngIf="article">
 
-    <div class="planilla" *ngIf="article">
-        <p>
+    <h4 class="center-align titulo">ARTICLE</h4>
 
-        <!-- Informacion del articulo -->
-        <h4 class="center-align titulo">ARTICLE</h4>
+    <table class="centered">
+      <thead>
+        <tr>
+          <th class="etiqueta" colspan="2">Data</th>
+          <th class="etiqueta">Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="etiqueta">ID</td>
+          <td class="contenido">{{ article.articleID }}</td>
+          <td rowspan="4">
+            <img
+              *ngIf="article.picture"
+              [src]="article.picture"
+              [alt]="article.description"
+              class="img size-image-edit"
+            />
+            <img
+              *ngIf="!article.picture"
+              src="../../../../assets/default image.jpg"
+              [alt]="article.description"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td class="etiqueta">Description</td>
+          <td class="contenido">{{ article.description }}</td>
+        </tr>
+        <tr>
+          <td class="etiqueta">Price</td>
+          <td class="contenido">{{ article.price | currency: "$" }}</td>
+        </tr>
+        <tr>
+          <td class="etiqueta">Stock</td>
+          <td class="contenido">{{ article.stock }}</td>
+        </tr>
+      </tbody>
+    </table>
 
-        <table class="centered">
-            <thead>
-              <tr>
-                  <th class="etiqueta" colspan="2">Data</th>
-                  <th class="etiqueta">Image</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="etiqueta">ID</td>
-                <td class="contenido">{{ article.articleID }}</td>
-                <td rowspan="4">
-                    <img *ngIf="article.picture" [src]="article.picture" [alt]="article.description" class="img size-image-edit">
-                    <img *ngIf="!article.picture" src="../../../../assets/default image.jpg" [alt]="article.description">
-                </td>
-              </tr>
-              <tr>
-                  <td class="etiqueta">Description</td>
-                  <td class="contenido">{{ article.description }}</td>
-              </tr>
-              <tr>
-                <td class="etiqueta">Price</td>
-                <td class="contenido">{{ article.price | currency: '$' }}</td>
-            </tr>
-            <tr>
-                <td class="etiqueta">Stock</td>
-                <td class="contenido">{{ article.stock }}</td>
-            </tr>
-            </tbody>
-        </table>
+    <!-- Informacion del primer proveedor -->
+    <div *ngIf="supplierPurchase.length > 0">
+      <h4 class="center-align titulo">SUPPLIER</h4>
 
-        <!-- Informacion del primer proveedor -->
-        <div *ngIf="supplierPurchase.length > 0">
-            <h4 class="center-align titulo">SUPPLIER</h4>
+      <p>
+        <label class="black-text etiqueta">Supplier CUIT: </label>
+        <span class="contenido">{{ supplierPurchase[0].cuit }}</span>
+      </p>
 
-            <p>
-                <label class="black-text etiqueta">Supplier CUIT: </label>
-                <span class="contenido">{{ supplierPurchase[0].cuit }}</span>
-            <p>
-                <label class="black-text etiqueta">Business name: </label>
-                <span class="contenido">{{ supplierPurchase[0].businessName }}</span>
+      <p>
+        <label class="black-text etiqueta">Business name: </label>
+        <span class="contenido">{{ supplierPurchase[0].businessName }}</span>
+      </p>
 
-            <p>
-                <label class="black-text etiqueta">Purchase price: </label>
-                <span class="contenido">{{ supplierPurchase[0].unityPrice | currency: '$' }}</span>
+      <p>
+        <label class="black-text etiqueta">Purchase price: </label>
+        <span class="contenido">{{
+          supplierPurchase[0].unityPrice | currency: "$"
+        }}</span>
+      </p>
 
-            <p>
-                <label class="black-text etiqueta">Date of purchase: </label>
-                <span class="contenido">{{ supplierPurchase[0].purchaseDate | date: 'fullDate' }}</span>
-            <p>
-        </div>
+      <p>
+        <label class="black-text etiqueta">Date of purchase: </label>
+        <span class="contenido">{{
+          supplierPurchase[0].purchaseDate | date: "fullDate"
+        }}</span>
+      </p>
 
+      <p></p>
     </div>
-    <div class="article-data-button-container">
-        <a (click)="navigate(['/articles'])" class=" light-blue lighten-2 btn-large article-data-back-button">Back</a>
-    </div>
+  </div>
+  <div class="article-data-button-container">
+    <a
+      (click)="navigate(['/articles'])"
+      class="light-blue lighten-2 btn-large article-data-back-button"
+      >Back</a
+    >
+  </div>
 </div>

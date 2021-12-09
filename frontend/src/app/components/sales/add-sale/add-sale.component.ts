@@ -39,7 +39,6 @@ export class AddSaleComponent {
   save() {
     if (this.validate()) {
       this.sale = new Sale(this.articles, this.selectedClient.clientID, this.total);
-      console.log(this.sale);
       this.saleService.addSale(this.sale)
       .subscribe(
         () => this.router.navigate(['/sales']),

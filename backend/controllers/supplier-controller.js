@@ -91,11 +91,34 @@ supplierController.suspendSupplier = async (req, res) => {
 
 supplierController.lastSupplierPurchaseByArticle = async (req, res) => {
     try {
-        const query = 'call ultimoProveedorPorArticulo(?)';
+        const query = `SELECT p.cuit AS cuit, p.razon_social AS businessName, 
+        pa.precio_unitario AS unityPrice, pa.fecha_compra AS purchaseDate
+        FROM proveedores p
+        INNER JOIN proveedores_articulos pa
+            ON p.id_proveedor = pa.id_proveedor
+        INNER JOIN (
+            SELECT pa.id_articulo, p.id_proveedor, fecha_compra
+            FROM proveedores_articulos pa
+            INNER JOIN proveedores p
+                ON p.id_proveedor = pa.id_proveedor
+            WHERE fecha_compra = (
+                                 SELECT MAX(fecha_compra) 
+                                 FROM proveedores_articulos
+                                 WHERE id_articulo = ?
+                                 )
+            GROUP BY id_articulo, id_proveedor
+        ) ultima_compra
+            ON pa.id_proveedor = ultima_compra.id_proveedor
+            AND pa.id_articulo = ultima_compra.id_articulo
+            AND pa.fecha_compra = (
+                                 SELECT MAX(fecha_compra) 
+                                 FROM proveedores_articulos
+                                 WHERE id_articulo = ?
+                                 );`;
         const results = await connection.query(query, {
-            replacements: [req.params.id_articulo]
+            replacements: [req.params.id_articulo, req.params.id_articulo]
         });
-        res.json(results);
+        res.json(results[0]);
     } catch (err) {
         res.json(err);
     }

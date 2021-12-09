@@ -32,7 +32,7 @@ export class SupplierService {
   }
 
   lastSuplierPurchaseByArticle(idArticulo: number){
-    return this.http.get<any[]>(`${this.URL}/lastSupplierPurchaseByArticle/${idArticulo}`);
+    return this.http.get<Supplier[]>(`${this.URL}/lastSupplierPurchaseByArticle/${idArticulo}`);
   }
 
   getSuppliersByParam(strParam: string){

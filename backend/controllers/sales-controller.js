@@ -77,7 +77,6 @@ saleController.createSale = async (req, res) => {
         await transact.commit();
         res.status(200).json('Sale created');
     } catch (err){
-        console.log(err.message);
         await transact.rollback();
         res.status(400).json(err.message);
     }
