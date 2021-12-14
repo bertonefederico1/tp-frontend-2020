@@ -10,7 +10,6 @@ import { AlertService } from 'src/app/services/alert-service/alert.service';
 export class SupplierComponent implements OnInit {
 
   suppliers: Supplier[];
-  testInput: any;
   filterString: string;
 
   constructor(
